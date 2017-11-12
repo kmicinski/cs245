@@ -2,117 +2,33 @@
 layout: mainpage
 ---
 
-I'm a visiting professor in the
-[Computer Science](https://www.haverford.edu/computer-science/)
-department at [Haverford College](https://www.haverford.edu), where I
-am excited to mentor students, teach courses, and perform research.
+# News
 
-## Research
+- Initial course webpage is up!
 
-My goal is to keep users secure as they use modern systems. This is a
-challenging problem: writing secure code is hard, developers are not
-always incentivized towards security, and it is not always clear what
-security even means. For example, it is easy to write an app that
-apparently works (is functionally correct), but violates user
-expectations of security by leaking their location to an ad server
-every few hours. My [research](/research) page outlines some of the
-projects I'm currently involved in.
+# Introduction 
 
-To help achieve this goal, I use techniques from the following areas:
+This course will serve as a broad introduction to the field of
+computer security from two concurrent perspectives: attacks on
+systems, and defenses against those attacks. The goal of this course
+will be to help build intuition so that--when designing systems--you
+can consider the potential security risks and pick tools that help
+minimize those risks. To understand how attackers think, we will learn
+about the attacks they employ, such as:
 
-<table>
-  <tr id="areastr">
-    <td width="50%">
-    <svg width="350" height="300" xmlns="http://www.w3.org/2000/svg">
-        <circle fill-opacity=".4" r="100" cx="100" cy="100" fill="red" 
-            id="circle1" />
-    <text font-weight="bold" xml:space="preserve" 
-        text-anchor="start" 
-            font-family="Helvetica, Arial, sans-serif"
-            font-size="24" 
-            y="100" x="30" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">Security</text>
-    <circle fill-opacity=".4" r="100" cx="250" cy="100" fill="green" 
-            id="circle2" />
-    <text font-weight="bold" xml:space="preserve" 
-        text-anchor="start" 
-            font-family="Helvetica, Arial, sans-serif"
-            font-size="24" 
-            y="100" x="250" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">PL</text>
-    <circle fill-opacity=".4" r="100" cx="175" cy="200" fill="blue" 
-            id="circle3" />
-    <text font-weight="bold" xml:space="preserve" 
-        text-anchor="start" 
-            font-family="Helvetica, Arial, sans-serif"
-            font-size="24" 
-            y="235" x="150" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#000000">HCI</text>
-   </svg>
-   </td>
-   <td id="areadesc">
-       <div><h2 style="text-align:center">Areas I work in</h2><br />
-           <h4 style="text-align:center">(mouse over)</h4>
-      </div>
-   </td>
-   <td id="secdesc" class="areadesc" style="display:none">
-      <h3>Security</h3>
-      <hr />
-      <p>Security is a broad area, but unified by a common challenge:
-      identifying gaps between abstractions that allow potential
-      attackers to exploit systems. I frequently use definitions from
-      security such as <a
-      href="https://en.wikipedia.org/wiki/Non-interference_(security)">noninterference</a>
-      and techniques such as <a
-      href="https://en.wikipedia.org/wiki/Process_isolation">process
-      isolation</a>. My current work addresses key challenges in <a
-      href="https://en.wikipedia.org/wiki/Reverse_engineering">reverse
-      engineering</a></p>
-   </td>
-   <td id="pldesc" class="areadesc" style="display:none">
-      <h3>Programming Languages</h3>
-      <hr />
-      <p>Reasoning about a program's security requires being able to
-      precisely define its
-      behavior. <a href="https://en.wikipedia.org/wiki/Programming_language_theory">Programming language theory</a>
-      allows us to treat programs as artifacts. I frequently use
-      techniques from PL to define and reason about programs. Some of
-      these techniques include
-      <a href="https://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a>
-      <a href="https://en.wikipedia.org/wiki/Abstract_interpretation">abstract interpretation</a>
-      and
-      <a href="https://en.wikipedia.org/wiki/Symbolic_execution">symbolic execution</a>.</p>
-      </td>
-   <td id="hcidesc" class="areadesc" style="display:none">
-      <h3>Human-Computer Interaction</h3>
-      <hr />
-      <p>Theory is useful for formally arguing about what security
-      means and how to enforce it. But ultimately we want to protect <i>users</i>. Techniques from
-      <a
-      href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction">Human-Computer
-      Interaction</a> (such as <a
-      href="https://en.wikipedia.org/wiki/User_Research">user
-      studies</a> and <a
-      href="https://en.wikipedia.org/wiki/User_Research">visualization</a>) help us communicate security to users, and
-      allow us to evaluate when we've done so correctly.</p>
-  </td>
-  </tr>
+- Memory-based attacks (buffer overrun, access space derandomization, return oriented programming)
+- Web attacks (code injection, cross-site request forgery, etc..)
+- Systems security (passwords and authentication, process isolation)
+- Reverse engineering
+- Attacks on cryptographic systems and implementations
 
-</table>
+However, a collection of attacks alone is not sufficient to understand
+how to build secure systems. So concurrent with attacks, we will also
+learn the theory behind building defenses into our systems.  In labs,
+we will dissect a number of real-world attacks (such as Heartbleed or
+WannaCry) and reflect upon what could have been done to prevent them,
+and how those experiences help inform our choices about system design.
 
-I have a great set of collaborators, many from the
-[PLUM lab](https://github.com/plum-umd) at the University of
-Maryland. You can find a list of my publications [here](/publications)
-(and also on my
-[Google Scholar](https://scholar.google.com/citations?user=HpJLJWUAAAAJ&hl=en)
-profile).
+# Course Structure
 
-#### Undergraduate Research
-
-Note that I am particularly excited to collaborate with Haverford
-students. If you are planning to do a thesis (or simply generally
-interested in research), please drop me a line so we can discuss!
-
-## Teaching
-
-I am deeply passionate about teaching, and I am excited to spend much
-of my week working directly with students as we tackle computer
-science together.
-
+More to do here..
