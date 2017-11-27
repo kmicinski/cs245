@@ -2,11 +2,42 @@
 layout: mainpage
 ---
 
-# News
+## Upcoming deadlines
 
-- Initial course webpage is up!
+<ul class="due-list">
+{% for post in site.posts %}
+    {% capture nowunix %}{{'now' | date: '%s'}}{% endcapture %}
+    {% capture duetime %}{{post.due | date: '%s'}}{% endcapture %}
+    {% if post.categories contains 'assignment' and duetime > nowunix %}
+    <li>
+       <span><span class="post-meta"><b>(Due <span itemprop="date">{{ post.due | date: "%b %-d, %Y" }}</span>)</b></span><a class="mainpage-asn-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></span></li>
+   {% endif %}
+{% endfor %}
+</ul>
 
-# Introduction 
+## Information
+
+<div class="infomatter">
+<table class="infotablestyle">
+<tr><td>Course Number</td>
+    <td>CMSC 311 (Spring 2018) at <a href="https://www.haverford.edu/computer-science/">Haverford College</a></td>
+</tr>
+<tr><td>Instructor</td>
+    <td><a href="http://kmicinski.com">Kristopher Micinski</a></td>
+</tr>
+<tr>
+    <td>Times</td>
+    <td>Tu/Thur 11:30-13:00 <i>Lecture</i>  W 11:30 / 12:30 <i>Labs</i></td>
+</tr>
+<tr>
+    <td>Office Hours</td>
+    <td>Tu/Thur after class and by appointment</td>
+</tr>
+</table>
+<img class="krispic" src="{{ "/assets/img/krisbw.jpg" | absolute_url }}">
+</div>
+    
+## Introduction 
 
 This course will serve as a broad introduction to the field of
 computer security from two concurrent perspectives: attacks on
@@ -17,10 +48,10 @@ minimize those risks. To understand how attackers think, we will learn
 about the attacks they employ, such as:
 
 - Memory-based attacks (buffer overrun, access space derandomization, return oriented programming)
-- Web attacks (code injection, cross-site request forgery, etc..)
+- Web attacks (code injection, cross-site request forgery, etc..) and security
 - Systems security (passwords and authentication, process isolation)
 - Reverse engineering
-- Attacks on cryptographic systems and implementations
+- Attacks on cryptographic systems and implementations, and basics of SSL/TLS
 
 However, a collection of attacks alone is not sufficient to understand
 how to build secure systems. So concurrent with attacks, we will also
@@ -29,6 +60,6 @@ we will dissect a number of real-world attacks (such as Heartbleed or
 WannaCry) and reflect upon what could have been done to prevent them,
 and how those experiences help inform our choices about system design.
 
-# Course Structure
+## Course Structure
 
-More to do here..
+Please read the [Syllabus](/syllabus) for course information.

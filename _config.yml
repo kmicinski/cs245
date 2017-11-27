@@ -6,14 +6,17 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: "Computer Security"
-description: here is some text
-#baseurl: "https://cs.umd.edu/~micinski"
-#url: "https://cs.umd.edu/~micinski" # the base hostname & protocol for your site
+title: Computer Security
+baseurl: ""
+url: "http://localhost:4000"
+description: "Computer Security: Attacks and Defenses (CMSC311 at Haverford College)."
 permalink: pretty
 
 # Build settings
 #markdown: redcarpet
+
+# Build posts to appear in the future
+future: true
 
 defaults:
   - scope:
