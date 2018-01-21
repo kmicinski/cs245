@@ -3,7 +3,7 @@ deploy:
 	cp _buildconfig.yml _config.yml
 	jekyll build 
 	cp -r _site docs
-	git add ../docs
+	git add docs
 	git commit -m "webpage update"
 	git push origin master
 	mv _config.yml.tmp _config.yml
