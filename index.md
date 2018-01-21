@@ -1,37 +1,65 @@
 ---
-layout: page
-title: About
+layout: mainpage
 ---
 
-<img src="{{ "/assets/krisold.jpg" | prepend: site.baseurl }}" alt="A somewhat dated picture of me" class="krispic" />
+## Upcoming deadlines
 
-I’m a PhD student in computer science at the University of Maryland,
-College Park. My research focuses on security for mobile devices using
-a combination of systems and language based techniques. I’m a member
-of the [PLUM](http://www.cs.umd.edu/projects/PL/) group, advised by
-Jeff Foster. I also routinely collaborate with the rest of the members
-of the PLUM lab and [Michael Clarkson](http://www.cs.cornell.edu/~clarkson/).
+<ul class="due-list">
+{% for post in site.posts %}
+    {% capture nowunix %}{{'now' | date: '%s'}}{% endcapture %}
+    {% capture duetime %}{{post.due | date: '%s'}}{% endcapture %}
+    {% if post.categories contains 'assignment' and duetime > nowunix %}
+    <li>
+       <span><span class="post-meta"><b>(Due <span itemprop="date">{{ post.due | date: "%b %-d, %Y" }}</span>)</b></span><a class="mainpage-asn-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></span></li>
+   {% endif %}
+{% endfor %}
+</ul>
 
-You can find a list of my publications on my Google Scholar
-profile. You may also be interested in the lab’s Github page.
+## Information
 
-# Projects
+<div class="infomatter">
+<table class="infotablestyle">
+<tr><td>Course Number</td>
+    <td>CMSC 311 (Spring 2018) at <a href="https://www.haverford.edu/computer-science/">Haverford College</a></td>
+</tr>
+<tr><td>Instructor</td>
+    <td><a href="http://kmicinski.com">Kristopher Micinski</a></td>
+</tr>
+<tr>
+    <td>Times</td>
+    <td>Tu/Thur 11:30-13:00 <i>Lecture</i>  W 11:30 / 12:30 <i>Labs</i></td>
+</tr>
+<tr>
+    <td>Office Hours</td>
+    <td>Tu/Thur after class and by appointment</td>
+</tr>
+</table>
+<img class="krispic" src="{{ "/assets/img/krisbw.jpg" | absolute_url }}">
+</div>
+    
+## Introduction 
 
-Major projects I’ve worked on include:
+This course will serve as a broad introduction to the field of
+computer security from two concurrent perspectives: attacks on
+systems, and defenses against those attacks. The goal of this course
+will be to help build intuition so that--when designing systems--you
+can consider the potential security risks and pick tools that help
+minimize those risks. To understand how attackers think, we will learn
+about the attacks they employ, such as:
 
-- The Redexer binary rewriter, with Jinseong Jeon and our
-collaborators. Redexer instruments Dalvik binaries (the executable
-format for Android apps), which we used for finer grained permissions
-and measuring utility of apps with fuzzed inputs.
+- Memory-based attacks (buffer overrun, access space derandomization, return oriented programming)
+- Web attacks (code injection, cross-site request forgery, etc..) and security
+- Systems security (passwords and authentication, process isolation)
+- Reverse engineering
+- Attacks on cryptographic systems and implementations, and basics of SSL/TLS
 
-- Temporal Logics for Hyperproperties which seeks to develop logical
-foundations for security statements that quantify over multiple
-executions of a program and relate those executions using
-predicates. This work allows stating a wide variety of statements
-about program security, such as noninterference and observational
-determinism.
+However, a collection of attacks alone is not sufficient to understand
+how to build secure systems. So concurrent with attacks, we will also
+learn the theory behind building defenses into our systems.  In labs,
+we will dissect a number of real-world attacks (such as Heartbleed or
+WannaCry) and reflect upon what could have been done to prevent them,
+and how those experiences help inform our choices about system design.
 
-- GUI based declassification for Android. My current work applies
-static analysis to Android programs, using declassification policies
-based on user inputs.
+## Course Structure
 
+Please read the [Syllabus](/syllabus) for course information.

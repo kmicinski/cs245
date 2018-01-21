@@ -6,14 +6,20 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Kristopher Micinski
-email: micinski@cs.umd.edu
-description: > # this means to ignore newlines until "baseurl:"
-   Kristopher Micinski's personal website: research in programming languages, security, and Android.
-baseurl: "http://cs.umd.edu/~micinski"
-url: "http://cs.umd.edu/~micinski" # the base hostname & protocol for your site
-twitter_username: krismicinski
-github_username:  kmicinski
+title: Computer Security
+baseurl: ""
+url: "http://localhost:4000"
+description: "Computer Security: Attacks and Defenses (CMSC311 at Haverford College)."
+permalink: pretty
 
 # Build settings
-markdown: kramdown
+#markdown: redcarpet
+
+# Build posts to appear in the future
+future: true
+
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true

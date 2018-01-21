@@ -168,7 +168,7 @@
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+    padding: $spacing-unit/4 0;
 }
 
 .page-heading {
@@ -184,6 +184,24 @@
     }
 }
 
+.due-list {
+    margin-left: 20px;
+    list-style: square outside;
+
+    > li {
+        margin-bottom: $spacing-unit/2;
+    }
+
+    .post-meta {
+      font-size: 18px;
+      margin-right:10px;
+    }
+
+    h3 {
+      display: inline;
+    }
+}
+
 .post-meta {
     font-size: $small-font-size;
     color: $grey-color;
@@ -191,9 +209,13 @@
 
 .post-link {
     display: block;
-    font-size: 24px;
+    font-size: 18px;
 }
 
+.mainpage-asn-link {
+    display: inline;
+    font-size: 18px;
+}
 
 
 /**
@@ -204,7 +226,7 @@
 }
 
 .post-title {
-    font-size: 42px;
+    font-size: 36px;
     letter-spacing: -1px;
     line-height: 1;
 
@@ -213,30 +235,32 @@
     }
 }
 
+.writeup-content {
+  font-size: $base-font-size*.9;
+}
+
 .post-content {
     margin-bottom: $spacing-unit;
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
     h2 {
-        font-size: 32px;
-
-        @include media-query($on-laptop) {
-            font-size: 28px;
-        }
+      font-size: 26px;
+      margin-bottom: 10px;
     }
 
     h3 {
-        font-size: 26px;
-
-        @include media-query($on-laptop) {
-            font-size: 22px;
-        }
+      font-size: 22px;
     }
 
     h4 {
-        font-size: 20px;
-
-        @include media-query($on-laptop) {
-            font-size: 18px;
-        }
+        font-size: 18px;
     }
+
+    h5 {
+        font-size: 16px;
+    }
+
 }
