@@ -34,7 +34,7 @@ layout: mainpage
     <td>Tu/Thur after class and by appointment</td>
 </tr>
 </table>
-<img class="krispic" src="{{ "/assets/img/krisbw.jpg" | absolute_url }}">
+<img class="krispic" src="/assets/img/krisbw.jpg">
 </div>
     
 ## Introduction 
