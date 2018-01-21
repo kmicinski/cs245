@@ -2,11 +2,10 @@
 title: Schedule
 layout: page
 ---
-
-### Module 1 (**Weeks 1-6**) --- Memory-based attacks
-
 <b>Project-related deadlines are shown in red. Note that that there
 will be <u style="color:red">no extensions for projects!</u></b>
+
+### Module 1 (**Weeks 1-6**) --- Memory-based attacks
 
 #### Week 1: Stack Smashing
 
@@ -30,9 +29,9 @@ Buffer-Overflow Attacks"](https://www.cs.cornell.edu/courses/cs513/2007fa/paper.
 #### Week 3: Bypassing W^X and ASLR
 
 - **Tuesday (2/6)**: [Defeating W^X: Return-to-libC](/lectures/5)
-- **Wednesday (2/7)**: [Lab 3: Group work on projects](/labs/3)
-- <b style="color:red">Wednesday (2/7) at 11:59PM: Project 1I due!!!</b>
+- **Wednesday (2/7)**: [Lab 3: Group forming and individual work](/labs/3)
 - **Thursday (2/8)** [Address-space Layout Randomization](/lectures/6)
+- <b style="color:red">Friday (2/9) at 5:59PM: Project 1I due!!!</b>
 - Optional reading: 
   - [Baby's first NX+ASLR bypass](https://www.trustwave.com/Resources/SpiderLabs-Blog/Baby-s-first-NX-ASLR-bypass/)
 

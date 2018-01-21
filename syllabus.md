@@ -141,15 +141,15 @@ collaboration​ ​will​ ​occur​ ​via​ ​Github.
 
 ## Grading
 
-- Labs and projects: 50%
-  - Individual component: 30%
-  - Group component: 20%
+- Labs and projects: 70%
+  - Individual component: 42%
+  - Group component: 28%
+
 - Two midterm exams: 30% (take home and open note)
   - Given 1/3rd and 2/3rd of the way through the course
-- Final project: 20%
 
 Evaluation​ ​for​ ​group​ ​projects​ ​will​ ​be​ ​based​ ​on​ ​mutual​ ​student​
-feedback​ ​and​ ​oral​ ​exam​ ​with individual​ ​group​ ​members.
+feedback ​and ​may include oral ​exam ​with individual ​group ​members.
 
 ## Books
 
