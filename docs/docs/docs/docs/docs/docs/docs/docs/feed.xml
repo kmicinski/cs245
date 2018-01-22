@@ -3,10 +3,10 @@
   <channel>
     <title>Computer Security</title>
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
-    <link>cybersecurity-coursehttp://kmicinski.com/</link>
-    <atom:link href="cybersecurity-coursehttp://kmicinski.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Jan 2018 15:19:09 -0500</pubDate>
-    <lastBuildDate>Sun, 21 Jan 2018 15:19:09 -0500</lastBuildDate>
+    <link>http://kmicinski.com/cybersecurity-course/</link>
+    <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 21 Jan 2018 15:21:33 -0500</pubDate>
+    <lastBuildDate>Sun, 21 Jan 2018 15:21:33 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -30,8 +30,8 @@ assembly documentation.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Jan 2018 00:00:00 -0500</pubDate>
-        <link>cybersecurity-coursehttp://kmicinski.com/lab/1</link>
-        <guid isPermaLink="true">cybersecurity-coursehttp://kmicinski.com/lab/1</guid>
+        <link>http://kmicinski.com/cybersecurity-course/lab/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lab/1</guid>
         
         
         <category>lab</category>
@@ -796,8 +796,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>cybersecurity-coursehttp://kmicinski.com/project/1</link>
-        <guid isPermaLink="true">cybersecurity-coursehttp://kmicinski.com/project/1</guid>
+        <link>http://kmicinski.com/cybersecurity-course/project/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/1</guid>
         
         
         <category>project</category>
@@ -814,8 +814,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>cybersecurity-coursehttp://kmicinski.com/memory-safety</link>
-        <guid isPermaLink="true">cybersecurity-coursehttp://kmicinski.com/memory-safety</guid>
+        <link>http://kmicinski.com/cybersecurity-course/memory-safety</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/memory-safety</guid>
         
         
         <category>resources</category>
@@ -829,8 +829,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         <description>
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>cybersecurity-coursehttp://kmicinski.com/using-the-vm</link>
-        <guid isPermaLink="true">cybersecurity-coursehttp://kmicinski.com/using-the-vm</guid>
+        <link>http://kmicinski.com/cybersecurity-course/using-the-vm</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/using-the-vm</guid>
         
         
         <category>logistics</category>
@@ -842,8 +842,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         <description>
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>cybersecurity-coursehttp://kmicinski.com/2018/01/22/course-resourcdes/</link>
-        <guid isPermaLink="true">cybersecurity-coursehttp://kmicinski.com/2018/01/22/course-resourcdes/</guid>
+        <link>http://kmicinski.com/cybersecurity-course/2018/01/22/course-resourcdes/</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/2018/01/22/course-resourcdes/</guid>
         
         
       </item>
