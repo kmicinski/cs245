@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Jan 2018 15:21:33 -0500</pubDate>
-    <lastBuildDate>Sun, 21 Jan 2018 15:21:33 -0500</lastBuildDate>
+    <pubDate>Sun, 21 Jan 2018 15:36:16 -0500</pubDate>
+    <lastBuildDate>Sun, 21 Jan 2018 15:36:16 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -99,7 +99,7 @@ guide.&lt;/strong&gt;&lt;/p&gt;
     &lt;p&gt;It is okay to work through concepts on the board, but you &lt;strong&gt;may
 not&lt;/strong&gt; give away &lt;strong&gt;any&lt;/strong&gt; concrete addresses from the program (since
 finding these is part of the lab). Instead, use placeholder
-addresses when doing calculations with another studnet. E.g., you
+addresses when doing calculations with another student. E.g., you
 might say “Well, we realized that if the buffer is Y in length, and
 our shellcode is Z bytes long, we needed to insert X = Y-Z bytes of
 empty space after the shellcode”&lt;/p&gt;
@@ -241,7 +241,7 @@ typically use a
 &lt;a href=&quot;https://en.wikipedia.org/wiki/Firewall_(computing)&quot;&gt;firewall&lt;/a&gt; to keep
 you from opening up servers on random ports and putting them out on
 the internet. For example, we have a firewall at Haverford that stops
-the server undeer my desk from sending talking to the rest of the
+the server under my desk from sending talking to the rest of the
 internet.&lt;/p&gt;
 
 &lt;p&gt;Finally, this part of the project is fairly unrealistic. I have added
@@ -413,7 +413,7 @@ all of the available commands).&lt;/p&gt;
 
 &lt;h3 id=&quot;part-2-scripting-the-attack&quot;&gt;Part 2: Scripting the Attack&lt;/h3&gt;
 
-&lt;p&gt;Attacks can be compicated. You don’t want to have to literally sit and
+&lt;p&gt;Attacks can be complicated. You don’t want to have to literally sit and
 type your exploit into telnet. Especially as your attack gets more and
 more complicated. Instead, you’d like to use a higher-level language
 to script the attack. What’s more, sometimes we will need to generate
@@ -488,7 +488,7 @@ program returns from &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_conn
 &lt;p&gt;Notes:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;It is &lt;strong&gt;toally okay&lt;/strong&gt; if the server crashes after printing “Hello,
+  &lt;li&gt;It is &lt;strong&gt;totally okay&lt;/strong&gt; if the server crashes after printing “Hello,
 world!”&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -558,7 +558,7 @@ Hello, world!
 &amp;lt;Segfault&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now, your job is to careate a payload that does this!&lt;/p&gt;
+&lt;p&gt;Now, your job is to create a payload that does this!&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Caution!&lt;/strong&gt;&lt;/p&gt;
 
@@ -638,7 +638,7 @@ the same attacks given in parts 2 through 5.&lt;/p&gt;
 
 &lt;h3 id=&quot;challenge-problem-reverse-engineering-&quot;&gt;&lt;strong&gt;Challenge Problem&lt;/strong&gt;: Reverse Engineering (**)&lt;/h3&gt;
 
-&lt;p&gt;This problem is worth +5% bonus.&lt;/p&gt;
+&lt;p&gt;This problem is worth +3% bonus.&lt;/p&gt;
 
 &lt;p&gt;I have included a program, &lt;code class=&quot;highlighter-rouge&quot;&gt;challenge.o&lt;/code&gt;, in binary-only form. Your
 job is to figure out how to run it in a way that causes it to print
@@ -655,7 +655,7 @@ have the code.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;: Use the debugger for interactive disassembly of this
 program. This will also help you figure out what address to
-target. Use a disassembler or rever engineering toolkit.&lt;/p&gt;
+target. Use a disassembler or reverse engineering toolkit.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;bonus.txt&lt;/code&gt;, which describes the techniques and shows
 how to run the program to get it to print “Hello, world!”&lt;/p&gt;
@@ -679,7 +679,7 @@ code-injection, etc.. This program has a good number of them.&lt;/p&gt;
 
 &lt;p&gt;You can receive a maximum of 2% extra credit on this part. .5% for each
 vulnerability. However, I am the final arbiter of what constitutes a
-security vulernability versus just a bug (that isn’t a vulnerability)
+security vulnerability versus just a bug (that isn’t a vulnerability)
 and my decisions are final.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;other_bugs.txt&lt;/code&gt;, which describes any other bugs you
