@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Computer Security</title>
+  <meta name="description" content="Computer Security: Attacks and Defenses (CMSC311 at Haverford College).">
+
+  <link rel="stylesheet" href="http://kmicinski.com/cybersecurity-course/css/main.css">
+  <link rel="canonical" href="http://kmicinski.com/cybersecurity-course/">
+  <link rel="alternate" type="application/rss+xml" title="Computer Security" href="http://kmicinski.com/cybersecurity-course/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://kmicinski.com/cybersecurity-course/">Computer Security</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="http://kmicinski.com/cybersecurity-course/assignments/">Assignments</a>
+          
+        
+          
+          <a class="page-link" href="http://kmicinski.com/cybersecurity-course/blog/">Posts</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="http://kmicinski.com/cybersecurity-course/resources">Resources</a>
+          
+        
+          
+          <a class="page-link" href="http://kmicinski.com/cybersecurity-course/schedule/">Schedule</a>
+          
+        
+          
+          <a class="page-link" href="http://kmicinski.com/cybersecurity-course/syllabus/">Syllabus</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+</header>
+
+
+    <div class="masthead">
+      <div class="bs-docs-masthead" >
+        <div class="bs-docs-header">
+          <div class="container">
+            <div class="wrapper">
+              <div class="introtext">
+                <h1 name="compsecurity">Computer Security</h1>
+                <h2 id="practice""><span class="blackhat">Practice</span> and Theory</h2>
+                <h2 id="attacks"><span class="blackhat">Attacks</span> and Defenses</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="page-content">
+      <div class="wrapper">
+        <h2 id="upcoming-deadlines">Upcoming deadlines</h2>
+
+<ul class="due-list">
+
+    
+    
+    
+
+    
+    
+    
+    <li>
+       <span><span class="post-meta"><b>(Due <span itemprop="date">Feb 9, 2018</span>)</b></span><a class="mainpage-asn-link" href="http://kmicinski.com/cybersecurity-course/project/1">Project 1I: Basic Stack Smashing and Assembly</a></span></li>
+   
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
+
+</ul>
+
+<h2 id="information">Information</h2>
+
+<div class="infomatter">
+<table class="infotablestyle">
+<tr><td>Course Number</td>
+    <td>CMSC 311 (Spring 2018) at <a href="https://www.haverford.edu/computer-science/">Haverford College</a></td>
+</tr>
+<tr><td>Instructor</td>
+    <td><a href="http://kmicinski.com">Kristopher Micinski</a></td>
+</tr>
+<tr>
+    <td>Times</td>
+    <td>Tu/Thur 11:30-13:00 <i>Lecture</i>  W 11:30 / 12:30 <i>Labs</i></td>
+</tr>
+<tr>
+    <td>Office Hours</td>
+    <td>Tu/Thur after class and by appointment</td>
+</tr>
+</table>
+<img class="krispic" src="/assets/img/krisbw.jpg" />
+</div>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This course will serve as a broad introduction to the field of
+computer security from two concurrent perspectives: attacks on
+systems, and defenses against those attacks. The goal of this course
+will be to help build intuition so that–when designing systems–you
+can consider the potential security risks and pick tools that help
+minimize those risks. To understand how attackers think, we will learn
+about the attacks they employ, such as:</p>
+
+<ul>
+  <li>Memory-based attacks (buffer overrun, access space derandomization, return oriented programming)</li>
+  <li>Web attacks (code injection, cross-site request forgery, etc..) and security</li>
+  <li>Systems security (passwords and authentication, process isolation)</li>
+  <li>Reverse engineering</li>
+  <li>Attacks on cryptographic systems and implementations, and basics of SSL/TLS</li>
+</ul>
+
+<p>However, a collection of attacks alone is not sufficient to understand
+how to build secure systems. So concurrent with attacks, we will also
+learn the theory behind building defenses into our systems.  In labs,
+we will dissect a number of real-world attacks (such as Heartbleed or
+WannaCry) and reflect upon what could have been done to prevent them,
+and how those experiences help inform our choices about system design.</p>
+
+<h2 id="course-structure">Course Structure</h2>
+
+<p>Please read the <a href="http://kmicinski.com/cybersecurity-course">Syllabus</a> for course information.</p>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    
+    <a style="font-size:10pt" href="https://commons.wikimedia.org/wiki/File:Haverfordfounders.jpg">Masthead image © User:Jackbaurinvc / Wikimedia Commons / CC-BY-SA-3.0</a>
+    
+
+    <!-- <h2 class="footer-heading">Computer Security</h2> -->
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Computer Security</li>
+          <li><a href="mailto:"></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script src="http://kmicinski.com/cybersecurity-course/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="http://kmicinski.com/cybersecurity-course/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+      var areadescs = [$("#secdesc"),$("#pldesc"),$("#hcidesc")];
+      var areas = $("#areadesc");
+      $("areastr").css("min-height",
+                 (Math.min.apply(null, areadescs.map(function(f) { return f.height(); }))));
+      [$("#circle1"),$("#circle2"),$("#circle3")]
+        .forEach(function(f,i) {
+            f.mouseenter(function() {
+            f.css({"fill-opacity": .7});
+            areas.css({"display": "none"});
+            areadescs[i].css({"display": "table-cell"});
+          });
+          f.mouseleave(function() {
+            areadescs[i].css({"display": "none"});
+            areas.css({"display": "table-cell"});
+            f.css({"fill-opacity": .4});
+          });
+        });
+      });
+    </script>
+
+  </body>
+
+</html>
