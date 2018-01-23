@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Jan 2018 12:46:43 -0500</pubDate>
-    <lastBuildDate>Mon, 22 Jan 2018 12:46:43 -0500</lastBuildDate>
+    <pubDate>Mon, 22 Jan 2018 12:51:35 -0500</pubDate>
+    <lastBuildDate>Mon, 22 Jan 2018 12:51:35 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -826,7 +826,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
     
       <item>
         <title>Using the VM</title>
-        <description>
+        <description>&lt;p&gt;Nothing here yet..&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cybersecurity-course/using-the-vm</link>
@@ -834,17 +834,6 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         
         
         <category>logistics</category>
-        
-      </item>
-    
-      <item>
-        <title>Course Resourcdes</title>
-        <description>
-</description>
-        <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/2018/01/22/course-resourcdes/</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/2018/01/22/course-resourcdes/</guid>
-        
         
       </item>
     

@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Jan 2018 17:15:23 -0500</pubDate>
-    <lastBuildDate>Mon, 22 Jan 2018 17:15:23 -0500</lastBuildDate>
+    <pubDate>Mon, 22 Jan 2018 17:15:41 -0500</pubDate>
+    <lastBuildDate>Mon, 22 Jan 2018 17:15:41 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -850,7 +850,7 @@ the downloaded file and import it. The name of the VM should be
 &lt;p&gt;After that, you should see VirtualBox displaying something that looks
 like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;width:400px; margin:auto&quot; src=&quot;http://kmicinski.com/cybersecurity-course&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;width:400px; margin:auto&quot; src=&quot;http://kmicinski.com/cybersecurity-course/assets/img/vboxmenu.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You should then be able to click on &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; over &lt;code class=&quot;highlighter-rouge&quot;&gt;311test&lt;/code&gt;. This will
 open the machine, which runs linux. After that, the machine will boot
