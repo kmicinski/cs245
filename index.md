@@ -62,4 +62,4 @@ and how those experiences help inform our choices about system design.
 
 ## Course Structure
 
-Please read the [Syllabus]({{ "/syllabus" | prepend: site.baseurl }}) for course information.
+Please read the [Syllabus]({{ "/syllabus" }}) for course information.
