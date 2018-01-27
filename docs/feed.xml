@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 12:50:10 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 12:50:10 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 12:57:28 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 12:57:28 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -35,6 +35,24 @@ assembly documentation.&lt;/p&gt;
         
         
         <category>lab</category>
+        
+      </item>
+    
+      <item>
+        <title>Lecture 2: Stack Smashing Demos</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/lec-2-mem-safety.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/lec-2-mem-safety.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/2</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/2</guid>
+        
+        
+        <category>lectures</category>
         
       </item>
     
