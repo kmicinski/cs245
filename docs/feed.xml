@@ -3,10 +3,10 @@
   <channel>
     <title>Computer Security</title>
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
-    <link>http://kmicinski.com//cybersecurity-course/</link>
-    <atom:link href="http://kmicinski.com//cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 13:37:13 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 13:37:13 -0500</lastBuildDate>
+    <link>http://kmicinski.com/cybersecurity-course/</link>
+    <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 27 Jan 2018 13:39:52 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 13:39:52 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -30,8 +30,8 @@ assembly documentation.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/lab/1</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/lab/1</guid>
+        <link>http://kmicinski.com/cybersecurity-course/lab/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lab/1</guid>
         
         
         <category>lab</category>
@@ -43,13 +43,13 @@ assembly documentation.&lt;/p&gt;
         <description>&lt;p&gt;Slides for today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/cybersecurity-course/assets/slides/lec-2-mem-safety.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/cybersecurity-course/assets/slides/lec-2-mem-safety.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/lec-2-mem-safety.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/lec-2-mem-safety.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/lectures/2</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/lectures/2</guid>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/2</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/2</guid>
         
         
         <category>lectures</category>
@@ -814,8 +814,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/project/1</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/project/1</guid>
+        <link>http://kmicinski.com/cybersecurity-course/project/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/1</guid>
         
         
         <category>project</category>
@@ -829,8 +829,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         <description>&lt;p&gt;Slides for today:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/cybersecurity-course/assets/slides/intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/cybersecurity-course/assets/slides/intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;cybersecurity-course/assets/slides/intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Assigned reading:&lt;/p&gt;
@@ -845,8 +845,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/lectures/2018/01/23/lecture-1/</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/lectures/2018/01/23/lecture-1/</guid>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/2018/01/23/lecture-1/</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/2018/01/23/lecture-1/</guid>
         
         
         <category>lectures</category>
@@ -861,8 +861,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/memory-safety</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/memory-safety</guid>
+        <link>http://kmicinski.com/cybersecurity-course/memory-safety</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/memory-safety</guid>
         
         
         <category>resources</category>
@@ -897,7 +897,7 @@ the downloaded file and import it. The name of the VM should be
 &lt;p&gt;After that, you should see VirtualBox displaying something that looks
 like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img style=&quot;width:400px; margin:auto&quot; src=&quot;/cybersecurity-course/assets/img/vboxmenu.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img style=&quot;width:400px; margin:auto&quot; src=&quot;cybersecurity-course/assets/img/vboxmenu.png&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You should then be able to click on &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; over &lt;code class=&quot;highlighter-rouge&quot;&gt;311test&lt;/code&gt;. This will
 open the machine, which runs linux. After that, the machine will boot
@@ -951,8 +951,8 @@ This allows the VM to take up less memory so you have more available
 to do meaningful work.&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com//cybersecurity-course/using-the-vm</link>
-        <guid isPermaLink="true">http://kmicinski.com//cybersecurity-course/using-the-vm</guid>
+        <link>http://kmicinski.com/cybersecurity-course/using-the-vm</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/using-the-vm</guid>
         
         
         <category>logistics</category>
