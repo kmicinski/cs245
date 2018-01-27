@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 16:16:22 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 16:16:22 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 16:18:29 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 16:18:29 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -48,8 +48,8 @@ assembly documentation.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lab/1</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lab/1</guid>
+        <link>http://kmicinski.com/cybersecurity-course/labs/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/labs/1</guid>
         
         
         <category>lab</category>
