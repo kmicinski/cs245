@@ -10,7 +10,7 @@ layout: mainpage
     {% capture duetime %}{{post.due | date: '%s'}}{% endcapture %}
     {% if post.categories contains 'assignment' and duetime > nowunix %}
     <li>
-       <span><span class="post-meta"><b>(Due <span itemprop="date">{{ post.due | date: "%b %-d, %Y" }}</span>)</b></span><a class="mainpage-asn-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></span></li>
+       <span><span class="post-meta"><b>(Due <span itemprop="date">{{ post.due | date: "%b %-d, %Y" }}</span>)</b></span><a class="mainpage-asn-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a></span></li>
    {% endif %}
 {% endfor %}
 </ul>
@@ -62,4 +62,4 @@ and how those experiences help inform our choices about system design.
 
 ## Course Structure
 
-Please read the [Syllabus]({{ "/syllabus" }}) for course information.
+Please read the [Syllabus]({{ "/syllabus" | absolute_url }}) for course information.

@@ -12,12 +12,12 @@ title: Posts
       <li>
         <span class="post-meta">Posted {{ post.date | date: "%b %-d, %Y" }} {% if post.duedate %} • <b>(Due <span itemprop="date">{{ post.duedate | date: "%b %-d, %Y" }}</b></span>){% endif %}</span></span>
         <h3>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | absolute_url }}">{{ post.title }}</a>
         </h3>
       </li>
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | absolute_url }}">via RSS</a></p>
 
 </div>
