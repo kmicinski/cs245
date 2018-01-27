@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Jan 2018 17:15:41 -0500</pubDate>
-    <lastBuildDate>Mon, 22 Jan 2018 17:15:41 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 12:49:49 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 12:49:49 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -803,6 +803,35 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         <category>project</category>
         
         <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Lecture 1: Intro and Stack Smashing</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com/cybersecurity-course/assets/slides/intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com/cybersecurity-course/assets/slides/intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://people.eecs.berkeley.edu/~dawnsong/papers/Oakland13-SoK-CR.pdf&quot;&gt;Reading for before class today&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading for &lt;strong&gt;Thursday’s&lt;/strong&gt; class:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.usenix.net/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan.pdf&quot;&gt;Read &lt;strong&gt;up to&lt;/strong&gt; Sec 3.3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/2018/01/23/lecture-1/</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/2018/01/23/lecture-1/</guid>
+        
+        
+        <category>lectures</category>
         
       </item>
     
