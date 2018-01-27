@@ -5,9 +5,37 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 16:18:29 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 16:18:29 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 16:28:36 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 16:28:36 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Lecture 3: Shellcoding and Memory Defenses</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-3-mem-defenses.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-3-mem-defenses.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://people.eecs.berkeley.edu/~dawnsong/papers/Oakland13-SoK-CR.pdf&quot;&gt;Reading for before class today&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sections &lt;strong&gt;3, 4, and 5&lt;/strong&gt;. If you have not read the previous
+sections, you should have done so before class last week.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 30 Jan 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/3</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/3</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
     
       <item>
         <title>Lecture 2: Stack Smashing Demos</title>
