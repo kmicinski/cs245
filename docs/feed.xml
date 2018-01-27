@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 16:09:44 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 16:09:44 -0500</lastBuildDate>
+    <pubDate>Sat, 27 Jan 2018 16:15:25 -0500</pubDate>
+    <lastBuildDate>Sat, 27 Jan 2018 16:15:25 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -341,7 +341,49 @@ and links it with &lt;code class=&quot;highlighter-rouge&quot;&gt;max.o&lt;/code
 
 &lt;p&gt;Read GDB’s documentation on the following commands:&lt;/p&gt;
 
-&lt;p&gt;TODO&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; command, which allows you to examine memory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;layout &amp;lt;name&amp;gt;&lt;/code&gt; command, which allows you to interactively run
+the program&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; command, which allows you to print out values and
+memory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; command, which allows you to set memory.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;info&lt;/code&gt; command, and some of the things it can do (print stack
+frames / registers).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;break&lt;/code&gt; command, which allows you to set breakpoints.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Answer the following questions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;How would you find the address of a program variable named &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How would you set the integer value stored at address &lt;code class=&quot;highlighter-rouge&quot;&gt;0x10000000&lt;/code&gt;
+to the value &lt;code class=&quot;highlighter-rouge&quot;&gt;0x23&lt;/code&gt;?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How would you find out where the saved instruction pointer is
+stored?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How would you get GDB to disassemble the code starting at address
+&lt;code class=&quot;highlighter-rouge&quot;&gt;%rip+200&lt;/code&gt; and ending at &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip+400&lt;/code&gt;?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;part-1-crash-the-server&quot;&gt;Part 1: Crash the Server&lt;/h3&gt;
 

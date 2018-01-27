@@ -359,7 +359,49 @@ and links it with <code class="highlighter-rouge">max.o</code>:</p>
 
 <p>Read GDB’s documentation on the following commands:</p>
 
-<p>TODO</p>
+<ul>
+  <li>
+    <p>The <code class="highlighter-rouge">x</code> command, which allows you to examine memory.</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">layout &lt;name&gt;</code> command, which allows you to interactively run
+the program</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">print</code> command, which allows you to print out values and
+memory.</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">set</code> command, which allows you to set memory.</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">info</code> command, and some of the things it can do (print stack
+frames / registers).</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">break</code> command, which allows you to set breakpoints.</p>
+  </li>
+</ul>
+
+<p>Answer the following questions:</p>
+
+<ul>
+  <li>
+    <p>How would you find the address of a program variable named <code class="highlighter-rouge">string</code>?</p>
+  </li>
+  <li>
+    <p>How would you set the integer value stored at address <code class="highlighter-rouge">0x10000000</code>
+to the value <code class="highlighter-rouge">0x23</code>?</p>
+  </li>
+  <li>
+    <p>How would you find out where the saved instruction pointer is
+stored?</p>
+  </li>
+  <li>
+    <p>How would you get GDB to disassemble the code starting at address
+<code class="highlighter-rouge">%rip+200</code> and ending at <code class="highlighter-rouge">%rip+400</code>?</p>
+  </li>
+</ul>
 
 <h3 id="part-1-crash-the-server">Part 1: Crash the Server</h3>
 
