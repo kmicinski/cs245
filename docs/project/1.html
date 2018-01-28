@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Project 1I: Basic Stack Smashing and Assembly</title>
-  <meta name="description" content="Caution! This code will be graded on the virtual machine for thecourse. Magic constants, like the position of the stack, areabsolutely not portable across ma...">
+  <meta name="description" content="Please read the section at the bottom of this guide if you getstuck. Frequently asked questions are answered there!">
 
   <link rel="stylesheet" href="http://kmicinski.com/cybersecurity-course/css/main.css">
   <link rel="canonical" href="http://kmicinski.com/cybersecurity-course/project/1">
@@ -76,7 +76,10 @@
   </header>
 
   <div class="post-content writeup-content" itemprop="articleBody">
-    <p><strong>Caution!</strong> This code will be graded on the virtual machine for the
+    <p><strong>Please read the section at the bottom of this guide if you get
+stuck. Frequently asked questions are answered there!</strong></p>
+
+<p><strong>Caution!</strong> This code will be graded on the virtual machine for the
 course. Magic constants, like the position of the stack, are
 <strong>absolutely not</strong> portable across machines. Therefore, do your
 exploit-generation on the virtual machine for the course. <strong>No</strong>
@@ -830,6 +833,28 @@ solutions to this project, I did so using both my whiteboard and GDB
 (attached to the process).</p>
 
 <ul>
+  <li>
+    <p>When you develop your exploits, use the vulnerable executable
+<code class="highlighter-rouge">./fs_nsp_nnx</code>. This is the one that has all of the traditional
+protection mechanisms (NX, stack canaries) turned <strong>off</strong>. Trying to
+exploit <code class="highlighter-rouge">./fs</code> will kill your program.</p>
+  </li>
+  <li>
+    <p>Make sure to turn off ASLR on your VM. My grading scripts will do so
+as well.</p>
+  </li>
+  <li>
+    <p>Do not call your program with <strong>any</strong> command-line arguments. My
+scripts will not do so and doing so will change your environment
+variables so that exploits are harder to make work (command-line
+arguments are stack allocated).</p>
+  </li>
+  <li>
+    <p>Make sure you attach GDB to the <strong>running</strong> process rather than
+using GDB directly. See <a href="https://stackoverflow.com/questions/17775186/buffer-overflow-works-in-gdb-but-not-without-it/17775966#17775966">this SO
+post</a>
+for details.</p>
+  </li>
   <li>
     <p>The program will not work when environment variables change, or if
 command-line arguments are passed in. I will not change the

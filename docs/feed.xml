@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 27 Jan 2018 21:30:15 -0500</pubDate>
-    <lastBuildDate>Sat, 27 Jan 2018 21:30:15 -0500</lastBuildDate>
+    <pubDate>Sun, 28 Jan 2018 15:36:55 -0500</pubDate>
+    <lastBuildDate>Sun, 28 Jan 2018 15:36:55 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -86,7 +86,10 @@ assembly documentation.&lt;/p&gt;
     
       <item>
         <title>Project 1I: Basic Stack Smashing and Assembly</title>
-        <description>&lt;p&gt;&lt;strong&gt;Caution!&lt;/strong&gt; This code will be graded on the virtual machine for the
+        <description>&lt;p&gt;&lt;strong&gt;Please read the section at the bottom of this guide if you get
+stuck. Frequently asked questions are answered there!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Caution!&lt;/strong&gt; This code will be graded on the virtual machine for the
 course. Magic constants, like the position of the stack, are
 &lt;strong&gt;absolutely not&lt;/strong&gt; portable across machines. Therefore, do your
 exploit-generation on the virtual machine for the course. &lt;strong&gt;No&lt;/strong&gt;
@@ -840,6 +843,28 @@ solutions to this project, I did so using both my whiteboard and GDB
 (attached to the process).&lt;/p&gt;
 
 &lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;When you develop your exploits, use the vulnerable executable
+&lt;code class=&quot;highlighter-rouge&quot;&gt;./fs_nsp_nnx&lt;/code&gt;. This is the one that has all of the traditional
+protection mechanisms (NX, stack canaries) turned &lt;strong&gt;off&lt;/strong&gt;. Trying to
+exploit &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs&lt;/code&gt; will kill your program.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make sure to turn off ASLR on your VM. My grading scripts will do so
+as well.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Do not call your program with &lt;strong&gt;any&lt;/strong&gt; command-line arguments. My
+scripts will not do so and doing so will change your environment
+variables so that exploits are harder to make work (command-line
+arguments are stack allocated).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make sure you attach GDB to the &lt;strong&gt;running&lt;/strong&gt; process rather than
+using GDB directly. See &lt;a href=&quot;https://stackoverflow.com/questions/17775186/buffer-overflow-works-in-gdb-but-not-without-it/17775966#17775966&quot;&gt;this SO
+post&lt;/a&gt;
+for details.&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;The program will not work when environment variables change, or if
 command-line arguments are passed in. I will not change the
