@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Jan 2018 15:36:55 -0500</pubDate>
-    <lastBuildDate>Sun, 28 Jan 2018 15:36:55 -0500</lastBuildDate>
+    <pubDate>Sun, 28 Jan 2018 15:43:42 -0500</pubDate>
+    <lastBuildDate>Sun, 28 Jan 2018 15:43:42 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -417,6 +417,10 @@ stored?&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;part-1-crash-the-server&quot;&gt;Part 1: Crash the Server&lt;/h3&gt;
+
+&lt;p&gt;(From now on, make sure you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs_nsp_nnx&lt;/code&gt; executable. This is
+the one that is vulnerable. &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs&lt;/code&gt; has full protection mechanisms
+turned on.)&lt;/p&gt;
 
 &lt;p&gt;Consider the &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; function inside of of the &lt;code class=&quot;highlighter-rouge&quot;&gt;server&lt;/code&gt;
 executable. The local variables for &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; will be laid

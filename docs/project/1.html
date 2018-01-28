@@ -408,6 +408,10 @@ stored?</p>
 
 <h3 id="part-1-crash-the-server">Part 1: Crash the Server</h3>
 
+<p>(From now on, make sure you use the <code class="highlighter-rouge">./fs_nsp_nnx</code> executable. This is
+the one that is vulnerable. <code class="highlighter-rouge">./fs</code> has full protection mechanisms
+turned on.)</p>
+
 <p>Consider the <code class="highlighter-rouge">handle_connection</code> function inside of of the <code class="highlighter-rouge">server</code>
 executable. The local variables for <code class="highlighter-rouge">handle_connection</code> will be laid
 out on the stack in order. The variable <code class="highlighter-rouge">string</code> is a fixed-length
