@@ -693,7 +693,10 @@ for the password). This will let you debug the server as it runs. You
 can then set a breakpoint inside of <code class="highlighter-rouge">handle_connection</code> and print out
 the location of the variable <code class="highlighter-rouge">string</code>.</p>
 
-<h3 id="part-5-leak-the-secret-from-the-server-wo-auth">Part 5: Leak the Secret from the Server (w/o auth)</h3>
+<h3 id="bonus-shellcoding-part-5-leak-the-secret-from-the-server">(Bonus: Shellcoding) Part 5: Leak the Secret from the Server</h3>
+
+<p><strong>Note</strong>: This problem has been changed to bonus work. It is now worth
++2% bonus.</p>
 
 <p>The server implements some code to check that the user types in a
 proper <code class="highlighter-rouge">authenticate</code> command before allowing the secret message to be
@@ -704,13 +707,15 @@ first use the <code class="highlighter-rouge">authenticate</code> command.”</p
 <p>Your job in this part is to figure out how to get the server to give
 me the secret message without typing in the password.</p>
 
-<p><strong>Note:</strong> You may <strong>not</strong> discuss this part of the project with your
-classmates (even at a high-level). Your job in this part is to hunt
-through the program, using it’s logic, to figure out how you could
-exploit it.</p>
+<p>You <strong>may</strong> discuss how to do this part with others at a high level.</p>
 
-<p><strong>Deliverable</strong>: the function <code class="highlighter-rouge">print_secret</code>, which prints the
-password from the server.</p>
+<p><strong>Deliverable</strong>: the function <code class="highlighter-rouge">print_secret</code>, which prints the secret
+messagefrom the server.</p>
+
+<h4 id="hints-on-this-part-3">Hints on this part</h4>
+
+<p>This part requires injecting some of your own shellcode that writes a
+nonzero value to the address of <code class="highlighter-rouge">is_authenticated</code>.</p>
 
 <h3 id="part-6-protecting-against-the-attacks">Part 6: Protecting Against the Attacks</h3>
 
@@ -744,17 +749,6 @@ target. Use a disassembler or reverse engineering toolkit.</p>
 
 <p><strong>Deliverable</strong>: <code class="highlighter-rouge">bonus.txt</code>, which describes the techniques and shows
 how to run the program to get it to print “Hello, world!”</p>
-
-<h3 id="challenge-problem-shellcoding-"><strong>Challenge Problem</strong>: Shellcoding (**)</h3>
-
-<p>This problem is worth +2% bonus. I have included a script, <code class="highlighter-rouge">./myscr</code>,
-in this directory. Figure out how to modify the shellcode so that
-instead of executing <code class="highlighter-rouge">/bin/sh</code>, it executes <code class="highlighter-rouge">./myscr</code></p>
-
-<p><strong>Hint</strong>: Look carefully at the disassembly and think about what the
-shellcode is doing.</p>
-
-<p><strong>Deliverable</strong>: A function <code class="highlighter-rouge">inject_bonus_shellcode</code>.</p>
 
 <h3 id="challenge-problem-other-bugs-and-exploits-"><strong>Challenge problem</strong>: Other Bugs and Exploits (*)</h3>
 
@@ -806,23 +800,18 @@ explicitly.</p>
   <li>[ ]/10 the function <code class="highlighter-rouge">inject_execute_shellcode</code></li>
 </ul>
 
-<p>Part 5: Leak the secret from the server</p>
-<ul>
-  <li>[ ]/10 the function <code class="highlighter-rouge">leak_secret</code></li>
-</ul>
-
 <p>Part 6: Protecting against the attacks</p>
 <ul>
   <li>[ ]/10 the file <code class="highlighter-rouge">server_fixed.c</code>, which is not susceptible to the
 attacks in parts 2-5.</li>
 </ul>
 
-<p>Total: [ ]/60</p>
+<p>Total: [ ]/50</p>
 
 <p>Bonus parts:</p>
 <ul>
   <li>[ ]/+3% Reverse engineering</li>
-  <li>[ ]/+2% Shellcoding</li>
+  <li>[ ]/+2% Part 5: Leak the secret from the server</li>
   <li>[ ]/+2% Other bugs and exploits you found in the server</li>
 </ul>
 

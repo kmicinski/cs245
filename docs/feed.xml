@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Jan 2018 15:43:42 -0500</pubDate>
-    <lastBuildDate>Sun, 28 Jan 2018 15:43:42 -0500</lastBuildDate>
+    <pubDate>Wed, 31 Jan 2018 07:58:05 -0500</pubDate>
+    <lastBuildDate>Wed, 31 Jan 2018 07:58:05 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -703,7 +703,10 @@ for the password). This will let you debug the server as it runs. You
 can then set a breakpoint inside of &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; and print out
 the location of the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;part-5-leak-the-secret-from-the-server-wo-auth&quot;&gt;Part 5: Leak the Secret from the Server (w/o auth)&lt;/h3&gt;
+&lt;h3 id=&quot;bonus-shellcoding-part-5-leak-the-secret-from-the-server&quot;&gt;(Bonus: Shellcoding) Part 5: Leak the Secret from the Server&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This problem has been changed to bonus work. It is now worth
++2% bonus.&lt;/p&gt;
 
 &lt;p&gt;The server implements some code to check that the user types in a
 proper &lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate&lt;/code&gt; command before allowing the secret message to be
@@ -714,13 +717,15 @@ first use the &lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate&lt;/c
 &lt;p&gt;Your job in this part is to figure out how to get the server to give
 me the secret message without typing in the password.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You may &lt;strong&gt;not&lt;/strong&gt; discuss this part of the project with your
-classmates (even at a high-level). Your job in this part is to hunt
-through the program, using it’s logic, to figure out how you could
-exploit it.&lt;/p&gt;
+&lt;p&gt;You &lt;strong&gt;may&lt;/strong&gt; discuss how to do this part with others at a high level.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the function &lt;code class=&quot;highlighter-rouge&quot;&gt;print_secret&lt;/code&gt;, which prints the
-password from the server.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the function &lt;code class=&quot;highlighter-rouge&quot;&gt;print_secret&lt;/code&gt;, which prints the secret
+messagefrom the server.&lt;/p&gt;
+
+&lt;h4 id=&quot;hints-on-this-part-3&quot;&gt;Hints on this part&lt;/h4&gt;
+
+&lt;p&gt;This part requires injecting some of your own shellcode that writes a
+nonzero value to the address of &lt;code class=&quot;highlighter-rouge&quot;&gt;is_authenticated&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;part-6-protecting-against-the-attacks&quot;&gt;Part 6: Protecting Against the Attacks&lt;/h3&gt;
 
@@ -754,17 +759,6 @@ target. Use a disassembler or reverse engineering toolkit.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;bonus.txt&lt;/code&gt;, which describes the techniques and shows
 how to run the program to get it to print “Hello, world!”&lt;/p&gt;
-
-&lt;h3 id=&quot;challenge-problem-shellcoding-&quot;&gt;&lt;strong&gt;Challenge Problem&lt;/strong&gt;: Shellcoding (**)&lt;/h3&gt;
-
-&lt;p&gt;This problem is worth +2% bonus. I have included a script, &lt;code class=&quot;highlighter-rouge&quot;&gt;./myscr&lt;/code&gt;,
-in this directory. Figure out how to modify the shellcode so that
-instead of executing &lt;code class=&quot;highlighter-rouge&quot;&gt;/bin/sh&lt;/code&gt;, it executes &lt;code class=&quot;highlighter-rouge&quot;&gt;./myscr&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;: Look carefully at the disassembly and think about what the
-shellcode is doing.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: A function &lt;code class=&quot;highlighter-rouge&quot;&gt;inject_bonus_shellcode&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;challenge-problem-other-bugs-and-exploits-&quot;&gt;&lt;strong&gt;Challenge problem&lt;/strong&gt;: Other Bugs and Exploits (*)&lt;/h3&gt;
 
@@ -816,23 +810,18 @@ explicitly.&lt;/p&gt;
   &lt;li&gt;[ ]/10 the function &lt;code class=&quot;highlighter-rouge&quot;&gt;inject_execute_shellcode&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Part 5: Leak the secret from the server&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/10 the function &lt;code class=&quot;highlighter-rouge&quot;&gt;leak_secret&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;p&gt;Part 6: Protecting against the attacks&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;[ ]/10 the file &lt;code class=&quot;highlighter-rouge&quot;&gt;server_fixed.c&lt;/code&gt;, which is not susceptible to the
 attacks in parts 2-5.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Total: [ ]/60&lt;/p&gt;
+&lt;p&gt;Total: [ ]/50&lt;/p&gt;
 
 &lt;p&gt;Bonus parts:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;[ ]/+3% Reverse engineering&lt;/li&gt;
-  &lt;li&gt;[ ]/+2% Shellcoding&lt;/li&gt;
+  &lt;li&gt;[ ]/+2% Part 5: Leak the secret from the server&lt;/li&gt;
   &lt;li&gt;[ ]/+2% Other bugs and exploits you found in the server&lt;/li&gt;
 &lt;/ul&gt;
 
