@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 31 Jan 2018 07:58:05 -0500</pubDate>
-    <lastBuildDate>Wed, 31 Jan 2018 07:58:05 -0500</lastBuildDate>
+    <pubDate>Mon, 05 Feb 2018 21:26:56 -0500</pubDate>
+    <lastBuildDate>Mon, 05 Feb 2018 21:26:56 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -81,6 +81,35 @@ assembly documentation.&lt;/p&gt;
         
         
         <category>lab</category>
+        
+      </item>
+    
+      <item>
+        <title>Lecture 1: Intro and Stack Smashing</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-4-rop-intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-4-rop-intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://benpfaff.org/papers/asrandom.pdf&quot;&gt;On the Effectiveness of Address-Space Layout Randomization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading for &lt;strong&gt;Thursday’s&lt;/strong&gt; class:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cseweb.ucsd.edu/~hovav/dist/geometry.pdf&quot;&gt;The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/1</guid>
+        
+        
+        <category>lectures</category>
         
       </item>
     
@@ -720,7 +749,7 @@ me the secret message without typing in the password.&lt;/p&gt;
 &lt;p&gt;You &lt;strong&gt;may&lt;/strong&gt; discuss how to do this part with others at a high level.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the function &lt;code class=&quot;highlighter-rouge&quot;&gt;print_secret&lt;/code&gt;, which prints the secret
-messagefrom the server.&lt;/p&gt;
+message from the server.&lt;/p&gt;
 
 &lt;h4 id=&quot;hints-on-this-part-3&quot;&gt;Hints on this part&lt;/h4&gt;
 
