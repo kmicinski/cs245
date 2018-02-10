@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 09 Feb 2018 23:32:56 -0500</pubDate>
-    <lastBuildDate>Fri, 09 Feb 2018 23:32:56 -0500</lastBuildDate>
+    <pubDate>Sat, 10 Feb 2018 15:21:58 -0500</pubDate>
+    <lastBuildDate>Sat, 10 Feb 2018 15:21:58 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -651,7 +651,7 @@ Easy&lt;/a&gt;&lt;/li&gt;
       </item>
     
       <item>
-        <title>Lecture 5: Memory Defenses and Return-Oriented Programming</title>
+        <title>Lecture 5: ROP Practiced and Control-Flow Integrity</title>
         <description>&lt;p&gt;Slides for today:&lt;/p&gt;
 
 &lt;ul&gt;
