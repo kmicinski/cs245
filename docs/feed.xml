@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 00:27:03 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 00:27:03 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 00:29:58 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 00:29:58 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -31,7 +31,7 @@ folder.&lt;/p&gt;
 implementation. The attacks section will have you use ROP to get
 around the NX bit and defeat modern defenses. The implementation
 section will have you use defensive programming to implement the file
-server. You can choose to divvy up these tasks in whatever way makes
+server. You can choose to diviy up these tasks in whatever way makes
 sense for your group: you can all work on different parts, or work on
 each part together. But by the end of the project, every team member
 is responsible for understanding each part of the project (under
@@ -292,7 +292,7 @@ server, your server should respond by looking up the file
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;[2 points] If the file exists, it must &lt;em&gt;serve&lt;/em&gt; that file in a
-response and responsd with a &lt;code class=&quot;highlighter-rouge&quot;&gt;200 OK&lt;/code&gt;.&lt;/p&gt;
+response and respond with a &lt;code class=&quot;highlighter-rouge&quot;&gt;200 OK&lt;/code&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;[2 points] If the file does &lt;em&gt;not&lt;/em&gt; exist, it must respond with a &lt;code class=&quot;highlighter-rouge&quot;&gt;404
@@ -381,7 +381,7 @@ endobj
 data.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt; is a fairly flexiblt HTTP verb, allowing a very general
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt; is a fairly flexible HTTP verb, allowing a very general
 interaction with the server. You don’t need to know everything about
 it to accomplish the tasks in this project, but reading about it
 might help make it more concrete.&lt;/p&gt;
@@ -431,7 +431,7 @@ correct and creating necessary subdirectories. Multipart-encoded
 form data must be supported. See the test in &lt;code class=&quot;highlighter-rouge&quot;&gt;test_post_file.py&lt;/code&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PUT /path/to/file&lt;/code&gt; Updates an alread-existing file.&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PUT /path/to/file&lt;/code&gt; Updates an already-existing file.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DELETE /path/to/file&lt;/code&gt; Deletes an existing file&lt;/p&gt;
@@ -581,7 +581,7 @@ explicitly.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;[ ]/2 If the file exists, it must &lt;em&gt;serve&lt;/em&gt; that file in a response
-and responsd with a &lt;code class=&quot;highlighter-rouge&quot;&gt;200 OK&lt;/code&gt;.&lt;/p&gt;
+and respond with a &lt;code class=&quot;highlighter-rouge&quot;&gt;200 OK&lt;/code&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;[ ]/2 If the file does &lt;em&gt;not&lt;/em&gt; exist, it must respond with a &lt;code class=&quot;highlighter-rouge&quot;&gt;404
