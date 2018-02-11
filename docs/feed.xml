@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 00:29:58 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 00:29:58 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 02:27:47 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 02:27:47 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -31,7 +31,7 @@ folder.&lt;/p&gt;
 implementation. The attacks section will have you use ROP to get
 around the NX bit and defeat modern defenses. The implementation
 section will have you use defensive programming to implement the file
-server. You can choose to diviy up these tasks in whatever way makes
+server. You can choose to divvy up these tasks in whatever way makes
 sense for your group: you can all work on different parts, or work on
 each part together. But by the end of the project, every team member
 is responsible for understanding each part of the project (under
