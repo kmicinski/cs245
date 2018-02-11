@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 00:03:36 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 00:03:36 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 00:27:03 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 00:27:03 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -667,9 +667,8 @@ manually: that’s error prone and it’s going to get complicated
 fast. You likely have not had extensive exposure to HTTP before this
 project, and possibly not extensive socket programming experience
 either. Because of that, make sure you start early. Budget time to
-learn about HTTP, but also make sure you don’t want to start working
-on the project. Most of the time, the best way to figure things out is
-to start hacking on something.&lt;/p&gt;
+learn about HTTP. Most of the time, the best way to figure things out
+is to start hacking on something.&lt;/p&gt;
 
 &lt;p&gt;Right now, the server is written to manually parse the HTTP
 request. In general, you shouldn’t do that: you’re going to expend a
