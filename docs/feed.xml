@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 02:27:47 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 02:27:47 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 03:02:21 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 03:02:21 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -563,7 +563,7 @@ explicitly.&lt;/p&gt;
 
 &lt;p&gt;Part 3: Launching the attack&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;[ ]/10 The function &lt;code class=&quot;highlighter-rouge&quot;&gt;rop_exit&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;[ ]/10 The function &lt;code class=&quot;highlighter-rouge&quot;&gt;rop&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Part 4: ROP with Stack Protection&lt;/p&gt;
