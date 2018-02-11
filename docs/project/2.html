@@ -305,7 +305,7 @@ server data. The second is the root directory from which it will serve
 files. An example run of the server–and the one I will use in my
 tests–looks like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./fs 8080 ./files
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./fs 8080 ./files secret_key
 </code></pre></div></div>
 
 <p>This will tell the server to start serving files from the <code class="highlighter-rouge">files</code>
@@ -571,6 +571,10 @@ implementation should have a similar flavor. But it will probably be
 quite a bit more work, since you’ll need to figure out which libraries
 to use, and C is just going to be more verbose than Python no matter
 what.</p>
+
+<p>Note that you’ll have to install a few python packages to use that
+server. You’ll have to do a <code class="highlighter-rouge">sudo pip install</code> to get them. I have a
+file <code class="highlighter-rouge">setup_tests.sh</code> that will do this.</p>
 
 <h2 id="notes-on-ethics-and-realness">Notes on Ethics and “realness”</h2>
 

@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 10 Feb 2018 23:48:23 -0500</pubDate>
-    <lastBuildDate>Sat, 10 Feb 2018 23:48:23 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 00:03:36 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 00:03:36 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -240,7 +240,7 @@ server data. The second is the root directory from which it will serve
 files. An example run of the server–and the one I will use in my
 tests–looks like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./fs 8080 ./files
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./fs 8080 ./files secret_key
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This will tell the server to start serving files from the &lt;code class=&quot;highlighter-rouge&quot;&gt;files&lt;/code&gt;
@@ -506,6 +506,10 @@ implementation should have a similar flavor. But it will probably be
 quite a bit more work, since you’ll need to figure out which libraries
 to use, and C is just going to be more verbose than Python no matter
 what.&lt;/p&gt;
+
+&lt;p&gt;Note that you’ll have to install a few python packages to use that
+server. You’ll have to do a &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo pip install&lt;/code&gt; to get them. I have a
+file &lt;code class=&quot;highlighter-rouge&quot;&gt;setup_tests.sh&lt;/code&gt; that will do this.&lt;/p&gt;
 
 &lt;h2 id=&quot;notes-on-ethics-and-realness&quot;&gt;Notes on Ethics and “realness”&lt;/h2&gt;
 
