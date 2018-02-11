@@ -3,7 +3,7 @@ layout: lab
 title:  "Lab 1: VM setup and Assembly refresher"
 date:   2018-1-24
 categories: lab
-permalink: /lab/1
+permalink: /labs/1
 ---
 
 In this lab, you're going to set up the VM and read through some

@@ -6,6 +6,9 @@ layout: page
 ## Computer Security: Attacks and Defenses
 (*CMSC 311* at Haverford College)
 
+Note that--especially since this is the first offering of 311--parts
+of this syllabus are subject to change with adequate notice.
+
 **Prerequisites**:
   - Experience in C programming:
     - E.g., CMSC245 at Haverford or CMSC246 at Bryn Mawr
@@ -81,7 +84,7 @@ Projects​ ​will​ ​be​ ​started​ ​in​ ​labs,​ ​and​ ​
 ​assignment​ ​to​ ​work​ ​on​ ​as​ ​an​ ​individual​ ​in​ ​the​ ​first​ ​week,​ ​and​ ​then
 move​ ​on​ ​to​ ​a​ ​group​ ​assignment​ ​to​ ​complete​ ​a​ ​larger​ ​task.
 
-#### Project 1: Memory attacks (Weeks 1-4 inclusive) (Uses C programming)
+#### Project 1: Memory attacks (Weeks 1-5 inclusive) (Uses C programming)
 
 This​ ​project​ ​will​ ​cover​ ​low-level​ ​memory​ ​attacks​ ​using​ ​the​ ​C​
 ​programming​ ​language.​ ​The students​ ​will​ ​begin​ ​by​ ​executing​ ​an​ ​attack​
@@ -93,7 +96,7 @@ This​ ​project​ ​will​ ​cover​ ​low-level​ ​memory​ ​att
 ​be allocated​ ​for​ ​independent​ ​programming,​ ​and​ ​1.5​ ​weeks​ ​will​ ​be​
 ​allocated​ ​for​ ​group​ ​work.
 
-#### Project 2: Cryptography (weeks 4-7 incl.) (Uses Python programming)
+#### Project 2: Cryptography (weeks 6-8 incl.) (Uses Python programming)
 
 This​ ​project​ ​will​ ​involve​ ​creating​ ​a​ ​public​ ​/​ ​private​ ​key​ ​pair​ ​and​
 ​manually​ ​exchanging​ ​keys​ ​to collaborate​ ​secretly​ ​communicate​ ​with​
@@ -101,43 +104,22 @@ This​ ​project​ ​will​ ​involve​ ​creating​ ​a​ ​public�
 ​chat​ ​using​ ​cryptographic​ ​primitives​ ​provided,​ ​or​ ​explore​ ​an​ ​attack​ ​on​
 ​an insecure​ ​cryptographic​ ​hash.
 
-#### Project 3: Web security (weeks 7-9 incl.) (Uses Python programming)
+#### Project 3: Web security (weeks 9-12 incl.) (Uses Python programming)
 
-Students​ ​will​ ​be​ ​given​ ​an​ ​insecure​ ​web​ ​app​ ​written​ ​in​ ​Python​ ​which​ ​is​
-​vulnerable​ ​to​ ​an​ ​SQL injection​ ​attack.​ ​They​ ​will​ ​then​ ​craft​ ​an​ ​input​
-​which​ ​causes​ ​the​ ​app​ ​to​ ​leak​ ​secret​ ​information​ ​(in this​ ​case,​
-​student​ ​grades​ ​from​ ​a​ ​synthetic​ ​gradebook​ ​consisting​ ​of​ ​fictitious​
-​students).​ ​They​ ​will then​ ​fix​ ​this​ ​attack​ ​in​ ​the​ ​app.​ ​Finally,​
-​students​ ​will​ ​attempt​ ​to​ ​break​ ​other​ ​students’​ ​fixes.
+Students​ ​will​ ​be​ ​given​ ​an​ ​insecure​ ​web​ ​app​ ​written​ ​in​ ​Python and
+JS. This app will be​ ​vulnerable​ ​certain attacks​ ​(e.g., SQL injection​,
+XSRF).​ ​They​ ​will​ ​then​ ​craft​ ​an​ ​input​ ​which​ ​causes​ ​the​ ​app​ ​to​ ​leak​
+​secret​ ​information​ ​(e.g.,,​ ​student​ ​grades​ ​from​ ​a​ ​synthetic​ ​gradebook​
+​consisting​ ​of​ ​fictitious​ ​students).​ ​They​ ​will then​ ​fix​ ​this​ ​attack​ ​in​
+​the​ ​app.​ ​Finally,​ ​students​ ​will​ ​attempt​ ​to​ ​break​ ​other​ ​students’​
+​fixes.
 
-#### Final project (weeks 10-14):
+#### Final project (weeks 13-14): Build it, Break it, Fix it
 
-This​ ​will​ ​be​ ​a​ ​final​ ​project,​ ​either​ ​in​ ​a​ ​group​ ​or​ ​alone.​ ​Students​ ​requesting​ ​to​ ​work​ ​alone​ ​need
-prior​ ​approval​ ​for​ ​a​ ​topic​ ​and​ ​expectations​ ​will​ ​be​ ​calibrated​ ​accordingly.​ ​Students​ ​will​ ​select
-one​ ​of​ ​the​ ​following​ ​projects,​ ​or​ ​propose​ ​their​ ​own​ ​project:
-
-- Information flow specification (uses Python/Jeeves)
-
-  Implement​ ​privacy​ ​policies​ ​for​ ​a​ ​secure​ ​student​ ​grades​ ​database​
-​using​ ​Jeeves,​ ​an extension​ ​to​ ​the​ ​Python​ ​programming​ ​language.
-
-- Designing a privacy UI (uses Python / Javascript / etc..)
-
-  Use​ ​best​ ​practices​ ​to​ ​propose​ ​and​ ​implement​ ​a​ ​new​ ​UI​ ​for​ ​some​ ​privacy-related
-mechanism,​ ​and​ ​perform​ ​a​ ​mock​ ​implementation.
-
-- Malware reverse engineering
-  
-  Use​ ​reverse​ ​engineering​ ​tools​ ​to​ ​understand​ ​and​ ​discuss​ ​how​ ​a​
-​particular​ ​piece​ ​of malware​ ​works.
-
-- Implement signature-based antivirus
-
-  Students​ ​will​ ​read​ ​about​ ​and​ ​implement​ ​a​ ​variant​ ​of​ ​signature-based​
-​antivirus​ ​detection for​ ​a​ ​small​ ​sample​ ​of​ ​malware. 
-
-Students​ ​will​ ​check​ ​in​ ​with​ ​the​ ​professor​ ​regularly,​ ​and​
-collaboration​ ​will​ ​occur​ ​via​ ​Github.
+This will be a final project where groups break each other's
+projects. Points will be allocated for both individual work and group
+work. Individuals must work to find bugs in other projects, and groups
+must work to fix to find bugs in their projects.
 
 ## Grading
 

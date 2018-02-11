@@ -1,7 +1,7 @@
 # Site settings
 title: Computer Security
-baseurl: "cybersecurity-course"
-url: "http://kmicinski.com/"
+baseurl: ""# "cybersecurity-course"
+url: ""#"http://kmicinski.com/"
 description: "Computer Security: Attacks and Defenses (CMSC311 at Haverford College)."
 permalink: pretty
 
