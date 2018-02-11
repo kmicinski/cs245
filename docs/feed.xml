@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 03:02:21 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 03:02:21 -0500</lastBuildDate>
+    <pubDate>Sun, 11 Feb 2018 12:01:37 -0500</pubDate>
+    <lastBuildDate>Sun, 11 Feb 2018 12:01:37 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -207,7 +207,7 @@ any functions that launch the exploit.&lt;/p&gt;
 &lt;p&gt;The second part of your project will be to implement an HTTP-based web
 app that acts as a file server and accepts HTTP verbs. Your file
 server will serve and store files on disc. In the next assignment, you
-will use this file server to store archive files (or you can throw it
+will use this file server to store files (or you can throw it
 away and reimplement it in Python, using this project as a learning
 experience). During this part, you’ll also document different
 security-related problems you thought about in code and how you
@@ -453,7 +453,7 @@ for how to do this.)&lt;/p&gt;
 
 &lt;p&gt;https://www.thegeekdiary.com/centos-rhel-how-to-block-incoming-and-outgoing-ports-using-iptables/&lt;/p&gt;
 
-&lt;p&gt;When you figure it out, write a shell script &lt;code class=&quot;highlighter-rouge&quot;&gt;block_ports.sh&lt;/code&gt; that do
+&lt;p&gt;When you figure it out, write a shell script &lt;code class=&quot;highlighter-rouge&quot;&gt;block_ports.sh&lt;/code&gt; that does
 this.&lt;/p&gt;
 
 &lt;p&gt;The reason this is important is that when we move on to the next part
