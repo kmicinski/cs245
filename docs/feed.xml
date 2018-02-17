@@ -5,9 +5,51 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 11 Feb 2018 14:23:38 -0500</pubDate>
-    <lastBuildDate>Sun, 11 Feb 2018 14:23:38 -0500</lastBuildDate>
+    <pubDate>Sat, 17 Feb 2018 14:58:17 -0500</pubDate>
+    <lastBuildDate>Sat, 17 Feb 2018 14:58:17 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Lecture 7: CFI and Malware</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-7-malware-analysis.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-7-malware-analysis.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Assigned reading for &lt;strong&gt;today’s&lt;/strong&gt; class:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.trust.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_TRUST/PubsPDF/MoCFI-NDSS-2012.pdf&quot;&gt;MoCFI: A Framework to Mitigate Control-Flow Attacks on Smartphones&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 15 Feb 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/7</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/7</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
+    
+      <item>
+        <title>Lecture 6: Secure Coding</title>
+        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-6-cfi-secure-coding.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-6-cfi-secure-coding.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 13 Feb 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/6</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/6</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
     
       <item>
         <title>Project 1G: Implementing a File Server</title>
@@ -725,7 +767,7 @@ Easy&lt;/a&gt;&lt;/li&gt;
       </item>
     
       <item>
-        <title>Lecture 5: ROP Practiced and Control-Flow Integrity</title>
+        <title>Lecture 5: ROP Practice and Control-Flow Integrity</title>
         <description>&lt;p&gt;Slides for today:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1706,112 +1748,6 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         
         
         <category>lectures</category>
-        
-      </item>
-    
-      <item>
-        <title>Memory Safety Resources and Readings</title>
-        <description>&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://sploitfun.wordpress.com/2015/05/08/bypassing-aslr-part-i/&quot;&gt;Bypassing ASLR Part 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://flint.cs.yale.edu/cs421/papers/x86-asm/asm.html&quot;&gt;x86 Assembly Guide&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/memory-safety</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/memory-safety</guid>
-        
-        
-        <category>resources</category>
-        
-        <category>notes</category>
-        
-      </item>
-    
-      <item>
-        <title>Using the VM</title>
-        <description>&lt;p&gt;For most of this course, I’m going to have you use a virtual machine
-running a light version of Linux. For the first project, you &lt;em&gt;must&lt;/em&gt; do
-your development on this virtual machine, since parts of your exploit
-(namely: the starting address of the stack, and layout of functions)
-will depend on environment variables and size of the kernel.&lt;/p&gt;
-
-&lt;p&gt;Follow the download link posted on Piazza for the course. If you’re an
-onlooker and want the link, email me (&lt;code class=&quot;highlighter-rouge&quot;&gt;kris@cs.haverford.edu&lt;/code&gt;) and
-I’ll send you a link.&lt;/p&gt;
-
-&lt;p&gt;The VM includes most of the tools (gcc, GDB, Make, etc..) you should
-need to be able to perform your work. I’ve also included a compiled
-copy of the EDB debugger, and a copy of the open-source reverse
-engineering toolkit &lt;a href=&quot;https://github.com/radare/radare2&quot;&gt;radare2&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The link will give you an &lt;code class=&quot;highlighter-rouge&quot;&gt;.ova&lt;/code&gt; file. You need to use
-&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;VirtualBox&lt;/a&gt; to open and
-run the VM. To load the VM, go to &lt;code class=&quot;highlighter-rouge&quot;&gt;File -&amp;gt; Import Appliance&lt;/code&gt;. Select
-the downloaded file and import it. The name of the VM should be
-&lt;code class=&quot;highlighter-rouge&quot;&gt;311test&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;After that, you should see VirtualBox displaying something that looks
-like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img style=&quot;width:400px; margin:auto&quot; src=&quot;cybersecurity-course/assets/img/vboxmenu.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You should then be able to click on &lt;code class=&quot;highlighter-rouge&quot;&gt;start&lt;/code&gt; over &lt;code class=&quot;highlighter-rouge&quot;&gt;311test&lt;/code&gt;. This will
-open the machine, which runs linux. After that, the machine will boot
-up and allow you to log in.&lt;/p&gt;
-
-&lt;p&gt;The username for the machine is &lt;code class=&quot;highlighter-rouge&quot;&gt;testvm&lt;/code&gt;, and the password is also
-&lt;code class=&quot;highlighter-rouge&quot;&gt;testvm&lt;/code&gt;. You can change the password if you want, but the machine is
-running inside your user account, so there’s not much harm in keeping
-it that way. (I.e., it is no less secure than your user account on
-your computer, which is already guarded with a password.)&lt;/p&gt;
-
-&lt;h2 id=&quot;logging-in-to-the-vm--doing-your-work&quot;&gt;Logging In to the VM / doing your work&lt;/h2&gt;
-
-&lt;p&gt;To log in to the VM, you can use the GUI. VirtualBox has several
-options for allowing you to use the virtual machine’s screen inside of
-your own computer. This is fine, but I &lt;strong&gt;recommend against
-it&lt;/strong&gt;. Instead, I recommend you SSH into the VM from your local
-machine. This will allow you to use the terminal on your laptop to
-talk to the VM, which can then be minimized (i.e., you don’t have to
-see it, and it doesn’t take up space on your desktop). This allows you
-to do things like read the course webpage / project description as you
-work on your project.&lt;/p&gt;
-
-&lt;p&gt;You can SSH into the machine from your local machine by using
-port 2222. In other words, on my mac:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh testvm@localhost -p 2222
-testvm@localhost's password:
-Welcome to Ubuntu 17.10 (GNU/Linux 4.13.0-25-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-
-74 packages can be updated.
-7 updates are security updates.
-
-Last login: Mon Jan 22 16:19:59 2018 from 10.0.2.2
-testvm@testvm:~$
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can see that I start off on &lt;em&gt;my&lt;/em&gt; laptop, and in the end I’m
-talking to the virtual machine. If I want to quit and go back to the
-terminal on my computer, I can just type &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you use SSH on the machine and don’t care about having the GUI, you
-can turn off the machine’s GUI:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;https://askubuntu.com/questions/151840/how-to-disable-gdm-from-being-automatically-started&lt;/code&gt;
-This allows the VM to take up less memory so you have more available
-to do meaningful work.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/using-the-vm</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/using-the-vm</guid>
-        
-        
-        <category>logistics</category>
         
       </item>
     
