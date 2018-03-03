@@ -5,9 +5,332 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Feb 2018 14:58:17 -0500</pubDate>
-    <lastBuildDate>Sat, 17 Feb 2018 14:58:17 -0500</lastBuildDate>
+    <pubDate>Sat, 03 Mar 2018 16:04:42 -0500</pubDate>
+    <lastBuildDate>Sat, 03 Mar 2018 16:04:42 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Project 2I: SquirrelChat</title>
+        <description>&lt;p&gt;In this project, you’ll be writing a chat server. You’ll interface
+with this chat server in a variety of ways: you can either telnet to
+it manually and send commands, interface using a client (which I’ll
+hand out in the next week or two), or (in project 3) using a web
+frontend. The protocol is reminiscent of
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Internet_Relay_Chat&quot;&gt;IRC&lt;/a&gt; or
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Slack_(software)&quot;&gt;Slack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The SquirrelChat protocol is described precisely at the end of this
+document. Your server must correctly implement all of the commands
+according to the protocol. To test your server, you’ll either use
+&lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt; or hand-rolled testing scripts. I’ll give you one or two of
+these scripts upon project release, but I’ll also require that you
+write some of your own. I’ll maintain a public Github repo to which
+you will contribute tests via pull request.&lt;/p&gt;
+
+&lt;p&gt;I have implemented some basic stub code that does parsing for various
+messages. You can write your SquirrelChat server in whatever language
+you want, but my starter code is given in Python. I would welcome
+implementations in OCaml, Haskell, etc.. But I assume no obligation to
+teach you these languages as part of this project. If you use a
+particularly cool language or a particularly elegant technique (e.g.,
+if you go out on a limb and try to use Haskell to write the server), I
+&lt;em&gt;may&lt;/em&gt; award you 1-4 points of extra credit.&lt;/p&gt;
+
+&lt;p&gt;SquirrelChat is a fairly simple chat protocol. There are users, and
+there are chatrooms. Users can join (or create) chatrooms. Chatrooms
+have a set of “administrators” that can change their topic (a short
+message that is associated with the channel). When a user sends a
+message to a channel, all members of the channel receive it. Users can
+also send private messages to each other. SquirrelChat also allows
+users to block each other, and has a few security features (e.g., only
+admins can change topics and ban users). Additionally, users may
+upload files to channels or to another user.&lt;/p&gt;
+
+&lt;p&gt;In this assignment, you’ll implement the core of SquirrelChat as a
+server that my client can connect to. There are also a set of tests,
+some of which I’ve given you (others which I haven’t). SquirrelChat is
+inherently insecure: it’s executing over raw sockets, meaning that
+people in the middle will be able to sniff all of the information sent
+across SquirrelChat (e.g., someone sniffing packets in the same coffee
+shop as you). In the next assignment we’ll add multiple security
+features to SquirrelChat: encryption, encrypted file storage, properly
+saving passwords, and having properly encrypted chatrooms so that only
+the members of secure rooms can see each others’ messages.&lt;/p&gt;
+
+&lt;p&gt;This assignment is open-ended by design. Throughout the course of the
+project, I will periodically release some tests for you, but I am not
+under &lt;em&gt;obligation&lt;/em&gt; to give you all of the tests I will use. If you
+have any questions on the spec, please let me know and I’ll update
+immediately.&lt;/p&gt;
+
+&lt;h1 id=&quot;command-overview&quot;&gt;Command Overview&lt;/h1&gt;
+
+&lt;p&gt;SquirrelChat packets are specified as follows. See &lt;code class=&quot;highlighter-rouge&quot;&gt;parser.py&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;messages.py&lt;/code&gt; for details. This is the master specification.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;IMPORTANT Note&lt;/strong&gt;: the maximum length of &lt;em&gt;any&lt;/em&gt; packet in this part of
+the project is &lt;code class=&quot;highlighter-rouge&quot;&gt;1024&lt;/code&gt;. You are &lt;em&gt;not&lt;/em&gt; obligated to handle the case
+where packets longer than that are sent.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;register &amp;lt;username&amp;gt; &amp;lt;password&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;Both &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt; are contiguous strings (i.e., no spaces)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; may not start with the character &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt; (used for channels).&lt;/li&gt;
+      &lt;li&gt;Upon successfully sending &lt;code class=&quot;highlighter-rouge&quot;&gt;register&lt;/code&gt;, the server automatically
+logs the user in as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;username&amp;gt;&lt;/code&gt; with the associated password&lt;/li&gt;
+      &lt;li&gt;Must save a new record in the password database for username and password (the password database is described below)&lt;/li&gt;
+      &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt; is invalid, or if the register command is given more arguments, then the server should return an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; message with some descriptive error of your choice.&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;register kmicinski helloworld234**&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate &amp;lt;username&amp;gt; &amp;lt;password&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;Checks the password file for the entry of &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt; and–if the username matches the password–logs in the user.&lt;/li&gt;
+      &lt;li&gt;If the &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;password&lt;/code&gt; does not match the one stored in the password database, returns an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; of the appropriate type.&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;register kmicinski helloworld234**&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update_pw &amp;lt;password&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;User must be logged in&lt;/li&gt;
+      &lt;li&gt;Updates a logged-in user’s password as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;password&amp;gt;&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Also updates the password file&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;update_pw helloworld234**&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;join &amp;lt;channel_name&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;User must be logged in.&lt;/li&gt;
+      &lt;li&gt;Validate that &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_name&amp;gt;&lt;/code&gt; starts with &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. All channels have
+&lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt; at the start of their name.&lt;/li&gt;
+      &lt;li&gt;If the channel &lt;em&gt;exists&lt;/em&gt;:
+        &lt;ul&gt;
+          &lt;li&gt;Check to make sure the user is not banned from the channel.
+            &lt;ul&gt;
+              &lt;li&gt;If they are, return an error message to the user indicating this.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;If they are not banned, add the user to the channel, they will now 
+receive subsequent messages to that channel.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;If the channel does &lt;em&gt;not&lt;/em&gt; exist:
+        &lt;ul&gt;
+          &lt;li&gt;Create the channel&lt;/li&gt;
+          &lt;li&gt;Make the sending user the administrator of the channel&lt;/li&gt;
+          &lt;li&gt;Add the user as the only member of the channel&lt;/li&gt;
+          &lt;li&gt;Set the topic to some initial message&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;join #hello&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chat &amp;lt;user_or_channel&amp;gt; &amp;lt;message&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_or_channel&amp;gt;&lt;/code&gt; is a contiguous string, but &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;message&amp;gt;&lt;/code&gt; is
+just the rest of the message.&lt;/li&gt;
+      &lt;li&gt;This is a message that a &lt;em&gt;user&lt;/em&gt; sends to the &lt;em&gt;server&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;If the user is logged in, check to make sure that the user or
+channel exists. If they aren’t, send an error back.&lt;/li&gt;
+      &lt;li&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_or_channel&amp;gt;&lt;/code&gt; starts with a &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;, it is a channel. Ensure
+that the user is logged in to the channel. If they are not, send
+back an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; message of the appropriate type.&lt;/li&gt;
+      &lt;li&gt;If it does not start with &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;, it is a user. Check to ensure the
+user exists. IF the user does not exist, send back an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; of
+the appropriate type.&lt;/li&gt;
+      &lt;li&gt;If &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user_or_channel&amp;gt;&lt;/code&gt; is a user that has not blocked the
+currently logged in user. If they have, do nothing.&lt;/li&gt;
+      &lt;li&gt;If they have not blocked the sender of the message, the server
+sends that user a &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom&lt;/code&gt; message.&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chat #channel Hi there everyone!&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chat eliana Hi there, Eliana!&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom &amp;lt;from_user&amp;gt; &amp;lt;channel_or_privmsg&amp;gt; &amp;lt;message&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;This is a command that the &lt;em&gt;server&lt;/em&gt; sends to a &lt;em&gt;client&lt;/em&gt;.&lt;/li&gt;
+      &lt;li&gt;The way to interpret this is that &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; sent a message to
+channel &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; begins
+with &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. If &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; is exactly the string
+&lt;code class=&quot;highlighter-rouge&quot;&gt;privmsg&lt;/code&gt;, then this is a private message.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; is a logged in user.&lt;/li&gt;
+      &lt;li&gt;This command will never be received from users who have been
+blocked by the client. In other words, if Alice has blocked Bob,
+Alice will never receive messages from Bob: either on channels to
+which Bob belongs, or through private messages.&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom bob #hello Hello there, everyone!&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom bob privmsg Hello there, Alice!&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gettopic #channel&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;Gets the topic for a channel&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;topic #channel &amp;lt;topic&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;The server returns this packet as the result of a &lt;code class=&quot;highlighter-rouge&quot;&gt;gettopic&lt;/code&gt;
+command, assuming that the user is logged in to the given channel
+ (i.e., has successfully run a &lt;code class=&quot;highlighter-rouge&quot;&gt;join&lt;/code&gt; command for that channel).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;settopic #channel &amp;lt;topic&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;Sets the topic for a channel, assuming the sender is the
+administrator of that channel.&lt;/li&gt;
+      &lt;li&gt;Sends back error otherwise.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;leave #channel&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;The sender will now stop receiving &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom&lt;/code&gt; messages sent to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;#channel&lt;/code&gt;. If they were the administrator, they are still the
+administrator. Nobody else becomes an administrator.&lt;/li&gt;
+      &lt;li&gt;Sender must be able to join again later.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;error &amp;lt;msg&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;The server sends this error to a client in the event that an error
+occurs.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ban &amp;lt;channel&amp;gt; &amp;lt;user&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;If the sender of this message is the administrator of &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel&amp;gt;&lt;/code&gt;,
+then &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user&amp;gt;&lt;/code&gt; is now banned from &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel&amp;gt;&lt;/code&gt; and can no longer
+receive messages. I.e., it is essentially as if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user&amp;gt;&lt;/code&gt; had run
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;leave&lt;/code&gt; command.&lt;/li&gt;
+      &lt;li&gt;If the sender is &lt;em&gt;not&lt;/em&gt; the administrator, send an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; of the
+appropriate type.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unban &amp;lt;channel&amp;gt; &amp;lt;user&amp;gt;&lt;/code&gt; [5 points]
+    &lt;ul&gt;
+      &lt;li&gt;If the sender of this message is the administrator of &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel&amp;gt;&lt;/code&gt;,
+then &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user&amp;gt;&lt;/code&gt; is now unbanned from &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel&amp;gt;&lt;/code&gt; and can &lt;code class=&quot;highlighter-rouge&quot;&gt;join&lt;/code&gt;
+again.&lt;/li&gt;
+      &lt;li&gt;If the sender is &lt;em&gt;not&lt;/em&gt; the administrator, send an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; of the
+appropriate type.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;starting-the-server&quot;&gt;Starting the Server&lt;/h1&gt;
+
+&lt;p&gt;The server is started via (in the &lt;code class=&quot;highlighter-rouge&quot;&gt;server&lt;/code&gt; directory)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./server passwords.csv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;passwords.csv&lt;/code&gt; is a CSV file listing usernames and passwords
+for the server. CSV files are in &lt;a href=&quot;https://en.wikipedia.org/wiki/Comma-separated_values&quot;&gt;Comma-Separated
+Values&lt;/a&gt;
+format. An example &lt;code class=&quot;highlighter-rouge&quot;&gt;passwords.csv&lt;/code&gt; might look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;username,password
+isabella,hacker12**@a3
+john,aacv23aad%$aD
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The file will &lt;em&gt;always&lt;/em&gt; start with the header (first line) of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;username,password&lt;/code&gt; and will be followed by a set of lines containing
+usernames and values, each separated by a comma.&lt;/p&gt;
+
+&lt;p&gt;Any password database must be able to be used, not just
+&lt;code class=&quot;highlighter-rouge&quot;&gt;passwords.csv&lt;/code&gt;. Various commands (&lt;code class=&quot;highlighter-rouge&quot;&gt;register&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;update_pw&lt;/code&gt;) will
+&lt;em&gt;change&lt;/em&gt; the database. You must &lt;em&gt;save&lt;/em&gt; an updated database whenever
+these commands are sent to the server.&lt;/p&gt;
+
+&lt;h1 id=&quot;part-0-design-document-10-points&quot;&gt;Part 0: Design Document (10 points)&lt;/h1&gt;
+
+&lt;p&gt;This project is intended to give you practice programming “in the
+large.” You will need to use a variety of data structures to help you
+implement this server. Specifically, think about the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How you will implement chat rooms?&lt;/li&gt;
+  &lt;li&gt;How will users be represented? (E.g., as classes?)&lt;/li&gt;
+  &lt;li&gt;How will you manage the state of the protocol? I.e., how will you
+make sure users don’t send messages until they are logged in?&lt;/li&gt;
+  &lt;li&gt;How will you handle blocking and banning?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Write this in an email / document / Google Doc / etc… And give it to
+me before you start writing up your code so I can read over it. I will
+point you in the right directions. If you are feeling anxious about
+how to tackle this, come to my office and we will sketch it out on the
+board.&lt;/p&gt;
+
+&lt;h1 id=&quot;part-1-server-protocol-implementation-60-points&quot;&gt;Part 1: Server Protocol Implementation (60 points)&lt;/h1&gt;
+
+&lt;p&gt;This part is the majority of the project. You are to flesh out the
+implementation of the server according to the command specification
+given above. I have provided starter code in the &lt;code class=&quot;highlighter-rouge&quot;&gt;server&lt;/code&gt; directory of
+this project.&lt;/p&gt;
+
+&lt;p&gt;You will get credit for each piece of the protocol you implement. Any
+questions about minor technicalities can be addressed to me via Piazza
+/ email and I will respond very quickly. I will also keep the course
+webpage updated.&lt;/p&gt;
+
+&lt;h1 id=&quot;part-2-writing-tests-10-points&quot;&gt;Part 2: Writing Tests (10 points)&lt;/h1&gt;
+
+&lt;p&gt;You must find &lt;em&gt;two separate pieces&lt;/em&gt; of the project and figure out how
+to write tests for them. For example, you might choose to ensure that
+users can’t send messages to other users that have blocked them. Or
+you might want to ensure that usernames can’t start with &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. Write
+these as two separate tests using either hand-rolled code or a unit
+testing framework in your language of choice. Write in this README
+where you put them.&lt;/p&gt;
+
+&lt;h1 id=&quot;part-3-password-managers-and-pgp-10-points&quot;&gt;Part 3: Password Managers and PGP (10 points)&lt;/h1&gt;
+
+&lt;p&gt;For this part of the project, you can do one of two things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install a password manager and start using it for all of your
+passwords.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a &lt;a href=&quot;https://www.pitt.edu/~poole/accessiblePGP703.htm&quot;&gt;PGP key&lt;/a&gt;
+for yourself and begin cryptographically signing your communication
+with a few other people you communicate with. You can do this by,
+e.g., writing me an email and signing it.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You must at least &lt;em&gt;read&lt;/em&gt; about how PGP works and figure out what it
+means to cryptographically sign your emails. We’ll cover a bit of this
+in class, and you’ll start to do it on project 2G with your team.&lt;/p&gt;
+
+&lt;p&gt;To receive credit for this part, create a document in this directory,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;experiences.txt&lt;/code&gt;, and write a brief discussion of your experiences
+with either of these tools. Describe the pains and advantages of using
+them, and how using one of the two has informed your thoughts on
+security.&lt;/p&gt;
+
+&lt;h1 id=&quot;if-you-get-stuck&quot;&gt;If you get stuck…&lt;/h1&gt;
+
+&lt;p&gt;Don’t spend more than an hour or two stuck on a problem. If you feel
+like you’re stuck and not being productive, email me sooner rather
+than later. These things can be tricky. You’re all very good, though,
+so I know you can do it..!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 03 Mar 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/project/3</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/3</guid>
+        
+        
+        <category>project</category>
+        
+        <category>assignment</category>
+        
+      </item>
     
       <item>
         <title>Lecture 7: CFI and Malware</title>
@@ -1719,35 +2042,6 @@ https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
         <category>project</category>
         
         <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Lecture 1: Intro and Stack Smashing</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://people.eecs.berkeley.edu/~dawnsong/papers/Oakland13-SoK-CR.pdf&quot;&gt;Reading for before class today&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading for &lt;strong&gt;Thursday’s&lt;/strong&gt; class:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.usenix.net/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan.pdf&quot;&gt;Read &lt;strong&gt;up to&lt;/strong&gt; Sec 3.3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/1</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/1</guid>
-        
-        
-        <category>lectures</category>
         
       </item>
     
