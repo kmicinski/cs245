@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 03 Mar 2018 23:18:16 -0500</pubDate>
-    <lastBuildDate>Sat, 03 Mar 2018 23:18:16 -0500</lastBuildDate>
+    <pubDate>Sun, 04 Mar 2018 16:18:03 -0500</pubDate>
+    <lastBuildDate>Sun, 04 Mar 2018 16:18:03 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -37,14 +37,15 @@ if you go out on a limb and try to use Haskell to write the server), I
 &lt;em&gt;may&lt;/em&gt; award you 1-4 points of extra credit.&lt;/p&gt;
 
 &lt;p&gt;SquirrelChat is a fairly simple chat protocol. There are users, and
-there are chatrooms. Users can join (or create) chatrooms. Chatrooms
-have a set of “administrators” that can change their topic (a short
-message that is associated with the channel). When a user sends a
-message to a channel, all members of the channel receive it. Users can
-also send private messages to each other. SquirrelChat also allows
-users to block each other, and has a few security features (e.g., only
-admins can change topics and ban users). Additionally, users may
-upload files to channels or to another user.&lt;/p&gt;
+there are channels (“chat rooms”). Users can join (or create)
+channels. Channels have a set of “administrators” that can change
+their topic (a short message that is associated with the
+channel). When a user sends a message to a channel, all members of the
+channel receive it. Users can also send private messages to each
+other. SquirrelChat also allows users to block each other, and has a
+few security features (e.g., only admins can change topics and ban
+users). Additionally, users may upload files to channels or to another
+user.&lt;/p&gt;
 
 &lt;p&gt;In this assignment, you’ll implement the core of SquirrelChat as a
 server that my client can connect to. There are also a set of tests,
@@ -54,8 +55,8 @@ people in the middle will be able to sniff all of the information sent
 across SquirrelChat (e.g., someone sniffing packets in the same coffee
 shop as you). In the next assignment we’ll add multiple security
 features to SquirrelChat: encryption, encrypted file storage, properly
-saving passwords, and having properly encrypted chatrooms so that only
-the members of secure rooms can see each others’ messages.&lt;/p&gt;
+saving passwords, and having properly encrypted channels so that only
+the members of secure channels can see each others’ messages.&lt;/p&gt;
 
 &lt;p&gt;This assignment is open-ended by design. Throughout the course of the
 project, I will periodically release some tests for you, but I am not
@@ -252,7 +253,7 @@ large.” You will need to use a variety of data structures to help you
 implement this server. Specifically, think about the following:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;How you will implement chat rooms?&lt;/li&gt;
+  &lt;li&gt;How you will implement channels?&lt;/li&gt;
   &lt;li&gt;How will users be represented? (E.g., as classes?)&lt;/li&gt;
   &lt;li&gt;How will you manage the state of the protocol? I.e., how will you
 make sure users don’t send messages until they are logged in?&lt;/li&gt;
