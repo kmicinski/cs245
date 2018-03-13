@@ -5,9 +5,286 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 04 Mar 2018 16:30:00 -0500</pubDate>
-    <lastBuildDate>Sun, 04 Mar 2018 16:30:00 -0500</lastBuildDate>
+    <pubDate>Tue, 13 Mar 2018 11:47:35 -0400</pubDate>
+    <lastBuildDate>Tue, 13 Mar 2018 11:47:35 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Exam 1</title>
+        <description>&lt;p&gt;This is Exam 1 for CMSC 311. This exam contains 105 points. It will be
+graded out of 100.&lt;/p&gt;
+
+&lt;p&gt;You may write your answers in whichever way you want: printing this
+exam and writing on paper, writing inside of this document,
+typesetting solutions in latex, etc…&lt;/p&gt;
+
+&lt;p&gt;All I care is that you do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Don’t Google for any of the answers online&lt;/li&gt;
+  &lt;li&gt;Take no more than 8 hours on the test&lt;/li&gt;
+  &lt;li&gt;Cite any sources you use&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You are allowed to use the internet under the following circumstances:
+you are accessing a manual for a specific program or a reference we’ve
+looked up in class. For example, you may look up the GDB manual and
+x86 instruction call reference, but you may &lt;em&gt;not&lt;/em&gt; look up how to find
+the base address of a function using GDB on StackOverflow. If you are
+in doubt, write me an email. In other words, you may not Google for
+answers on-demand.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 points) Define, compare, and contrast probabilistic defenses
+versus deterministic defenses. Give at least one example of each. Are
+they both useful?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 points) This question has two subparts.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;5/10 points: Give an example of a small snippet of code that has a
+spatial memory safety bug.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;5/10 points: Describe under what circumstances (perhaps but not
+necessarily using example code) a program would exhibit a temporal
+memory safety bug.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;stack-smashing--buffer-overflows&quot;&gt;(Stack Smashing / Buffer Overflows)&lt;/h4&gt;
+
+&lt;p&gt;Consider the following piece of code:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Assume that the address of `shellcode` without ASLR is 0x100000000000ff00
+char shellcode[] = 
+&quot;\x48\x31\xd2&quot;                                  // xor    %rdx, %rdx
+&quot;\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68&quot;      // mov	$0x68732f6e69622f2f, %rbx
+&quot;\x48\xc1\xeb\x08&quot;                              // shr    $0x8, %rbx
+&quot;\x53&quot;                                          // push   %rbx
+&quot;\x48\x89\xe7&quot;                                  // mov    %rsp, %rdi
+&quot;\x50&quot;                                          // push   %rax
+&quot;\x57&quot;                                          // push   %rdi
+&quot;\x48\x89\xe6&quot;                                  // mov    %rsp, %rsi
+&quot;\xb0\x3b&quot;                                      // mov    $0x3b, %al
+&quot;\x0f\x05&quot;;                                     // syscall
+
+char *foo(int x, char *z) {
+  // Assume that `buffer`'s address is 0x200000000000ff00
+  // Assume that the saved instruction pointer is stored at 0x200000000000ff20
+  char buffer[8];       // Line A
+  // Line B
+  while (x &amp;gt; 0) {
+    buffer[x] = z[x];
+    x--;
+  }
+}
+
+int main(int argc, char **argv) {
+  char *hello = foo(strlen(argv[1]), argv[1]);
+  // ...
+  // You will describe something here.
+  // 
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To simplify your task in the following, assume that you can call the
+program with binary command-line arguments. In other words, assume
+that you can give the program a command-line argument containing the
+byte 0 (even though you couldn’t typically because that’s the end of a
+C string).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;(5 Points) Give me command line arguments to the program that would cause it to
+crash.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 Points) (Stack smashing) For now, assume that ASLR has been turned
+off in our system. This means that each time the program starts, the
+static data segment, code segment, stack, etc.. will all get the same
+value each time the program is run. For this problem, assume that the
+buffer &lt;code class=&quot;highlighter-rouge&quot;&gt;shellcode&lt;/code&gt; is located at address &lt;code class=&quot;highlighter-rouge&quot;&gt;0x10000000ffaa0000&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Describe an input that would cause the program to execute the code in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;shellcode&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;payload-injection&quot;&gt;Payload injection&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 points) Now assume that the &lt;code class=&quot;highlighter-rouge&quot;&gt;shellcode&lt;/code&gt; variable is removed from
+the program. We can’t play the same trick as in the last
+problem. Instead, we must inject the shellcode via the program’s
+input. You may still assume that ASLR and NX are turned off, but for
+this problem, assume that the base address of &lt;code class=&quot;highlighter-rouge&quot;&gt;buffer&lt;/code&gt; is
+&lt;code class=&quot;highlighter-rouge&quot;&gt;0x200000000000ff00&lt;/code&gt;.` Describe an input that would inject the
+shellcode and redirect execution to it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 points) How would you change the program to eliminate this attack?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;(5 points) Describe what the NX bit does. Why does it make it hard to
+launch the attack described in problem 5?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;nop-sleds&quot;&gt;NOP-sleds&lt;/h4&gt;
+
+&lt;p&gt;(5 points) A “NOP-sled” is a long sequence of NOPs before a payload
+that is inserted into the program.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;\x66\x90&quot;
+&quot;\x66\x90&quot;
+&quot;\x66\x90&quot;
+... thousands more ...
+&quot;\x66\x90&quot;
+&quot;\x66\x90&quot;
+&quot;\x48\x31\xd2&quot;                                  // xor    %rdx, %rdx
+&quot;\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68&quot;      // mov	$0x68732f6e69622f2f, %rbx
+&quot;\x48\xc1\xeb\x08&quot;                              // shr    $0x8, %rbx
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Describe why a NOP-sled might be useful in the presence of ASLR or in
+the scenario in which you weren’t certain where the program would be
+loaded (e.g., because of variations in environment variables).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;heap-exploits&quot;&gt;Heap exploits&lt;/h4&gt;
+
+&lt;p&gt;Assume that we had the following structure.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;struct person {
+    // Address base+0
+    unsigned int is_administrator;
+    // Address base+4
+    char username[50];
+    // Address base+56
+    char *(*login_shell)(char *);  // Pointer to C function that accepts a
+                                   // string (char *) as an argument and returns a string (char *)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Assume the compiler lays out structured data for &lt;code class=&quot;highlighter-rouge&quot;&gt;person&lt;/code&gt; in the
+manner described in the comments. I.e., if the base address of the
+struct is at address &lt;code class=&quot;highlighter-rouge&quot;&gt;0xAA00&lt;/code&gt;, then the address of the &lt;code class=&quot;highlighter-rouge&quot;&gt;login_shell&lt;/code&gt;
+variable will be stored at &lt;code class=&quot;highlighter-rouge&quot;&gt;0xAA38&lt;/code&gt;. You may assume the function
+&lt;code class=&quot;highlighter-rouge&quot;&gt;system&lt;/code&gt; is stored at the (8-byte) address &lt;code class=&quot;highlighter-rouge&quot;&gt;0x000000AAAAAA0000&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Assume that after you are logged in, the program calls the function
+pointed to by &lt;code class=&quot;highlighter-rouge&quot;&gt;login_shell&lt;/code&gt; with the data stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(10 points) Describe what you could put in &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt; so that you
+effected a call to &lt;code class=&quot;highlighter-rouge&quot;&gt;system(&quot;/bin/sh&quot;)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;aslr--attack-theory&quot;&gt;ASLR / attack theory&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(10 points) Assume that ASLR is enabled.  Are stack-canaries and
+other memory-safety controls still relevant? If they are still
+relevant, write an example program which demonstrates a vulnerability
+that would exist even with ASLR. If not, explain how ASLR fixes the
+problem stack canaries solve. (Big Hint: think about data-only
+attacks, consider writing something like a password-checking program
+that calls a function to copy a string.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;control-flow-integrity&quot;&gt;Control-flow integrity&lt;/h4&gt;
+
+&lt;p&gt;Consider the following program:&lt;/p&gt;
+
+&lt;p&gt;void foo() {
+  char buf[200];
+  // .. 
+  bar(); // Line 1
+  // .. 
+}&lt;/p&gt;
+
+&lt;p&gt;void bar() {
+  char buf2[100];
+  // .. 
+  return; // Line 3;
+}&lt;/p&gt;
+
+&lt;p&gt;void system() {
+  // .. 
+}&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;(10 points) Control-flow integrity is a compile-time (or runtime, in
+some cases) instrumentation of the program.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;2/10 points: What does control-flow integrity do, and why is it
+helpful?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;4/10 points: In the above program, how would the following be
+transformed:
+        &lt;ul&gt;
+          &lt;li&gt;The call to bar() at line 1&lt;/li&gt;
+          &lt;li&gt;The return from bar() at line 3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;2/10 points: How does CFI ensure the program can’t call system?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;2/10 points: Assume we had provably perfect CFI. Would we have then
+ensured memory-safety?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;systems-security-concepts&quot;&gt;Systems Security Concepts&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(5 points) Programs that are Set-UID inherit the privileges of their owners when
+they are called. For example, the program &lt;code class=&quot;highlighter-rouge&quot;&gt;ping&lt;/code&gt; uses raw ICMP sockets
+to check the status of remote hosts, which requires the program to
+have the privileges of the &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; user.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In 3-6 sentences, detail why such Set-UID programs warrant extra
+attention from us.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(5 points) Consider that Process A contains secret data somewhere in its memory
+space. For example, maybe it is a server process that stores grades
+for the course. Sometimes, Process A might want to run untrusted code
+(e.g., downloaded from the internet). If done by naively running code
+in the same process space, this lead to security vulnerabilities,
+because the untrusted code will have accesss to all of process A’s
+memory.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What operating-system principle could be used to allow process A to
+run this untrusted code in a way so that the untrusted code does not
+gain access to process A’s data?&lt;/p&gt;
+</description>
+        <pubDate>Wed, 07 Mar 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/project/3</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/3</guid>
+        
+        
+        <category>project</category>
+        
+        <category>assignment</category>
+        
+      </item>
     
       <item>
         <title>Project 2I: SquirrelChat</title>
@@ -150,20 +427,20 @@ sends that user a &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom&lt;/c
       &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chat eliana Hi there, Eliana!&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom &amp;lt;from_user&amp;gt; &amp;lt;channel_or_privmsg&amp;gt; &amp;lt;message&amp;gt;&lt;/code&gt; [5 points]
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom &amp;lt;from_user&amp;gt; &amp;lt;channel_or_user&amp;gt; &amp;lt;message&amp;gt;&lt;/code&gt; [5 points]
     &lt;ul&gt;
       &lt;li&gt;This is a command that the &lt;em&gt;server&lt;/em&gt; sends to a &lt;em&gt;client&lt;/em&gt;.&lt;/li&gt;
       &lt;li&gt;The way to interpret this is that &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; sent a message to
-channel &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; begins
-with &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. If &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_privmsg&amp;gt;&lt;/code&gt; is exactly the string
-&lt;code class=&quot;highlighter-rouge&quot;&gt;privmsg&lt;/code&gt;, then this is a private message.&lt;/li&gt;
+channel &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_priv&amp;gt;&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; begins with
+&lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. Otherwise, this is a private message, and the username is in
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; field.&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; is a logged in user.&lt;/li&gt;
       &lt;li&gt;This command will never be received from users who have been
 blocked by the client. In other words, if Alice has blocked Bob,
 Alice will never receive messages from Bob: either on channels to
 which Bob belongs, or through private messages.&lt;/li&gt;
       &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom bob #hello Hello there, everyone!&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom bob privmsg Hello there, Alice!&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;Example: &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom bob alice Hello there, Alice!&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gettopic #channel&lt;/code&gt; [5 points]
@@ -216,6 +493,12 @@ then &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;user&amp;gt;&lt;/co
 again.&lt;/li&gt;
       &lt;li&gt;If the sender is &lt;em&gt;not&lt;/em&gt; the administrator, send an &lt;code class=&quot;highlighter-rouge&quot;&gt;error&lt;/code&gt; of the
 appropriate type.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;block &amp;lt;user&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Block the specified username. Send the appropriate error if the
+user does not exist.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1215,834 +1498,6 @@ assembly documentation.&lt;/p&gt;
         
         
         <category>lab</category>
-        
-      </item>
-    
-      <item>
-        <title>Project 1I: Basic Stack Smashing and Assembly</title>
-        <description>&lt;p&gt;&lt;strong&gt;Please read the section at the bottom of this guide if you get
-stuck. Frequently asked questions are answered there!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Caution!&lt;/strong&gt; This code will be graded on the virtual machine for the
-course. Magic constants, like the position of the stack, are
-&lt;strong&gt;absolutely not&lt;/strong&gt; portable across machines. Therefore, do your
-exploit-generation on the virtual machine for the course. &lt;strong&gt;No&lt;/strong&gt;
-partial-credit will be given for solutions that work on your machine
-but not mine.&lt;/p&gt;
-
-&lt;p&gt;In this project you’ll perform a set of basic exploits against a file
-server. The file server we build in this project will store files for
-the chat server we eventually build. For this project, you’ll mostly
-be concerned with merely using and exploiting the server, you
-shouldn’t have to write large amounts of C code.&lt;/p&gt;
-
-&lt;p&gt;This portion of the project is individual work. During the course of
-this project you are allowed access to all online resources, but you
-are required to cite any resource that gave you any significant
-insight into the project, including conversations you had with your
-classmates. You will put these sources in &lt;code class=&quot;highlighter-rouge&quot;&gt;SOURCES.md&lt;/code&gt; within this
-folder.&lt;/p&gt;
-
-&lt;p&gt;Please respect the department’s collaboration policy. Specifically,
-you are not allowed to look at any other student’s &lt;em&gt;code&lt;/em&gt; (or do
-anything equivalent, such as talking through your code on a
-line-by-line basis). You may discuss pseudo-code on the board, but
-afterwards you must erase it (so as to not let anyone else see it) and
-then cite your conversation with the other person in a comment in your
-code (and in the sources file).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;If you get stuck, look at the hints / advice at the bottom of this
-guide.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h1&gt;
-
-&lt;p&gt;The goal of this project is to teach you the following:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;A refresher on C / assembly&lt;/li&gt;
-  &lt;li&gt;An introduction to web protocols&lt;/li&gt;
-  &lt;li&gt;Interacting with a server manually via &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Writing socket-based programs in Python&lt;/li&gt;
-  &lt;li&gt;Use GDB and other debuggers to understand program code&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You should first obtain the starter files for this project, perform a
-&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone&lt;/code&gt; of this project’s repository:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone github.com/security-course/file-server
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The file server is contained in a file &lt;code class=&quot;highlighter-rouge&quot;&gt;server.c&lt;/code&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;collaboration-policy&quot;&gt;Collaboration Policy&lt;/h1&gt;
-
-&lt;p&gt;Specific examples that extend the collaboration policy for this lab:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is okay to work through concepts on the board, but you &lt;strong&gt;may
-not&lt;/strong&gt; give away &lt;strong&gt;any&lt;/strong&gt; concrete addresses from the program (since
-finding these is part of the lab). Instead, use placeholder
-addresses when doing calculations with another student. E.g., you
-might say “Well, we realized that if the buffer is Y in length, and
-our shellcode is Z bytes long, we needed to insert X = Y-Z bytes of
-empty space after the shellcode”&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Please discuss the tools you used with other students. For example,
-you may say “I used GDB’s &lt;code class=&quot;highlighter-rouge&quot;&gt;layout asm&lt;/code&gt; to show the current
-instruction as I injected the shellcode.”&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;You may &lt;strong&gt;not&lt;/strong&gt; look at another student’s screen or talk to someone
-at such a low level as to be looking at their screen in spirit.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;structure-of-the-server-and-telnet-tutorial&quot;&gt;Structure of the Server and &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt; Tutorial&lt;/h1&gt;
-
-&lt;p&gt;This assignment will have you launch an attack against a small server,
-which can serve–among other things–HTML and image files. The server
-is implemented in the file &lt;code class=&quot;highlighter-rouge&quot;&gt;server.c&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This server is woefully incomplete: it only implements a very tiny
-part of the HTTP–the exchange-format used between web-browsers and
-servers. And yet this server still implements enough of HTTP to be
-able to display static content.&lt;/p&gt;
-
-&lt;p&gt;The word “server” is used all over the place in tech. For this
-assignment, a “server” means an application that can exchange data
-with a user on the other end of a communication channel (frequently
-called a “port”). You don’t need to understand networking to do this
-project, and you can largely follow this tutorial to complete the
-assignment.&lt;/p&gt;
-
-&lt;p&gt;Begin by building the server:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;make fs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This command builds the version of the server with all of the fancy
-modern protection mechanisms enabled, so it won’t be susceptible to
-(as many of) the attacks we’ll launch in this assignment.&lt;/p&gt;
-
-&lt;p&gt;To run the server, type the following:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./fs &quot;secret&quot; &quot;hello my message is here&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The server takes two arguments: the secret password, and a secret
-message. The server shouldn’t reveal this message to the user unless
-they send a command to the server to authenticate with the password
-(set on the command line here as &lt;code class=&quot;highlighter-rouge&quot;&gt;secret&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;Now the server should be running on port 5000. This means that it’s
-listening for connections. To talk to the server, you can use the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt; program. To do this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;telnet localhost 5000
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The first command-line argument is the server to connect to. This
-could be a remote host, like cnn.com, but in this case it’s going to
-be a special host named &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;, which is an alias for the IP
-address &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1&lt;/code&gt;. This is like talking to a remote machine, across
-the internet, except instead of talking to cnn.com, you’re talking to
-a server running your local machine.&lt;/p&gt;
-
-&lt;p&gt;Once we’re connected, we can start sending the server commands:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hello
-Hello!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;When we type in “hello”, the server replies back with “Hello!.” The
-complete list of commands is documented below.&lt;/p&gt;
-
-&lt;p&gt;This server also supports a form of HTTP, which is a standard format
-(protocol) used to exchange data between your web browser and the
-server itself. Think of the web browser as doing this same stuff that
-you’re typing into &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt; in a specific way, except that it’s doing
-it using a program. To see this, open a web browser (inside of the VM,
-using the user interface) and point the address address bar at
-&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:5000&lt;/code&gt;. Like navigating to &lt;code class=&quot;highlighter-rouge&quot;&gt;cnn.com&lt;/code&gt;, the server sends the
-necessary commands to our server application to retrieve the page. You
-should be able to see the server application generating some logs as
-it does this, so you can see which files get requested.&lt;/p&gt;
-
-&lt;p&gt;You can generate this yourself, after you telnet to the address, type
-in the following:&lt;/p&gt;
-
-&lt;p&gt;Here’s the complete list of commands:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hello&lt;/code&gt;, replies back with &lt;code class=&quot;highlighter-rouge&quot;&gt;Hello!&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;goodbye&lt;/code&gt;, terminates the connection&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;echo &amp;lt;text&amp;gt;&lt;/code&gt;, replies back with “Server is echoing: “ followed by &lt;text&gt;&lt;/text&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setmsg &amp;lt;msg&amp;gt;&lt;/code&gt;, sets a global variable in the server named &lt;code class=&quot;highlighter-rouge&quot;&gt;special_message&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getmsg&lt;/code&gt;, gets the special message set with &lt;code class=&quot;highlighter-rouge&quot;&gt;setmsg&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate &amp;lt;tried_password&amp;gt;&lt;/code&gt;, authenticates the connection to
-with a password when &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;tried_password&amp;gt;&lt;/code&gt; matches the password set via
-command-line argument. Once the connection has been authenticated,
-it will reveal the “secret message”, which is also specified on the
-command line.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getsecret&lt;/code&gt;, gets the secret, assuming the connection has been
-authenticated&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt;, starts a shell &lt;em&gt;on the server&lt;/em&gt;, that can be typed into via
-the telnet connection (i.e., when you type into it, it’s actually a
-shell on the server).&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;get &amp;lt;URI&amp;gt; &amp;lt;http-version&amp;gt;&lt;/code&gt; GETs a resource using the HTTP protocol.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here’s an example&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;authenticate secret
-You are now authenticated
-getsecret
-hello my message is here
-echo Hi, my name is Charles!
-Server is echoing: Hi, my name is Charles!
-getmsg
-Here is a special message
-shell
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;more-resources&quot;&gt;More resources&lt;/h2&gt;
-
-&lt;p&gt;I expect you to be able to pick up and read through &lt;code class=&quot;highlighter-rouge&quot;&gt;server.c&lt;/code&gt; on your
-own, and this is specifically part of the project. A large part of
-security (and software-engineering at large) is figuring out other
-people’s code. So work through it, and when you get stuck, play around
-with &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt;. When you get confused, insert &lt;code class=&quot;highlighter-rouge&quot;&gt;logmsg&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;
-statements, or (better yet) walk through it in the debugger.&lt;/p&gt;
-
-&lt;h3 id=&quot;notes-on-safety-ethics-and-realness&quot;&gt;Notes on Safety, Ethics, and “Realness”&lt;/h3&gt;
-
-&lt;p&gt;This server is written to be extremely insecure, and contains even
-more vulnerabilities than I discuss in this assignment. Running an
-insecure server is an easy way to get hacked, so system administrators
-typically use a
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Firewall_(computing)&quot;&gt;firewall&lt;/a&gt; to keep
-you from opening up servers on random ports and putting them out on
-the internet. For example, we have a firewall at Haverford that stops
-the server under my desk from sending talking to the rest of the
-internet.&lt;/p&gt;
-
-&lt;p&gt;Finally, this part of the project is fairly unrealistic. I have added
-a ton of extra commands to the server to make it easier for you to
-understand and exploit. Exploiting a real web server would mean
-reading lots and lots of code to try to find a mistake. We will likely
-do that later in the course, but for now try not to worry too much
-about it. I’ve included the “GET” command in here to foreshadow the
-next part of the assignment: the group project involves
-collaboratively fleshing out the rest of this server and performing
-some attacks on it.&lt;/p&gt;
-
-&lt;h3 id=&quot;part-0-writing-in-c--assembly-and-using-gdb&quot;&gt;Part 0: Writing in C / Assembly, and using GDB&lt;/h3&gt;
-
-&lt;p&gt;For this part of the project, you will write a function in C that
-finds the maximum value in a list.&lt;/p&gt;
-
-&lt;p&gt;The signature for the function:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Max gives the max of `num_ints`
-int max(int *ints, int num_ints);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;task-0a-coding-in-c-and-understanding-assembly&quot;&gt;Task 0a: Coding in C and Understanding Assembly&lt;/h4&gt;
-
-&lt;p&gt;Write and test this function (and &lt;em&gt;only&lt;/em&gt; this function, no &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;
-function)in a file named &lt;code class=&quot;highlighter-rouge&quot;&gt;max.c&lt;/code&gt;. Then compile the function into
-assembly-language form using the following command:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -S max.c 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The result will be a file, &lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt;, which contains the
-assembly-language code for the project.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the file &lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt;, with comments.&lt;/p&gt;
-
-&lt;p&gt;Comment the code with enough detail so that I can follow it along. For
-example, detail what each operation means, talks about where items
-will be laid out on the stack, what purpose each register serves,
-etc..&lt;/p&gt;
-
-&lt;p&gt;Then answer the following questions in this document (right here in
-the README):&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt; the questions here&lt;/p&gt;
-
-&lt;p&gt;Q1. Where is each of the arguments &lt;code class=&quot;highlighter-rouge&quot;&gt;ints&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;num_ints&lt;/code&gt; passed (i.e.,
-in which register, on the stack, etc..)&lt;/p&gt;
-
-&lt;p&gt;Q2. Describe in words or as an ASCII-art diagram, the stack layout at
-    the invocation of the function &lt;code class=&quot;highlighter-rouge&quot;&gt;max&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Q3. Where is each local variable stored in the function, specifically
-in relation to the base pointer?&lt;/p&gt;
-
-&lt;h4 id=&quot;task-0b-using-gdb&quot;&gt;Task 0b: Using GDB&lt;/h4&gt;
-
-&lt;p&gt;I have included a program, &lt;code class=&quot;highlighter-rouge&quot;&gt;max_main.c&lt;/code&gt;, which will use your &lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt;
-file. To compile &lt;code class=&quot;highlighter-rouge&quot;&gt;max_main.c&lt;/code&gt; in a way such that it can use your
-&lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt; code, first compile &lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt; from assembly to binary code:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc -c max.s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt; tells gcc to &lt;em&gt;compile&lt;/em&gt; the file to binary code, but not to
-&lt;em&gt;link&lt;/em&gt; it. Linking is the process by which the compiler grabs up all
-of the different functions, including the &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt; function, and splices
-them all together into a binary that you can actually run. But since
-&lt;code class=&quot;highlighter-rouge&quot;&gt;max.s&lt;/code&gt; doesn’t &lt;em&gt;have&lt;/em&gt; a main function, &lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt; can’t fully link it. Now
-you have a binary file &lt;code class=&quot;highlighter-rouge&quot;&gt;max.o&lt;/code&gt;, which you can link with the &lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;
-function in &lt;code class=&quot;highlighter-rouge&quot;&gt;max_main.c&lt;/code&gt;. The following command compiles &lt;code class=&quot;highlighter-rouge&quot;&gt;max_main.c&lt;/code&gt;
-and links it with &lt;code class=&quot;highlighter-rouge&quot;&gt;max.o&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcc max.o max_main.c -o max
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The output is now a file you can run named max.&lt;/p&gt;
-
-&lt;p&gt;Read GDB’s documentation on the following commands:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; command, which allows you to examine memory.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;layout &amp;lt;name&amp;gt;&lt;/code&gt; command, which allows you to interactively run
-the program&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt; command, which allows you to print out values and
-memory.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; command, which allows you to set memory.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;info&lt;/code&gt; command, and some of the things it can do (print stack
-frames / registers).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;break&lt;/code&gt; command, which allows you to set breakpoints.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Answer the following questions:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you find the address of a program variable named &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you set the integer value stored at address &lt;code class=&quot;highlighter-rouge&quot;&gt;0x10000000&lt;/code&gt;
-to the value &lt;code class=&quot;highlighter-rouge&quot;&gt;0x23&lt;/code&gt;?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you find out where the saved instruction pointer is
-stored?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How would you get GDB to disassemble the code starting at address
-&lt;code class=&quot;highlighter-rouge&quot;&gt;%rip+200&lt;/code&gt; and ending at &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip+400&lt;/code&gt;?&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;part-1-crash-the-server&quot;&gt;Part 1: Crash the Server&lt;/h3&gt;
-
-&lt;p&gt;(From now on, make sure you use the &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs_nsp_nnx&lt;/code&gt; executable. This is
-the one that is vulnerable. &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs&lt;/code&gt; has full protection mechanisms
-turned on.)&lt;/p&gt;
-
-&lt;p&gt;Consider the &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; function inside of of the &lt;code class=&quot;highlighter-rouge&quot;&gt;server&lt;/code&gt;
-executable. The local variables for &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; will be laid
-out on the stack in order. The variable &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt; is a fixed-length
-buffer, into which (because of the way the program is written) you can
-write more than 100 bytes. This opens up the possibility for a
-stack-smashing attack.&lt;/p&gt;
-
-&lt;p&gt;When you get done, it should look like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Got a connection on port 5000, handling now.
-ffffe3a0
-Received some data!
-echo &amp;lt;more stuff here&amp;gt;
-Segmentation fault (core dumped)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;task-1a-drawing-the-stack&quot;&gt;Task 1a: Drawing the Stack&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Deliverable&lt;/em&gt;: Draw &lt;code class=&quot;highlighter-rouge&quot;&gt;handler_connection&lt;/code&gt;’s stack right after the line
-that checks &lt;code class=&quot;highlighter-rouge&quot;&gt;prefix(&quot;hello&quot;,buffer)&lt;/code&gt;. You can do this on a piece of
-paper or in digitized form. Whatever you do, digitize it (either by
-taking a picture with your phone, scanner, etc..) and submit it as
-&lt;code class=&quot;highlighter-rouge&quot;&gt;stack-inside-echo.&amp;lt;png/jpg&amp;gt;&lt;/code&gt;. I highly suggest you reconstruct this
-using GDB.&lt;/p&gt;
-
-&lt;p&gt;Your image &lt;strong&gt;must include&lt;/strong&gt; all of the relevant local variables for
-&lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; at that point, and must show (at least) the
-position of the saved instruction pointer &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Bonus points&lt;/em&gt;: You will get +1 bonus points if you can generate
-this image using &lt;code class=&quot;highlighter-rouge&quot;&gt;gdb&lt;/code&gt;. However, you must make gdb print out enough of
-the stack to show the saved base pointer and return address.&lt;/p&gt;
-
-&lt;h4 id=&quot;hints-on-this-part&quot;&gt;Hints on this part&lt;/h4&gt;
-
-&lt;p&gt;Consider using the following GDB commands:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;info frame&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;info locals&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;print &amp;lt;address-in-hex&amp;gt;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;print $rsp&lt;/code&gt; / etc.. (for registers)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;x/20xb &amp;lt;address&amp;gt;&lt;/code&gt; / &lt;code class=&quot;highlighter-rouge&quot;&gt;x/20xb $rsp&lt;/code&gt; / etc..
-    &lt;ul&gt;
-      &lt;li&gt;This says print the next 20 bytes starting at &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;address&amp;gt;&lt;/code&gt;, print
-them in hex (that’s what the &lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt; after 20 means), print them one
-byte at a time (that’s what the &lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt; means).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Remember the stack grows down!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;task-1b-smashing-the-stack&quot;&gt;Task 1b: Smashing the Stack&lt;/h3&gt;
-
-&lt;p&gt;This program is insecure because it has a stupidly-obvious buffer
-overflow attack: the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; is a
-buffer of size 100, but inputs of up to 1024 can be read into the
-larger (global) &lt;code class=&quot;highlighter-rouge&quot;&gt;buffer&lt;/code&gt; variable. Figure out an input that could be
-sent to the server that would cause the return instruction pointer to
-be overwritten, so that–upon returning from &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt;, the
-program would go to a nonsense location and the program would
-crash. (FYI: the reason why it would crash is that control flow would
-wander into an unmapped page, generating a segmentation fault.)&lt;/p&gt;
-
-&lt;p&gt;Once you figure it out, run the server with the following parameters:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./server mypassword message
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And then in another terminal telnet into the server to perform your
-attack.&lt;/p&gt;
-
-&lt;p&gt;There’s one trickery here: after sending the &lt;code class=&quot;highlighter-rouge&quot;&gt;echo&lt;/code&gt; command, the
-server will keep accepting input. Part of the assignment is to figure
-out how to handle that (it’s not hard once you step back and look at
-all of the available commands).&lt;/p&gt;
-
-&lt;p&gt;Attach the output of the server here (showing that it crashes):&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: Copy and paste server output into 1b_server.txt&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: Copy and paste telnet input / output into 1b_telnet.txt&lt;/p&gt;
-
-&lt;h3 id=&quot;part-2-scripting-the-attack&quot;&gt;Part 2: Scripting the Attack&lt;/h3&gt;
-
-&lt;p&gt;Attacks can be complicated. You don’t want to have to literally sit and
-type your exploit into telnet. Especially as your attack gets more and
-more complicated. Instead, you’d like to use a higher-level language
-to script the attack. What’s more, sometimes we will need to generate
-binary data that’s not easy to type out in ASCII. Python will let us
-construct those payloads programmatically. For this and the next
-project, we’re going to write these scripts ourselves.&lt;/p&gt;
-
-&lt;p&gt;I’ve included a simple script, &lt;code class=&quot;highlighter-rouge&quot;&gt;client.py&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Script your attack in the function &lt;code class=&quot;highlighter-rouge&quot;&gt;crash_server&lt;/code&gt;. You might think to
-use the following Python socket functions:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.python.org/3/library/socket.html#socket.socket.send&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;send&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.python.org/3/library/socket.html#socket.socket.recv&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;recv&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Among the others listed there. I encourage you to read a good amount
-of that page. For example, you could write &lt;code class=&quot;highlighter-rouge&quot;&gt;s.send(&quot;echo hello&quot;)&lt;/code&gt; to
-send “echo hello” to the server. Note that the Python API takes care
-of some of the ceremony of doing things like writing the length.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the Python function &lt;code class=&quot;highlighter-rouge&quot;&gt;crash_server&lt;/code&gt; inside
-&lt;code class=&quot;highlighter-rouge&quot;&gt;client.py&lt;/code&gt;, which crashes the server.&lt;/p&gt;
-
-&lt;h4 id=&quot;hints-on-this-part-1&quot;&gt;Hints on this part&lt;/h4&gt;
-
-&lt;p&gt;One common scenario when writing exploit payloads is that we find
-ourselves writing some number of uninteresting bytes followed by
-(e.g.,) an address that you’d like to smash into &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip&lt;/code&gt;. This is
-because–to exploit a buffer overflow–we have to fill up the whole
-buffer. In these scenarios, it’s common to use a script to construct
-the payload. For example, you could write a script in Python to insert
-25 &lt;code class=&quot;highlighter-rouge&quot;&gt;A&lt;/code&gt;s before the ultimate bytes &lt;code class=&quot;highlighter-rouge&quot;&gt;0x23, 0x42 0x43 0x22&lt;/code&gt; (which might
-be the address you want to inject, etc..).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;send&lt;/code&gt; expects a byte string as argument. To turn a Python string
-into an array of bytes, use the following: &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;echo &quot;.encode()&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you want to represent a &lt;em&gt;single&lt;/em&gt; byte, use b’\x23’, which
-represents the single byte containing the hex value 0x23.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;For example, if you wanted to write the string containing the bytes
-0x23, 0x24, 0x57, and 0x42, in that order, you could write
-b’\x2e\x24\x57\x42’&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;You will probably want to want combine the string “echo “ with a
-sequence of bytes. To do this, you can simply add them together
-(since Python’s add is overloaded): “echo “.encode() + b’\x41’ * 23
-generates the ASCII for “echo “ (note the space), followed by the
-letter ‘A’ (ASCII-encoded) 23 times.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;part-3-owning-control-flow&quot;&gt;Part 3: Owning Control Flow&lt;/h3&gt;
-
-&lt;p&gt;Craft an exploit that will force the program to print out “Hello,
-world!\n”. To do this, follow the same technique you did in parts 1
-and 2, but instead of making &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip&lt;/code&gt; become some nonsense value, make
-it the address of the function &lt;code class=&quot;highlighter-rouge&quot;&gt;hello_world&lt;/code&gt;. That way, when the
-program returns from &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt;, it will then go to
-&lt;code class=&quot;highlighter-rouge&quot;&gt;hello_world&lt;/code&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Deliverable&lt;/em&gt;: write your exploit inside of the Python function
-&lt;code class=&quot;highlighter-rouge&quot;&gt;hello_world&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Notes:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;It is &lt;strong&gt;totally okay&lt;/strong&gt; if the server crashes after printing “Hello,
-world!”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When you get done, the server should do something like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Hello, world!
-Illegal instruction (core dumped)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;hints-on-this-part-2&quot;&gt;Hints on this part&lt;/h4&gt;
-
-&lt;p&gt;Use GDB to manually figure out how to redirect control flow at
-first. This helps you get a feel for where things should be in memory,
-and you can draw them out on a whiteboard or on paper as you use
-GDB. It also helps you debug your exploit as you develop it.&lt;/p&gt;
-
-&lt;p&gt;For example, here’s one run of the program where I tell GDB to show me
-what the contents of memory are around the current stack pointer
-(which I got via &lt;code class=&quot;highlighter-rouge&quot;&gt;info register esp&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;The first thing I do is to ask where the current saved RIP is stored:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(gdb) info frame
-Stack level 0, frame at 0x7fff5fbff4e0:
- rip = 0x100000e04 in foo; saved rip = 0x1500e0000
- called by frame at 0x7fff5fbff4e8
- Arglist at 0x7fff5fbff4d0, args:
- Locals at 0x7fff5fbff4d0, Previous frame's sp is 0x7fff5fbff4e0
- Saved registers:
-  rbp at 0x7fff5fbff4d0, rip at 0x7fff5fbff4d8
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;It tells us that the saved RIP is at &lt;code class=&quot;highlighter-rouge&quot;&gt;0x1500e0000&lt;/code&gt;. This is the
-address we want to overwrite. Let’s find out where &lt;code class=&quot;highlighter-rouge&quot;&gt;helloWorld&lt;/code&gt; is
-located:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(gdb) info address hello_world
-Symbol &quot;hello_world&quot; is at 0x100000e50 in a file compiled without debugging.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;So we need to set the RIP to point to that address:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(gdb) set *(0x7fff5fbff4d8) = 0x100000e50
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, let’s check that I got it right (I didn’t the first few times I
-did this..):&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(gdb) info frame
-Stack level 0, frame at 0x7fff5fbff4e0:
- rip = 0x100000e04 in foo; saved rip = 0x100000e50
- called by frame at 0x7fff5fbff510
- Arglist at 0x7fff5fbff4d0, args:
- Locals at 0x7fff5fbff4d0, Previous frame's sp is 0x7fff5fbff4e0
- Saved registers:
-  rbp at 0x7fff5fbff4d0, rip at 0x7fff5fbff4d8
-(gdb) info address helloWorld
-Symbol &quot;helloWorld&quot; is at 0x100000e50 in a file compiled without debugging.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Finally, let’s run it:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;(gdb) continue
-Continuing.
-Successfully copied the input!
-Hello, world!
-&amp;lt;Segfault&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now, your job is to create a payload that does this!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Caution!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Remember, you’re on a little-endian machine. So if I give you the
-number 0xDEADBEEFDEADBEEF, it will be represented as
-0xEFBEADDEFEBEADDE.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The stack grows &lt;strong&gt;down&lt;/strong&gt;!&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;part-4-executing-shellcode&quot;&gt;Part 4: Executing Shellcode&lt;/h3&gt;
-
-&lt;p&gt;Now you can control control-flow. Great. But say you want to run your
-&lt;em&gt;own&lt;/em&gt; code. To do this, you need to inject some assembly code into
-your program, and then have &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip&lt;/code&gt; jump to the shellcode.&lt;/p&gt;
-
-&lt;p&gt;Your task in this part is to inject the shellcode into the program
-(via the buffer overflow) and then jump to it. I have included a
-sample shellcode in the file &lt;code class=&quot;highlighter-rouge&quot;&gt;shellcode.c&lt;/code&gt; (its assembly is given,
-too).&lt;/p&gt;
-
-&lt;p&gt;For this part, do something like this:&lt;/p&gt;
-
-&lt;p&gt;echo … a: shellcode here … smashed-rip-address&lt;/p&gt;
-
-&lt;p&gt;Think about where the shellcode will be placed in memory (using GDB if
-you need), and make &lt;code class=&quot;highlighter-rouge&quot;&gt;%rip&lt;/code&gt; navigate to that point in memory, thereby
-executing the shell.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Deliverable&lt;/em&gt;: write your shellcode injection in the Python function
-&lt;code class=&quot;highlighter-rouge&quot;&gt;inject_execute_shellcode&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;tip-on-this-part&quot;&gt;Tip on This Part&lt;/h4&gt;
-
-&lt;p&gt;You’re going to want to place your shellcode somewhere inside the
-buffer, and then smash the stack so that control flows back to
-wherever you placed that shellcode. Therefore, you need to figure out
-the position of the &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt; variable. You can do this by attaching
-GDB to a running process: start up the server in one console window,
-and then in another type &lt;code class=&quot;highlighter-rouge&quot;&gt;ps -a | grep fs_nsp_nnx&lt;/code&gt;. Look at the number
-in the first column. Then do &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gdp -p &amp;lt;number&amp;gt;&lt;/code&gt; (enter &lt;code class=&quot;highlighter-rouge&quot;&gt;testvm&lt;/code&gt;
-for the password). This will let you debug the server as it runs. You
-can then set a breakpoint inside of &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt; and print out
-the location of the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;bonus-shellcoding-part-5-leak-the-secret-from-the-server&quot;&gt;(Bonus: Shellcoding) Part 5: Leak the Secret from the Server&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This problem has been changed to bonus work. It is now worth
-+2% bonus.&lt;/p&gt;
-
-&lt;p&gt;The server implements some code to check that the user types in a
-proper &lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate&lt;/code&gt; command before allowing the secret message to be
-retrieved. E.g., if I simply telnet into the server and then type in
-&lt;code class=&quot;highlighter-rouge&quot;&gt;getsecret&lt;/code&gt; I get the message: “You are not authenticated right now,
-first use the &lt;code class=&quot;highlighter-rouge&quot;&gt;authenticate&lt;/code&gt; command.”&lt;/p&gt;
-
-&lt;p&gt;Your job in this part is to figure out how to get the server to give
-me the secret message without typing in the password.&lt;/p&gt;
-
-&lt;p&gt;You &lt;strong&gt;may&lt;/strong&gt; discuss how to do this part with others at a high level.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: the function &lt;code class=&quot;highlighter-rouge&quot;&gt;print_secret&lt;/code&gt;, which prints the secret
-message from the server.&lt;/p&gt;
-
-&lt;h4 id=&quot;hints-on-this-part-3&quot;&gt;Hints on this part&lt;/h4&gt;
-
-&lt;p&gt;This part requires injecting some of your own shellcode that writes a
-nonzero value to the address of &lt;code class=&quot;highlighter-rouge&quot;&gt;is_authenticated&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;part-6-protecting-against-the-attacks&quot;&gt;Part 6: Protecting Against the Attacks&lt;/h3&gt;
-
-&lt;p&gt;The reason we were able to launch all of these attacks is due to the
-buffer overflow exploit in &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt;. Modify &lt;code class=&quot;highlighter-rouge&quot;&gt;server.c&lt;/code&gt; so
-that this attack goes away.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Deliverable&lt;/em&gt;: the file &lt;code class=&quot;highlighter-rouge&quot;&gt;server_fixed.c&lt;/code&gt;, which is not susceptible to
-the same attacks given in parts 2 through 5.&lt;/p&gt;
-
-&lt;h3 id=&quot;challenge-problem-reverse-engineering-&quot;&gt;&lt;strong&gt;Challenge Problem&lt;/strong&gt;: Reverse Engineering (**)&lt;/h3&gt;
-
-&lt;p&gt;This problem is worth +3% bonus.&lt;/p&gt;
-
-&lt;p&gt;I have included a program, &lt;code class=&quot;highlighter-rouge&quot;&gt;challenge.o&lt;/code&gt;, in binary-only form. Your
-job is to figure out how to run it in a way that causes it to print
-out “Hello, world!\n”. The program has been compiled without stack
-protection and will be run with ASLR disabled. You must show me the
-command-line arguments I can use to get it to work. But you must
-&lt;em&gt;also&lt;/em&gt; show your work and tell me how you got there. Solutions that
-technically work but aren’t explained will receive no credit.&lt;/p&gt;
-
-&lt;p&gt;This challenge problem is 2/3 stars, meaning it’s quite difficult, but
-not impossible. The task itself isn’t really any different than what
-you’ve done in this assignment. The main challenge is that you don’t
-have the code.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;: Use the debugger for interactive disassembly of this
-program. This will also help you figure out what address to
-target. Use a disassembler or reverse engineering toolkit.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;bonus.txt&lt;/code&gt;, which describes the techniques and shows
-how to run the program to get it to print “Hello, world!”&lt;/p&gt;
-
-&lt;h3 id=&quot;challenge-problem-other-bugs-and-exploits-&quot;&gt;&lt;strong&gt;Challenge problem&lt;/strong&gt;: Other Bugs and Exploits (*)&lt;/h3&gt;
-
-&lt;p&gt;Find any other bugs in this program that could lead to a security
-vulnerability: information-disclosure, denial-of-service,
-code-injection, etc.. This program has a good number of them.&lt;/p&gt;
-
-&lt;p&gt;You can receive a maximum of 2% extra credit on this part. .5% for each
-vulnerability. However, I am the final arbiter of what constitutes a
-security vulnerability versus just a bug (that isn’t a vulnerability)
-and my decisions are final.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Deliverable&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;other_bugs.txt&lt;/code&gt;, which describes any other bugs you
-find.&lt;/p&gt;
-
-&lt;h2 id=&quot;deliverables&quot;&gt;Deliverables&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: Deliverables will be accepted in no other format than those
-listed here. Specifically: if you write code that technically works,
-but does not fit the format the testing scripts expect, you will not
-receive points. Also note that &lt;em&gt;no partial credit&lt;/em&gt; will be assigned
-throughout the course as a matter of policy, unless otherwise noted
-explicitly.&lt;/p&gt;
-
-&lt;p&gt;Part 0: Writing in C / Assembly, and using GDB&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/5 max.s, with comments&lt;/li&gt;
-  &lt;li&gt;[ ]/5 Questions about GDB&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Part 1: Crash the server&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/5 stack-inside-echo.&amp;lt;png/jpg&amp;gt;&lt;/li&gt;
-  &lt;li&gt;[ ]/5 1b_server_output.txt and 1b_telnet.txt&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Part 2: Scripting the attack&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/10 the function &lt;code class=&quot;highlighter-rouge&quot;&gt;crash_server&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Part 3: Owning control flow&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/10 the function &lt;code class=&quot;highlighter-rouge&quot;&gt;hello_world&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Part 4: Executing shellcode&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/10 the function &lt;code class=&quot;highlighter-rouge&quot;&gt;inject_execute_shellcode&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Part 6: Protecting against the attacks&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/10 the file &lt;code class=&quot;highlighter-rouge&quot;&gt;server_fixed.c&lt;/code&gt;, which is not susceptible to the
-attacks in parts 2-5.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Total: [ ]/50&lt;/p&gt;
-
-&lt;p&gt;Bonus parts:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;[ ]/+3% Reverse engineering&lt;/li&gt;
-  &lt;li&gt;[ ]/+2% Part 5: Leak the secret from the server&lt;/li&gt;
-  &lt;li&gt;[ ]/+2% Other bugs and exploits you found in the server&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;constraints-and-advice-read-this-if-you-get-confused&quot;&gt;Constraints and Advice (&lt;strong&gt;Read This if you Get Confused&lt;/strong&gt;)&lt;/h2&gt;
-
-&lt;p&gt;The solution to this project doesn’t involve very much code. But it’s
-still tricky. You have to carefully think about the location of
-variables as they get placed in the stack, heap, etc.. As you work
-through this project, it’s &lt;em&gt;crucial&lt;/em&gt; to understand the layout of the
-program (stack, heap, instructions, etc..). When I wrote out the
-solutions to this project, I did so using both my whiteboard and GDB
-(attached to the process).&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;When you develop your exploits, use the vulnerable executable
-&lt;code class=&quot;highlighter-rouge&quot;&gt;./fs_nsp_nnx&lt;/code&gt;. This is the one that has all of the traditional
-protection mechanisms (NX, stack canaries) turned &lt;strong&gt;off&lt;/strong&gt;. Trying to
-exploit &lt;code class=&quot;highlighter-rouge&quot;&gt;./fs&lt;/code&gt; will kill your program.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make sure to turn off ASLR on your VM. My grading scripts will do so
-as well.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Do not call your program with &lt;strong&gt;any&lt;/strong&gt; command-line arguments. My
-scripts will not do so and doing so will change your environment
-variables so that exploits are harder to make work (command-line
-arguments are stack allocated).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make sure you attach GDB to the &lt;strong&gt;running&lt;/strong&gt; process rather than
-using GDB directly. See &lt;a href=&quot;https://stackoverflow.com/questions/17775186/buffer-overflow-works-in-gdb-but-not-without-it/17775966#17775966&quot;&gt;this SO
-post&lt;/a&gt;
-for details.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The program will not work when environment variables change, or if
-command-line arguments are passed in. I will not change the
-environment variables when running your program, and will not pass
-in any additional command-line arguments. We will see how to deal
-with this in subsequent lectures.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Do &lt;strong&gt;not&lt;/strong&gt; modify &lt;code class=&quot;highlighter-rouge&quot;&gt;server.c&lt;/code&gt;, you risk addresses of functions being
-different. For part six, make a &lt;em&gt;copy&lt;/em&gt; (as stated in that part).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;When trying to determine the locations of variables, be sure that
-you connect GDB to a &lt;em&gt;running process&lt;/em&gt;. If you run the app under
-GDB, the location of the stack will be different because environment
-variable differences between GDB and the running process. See this
-page for details:
-http://www.mathyvanhoef.com/2012/11/common-pitfalls-when-writing-exploits.html&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;http://dirac.org/linux/gdb/06-Debugging_A_Running_Process.php&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Use the program &lt;code class=&quot;highlighter-rouge&quot;&gt;objdump&lt;/code&gt;, which will help you disassemble the
-file. For example, if you run &lt;code class=&quot;highlighter-rouge&quot;&gt;objdump -S fs_nsp_nnx &amp;gt;out&lt;/code&gt;, you can
-then open up the file &lt;code class=&quot;highlighter-rouge&quot;&gt;out&lt;/code&gt; and find out where &lt;code class=&quot;highlighter-rouge&quot;&gt;handle_connection&lt;/code&gt;
-is written to examine its source.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(Hex to decimal calculator, useful for calculating ranges of things)
-https://www.rapidtables.com/convert/number/hex-to-decimal.html?x=78&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(How to modify memory using GDB)
-https://stackoverflow.com/questions/3305164/how-to-modify-memory-contents-using-gdb&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;(How to print memory using GDB)
-https://sourceware.org/gdb/onlinedocs/gdb/Memory.html&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Tue, 23 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/project/1</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/1</guid>
-        
-        
-        <category>project</category>
-        
-        <category>assignment</category>
         
       </item>
     
