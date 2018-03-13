@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 Mar 2018 11:47:35 -0400</pubDate>
-    <lastBuildDate>Tue, 13 Mar 2018 11:47:35 -0400</lastBuildDate>
+    <pubDate>Tue, 13 Mar 2018 11:48:48 -0400</pubDate>
+    <lastBuildDate>Tue, 13 Mar 2018 11:48:48 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -276,8 +276,8 @@ run this untrusted code in a way so that the untrusted code does not
 gain access to process A’s data?&lt;/p&gt;
 </description>
         <pubDate>Wed, 07 Mar 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/project/3</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/3</guid>
+        <link>http://kmicinski.com/cybersecurity-course/exams/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/exams/1</guid>
         
         
         <category>project</category>
