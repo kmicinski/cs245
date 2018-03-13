@@ -271,22 +271,23 @@ that calls a function to copy a string.)</li>
 
 <p>Consider the following program:</p>
 
-<p>void foo() {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void foo() {
   char buf[200];
   // .. 
   bar(); // Line 1
   // .. 
-}</p>
+}
 
-<p>void bar() {
+void bar() {
   char buf2[100];
   // .. 
   return; // Line 3;
-}</p>
+}
 
-<p>void system() {
+void system() {
   // .. 
-}</p>
+}
+</code></pre></div></div>
 
 <ul>
   <li>

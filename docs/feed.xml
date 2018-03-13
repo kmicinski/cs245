@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 Mar 2018 11:48:48 -0400</pubDate>
-    <lastBuildDate>Tue, 13 Mar 2018 11:48:48 -0400</lastBuildDate>
+    <pubDate>Tue, 13 Mar 2018 11:50:58 -0400</pubDate>
+    <lastBuildDate>Tue, 13 Mar 2018 11:50:58 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -206,22 +206,23 @@ that calls a function to copy a string.)&lt;/li&gt;
 
 &lt;p&gt;Consider the following program:&lt;/p&gt;
 
-&lt;p&gt;void foo() {
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void foo() {
   char buf[200];
   // .. 
   bar(); // Line 1
   // .. 
-}&lt;/p&gt;
+}
 
-&lt;p&gt;void bar() {
+void bar() {
   char buf2[100];
   // .. 
   return; // Line 3;
-}&lt;/p&gt;
+}
 
-&lt;p&gt;void system() {
+void system() {
   // .. 
-}&lt;/p&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
