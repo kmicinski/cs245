@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 Mar 2018 11:50:58 -0400</pubDate>
-    <lastBuildDate>Tue, 13 Mar 2018 11:50:58 -0400</lastBuildDate>
+    <pubDate>Tue, 20 Mar 2018 14:54:56 -0400</pubDate>
+    <lastBuildDate>Tue, 20 Mar 2018 14:54:56 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -288,6 +288,51 @@ gain access to process A’s data?&lt;/p&gt;
       </item>
     
       <item>
+        <title>Asymmetric (Public-Key) Cryptography</title>
+        <description>&lt;h4 id=&quot;slides-on-asymmetric-crypto&quot;&gt;Slides on Asymmetric Crypto&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 06 Mar 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/9</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/9</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
+    
+      <item>
+        <title>Symmetric Cryptography and Integrity</title>
+        <description>&lt;p&gt;The week before Spring Break, we covered symmetric-key cryptography.&lt;/p&gt;
+
+&lt;h4 id=&quot;intro-and-block-ciphers&quot;&gt;Intro and Block Ciphers&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro-cryptography.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro-cryptography.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;integrity&quot;&gt;Integrity&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/crypto-integrity.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/crypto-integrity.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 06 Mar 2018 00:00:00 -0500</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/8</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/8</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
+    
+      <item>
         <title>Project 2I: SquirrelChat</title>
         <description>&lt;p&gt;In this project, you’ll be writing a chat server. You’ll interface
 with this chat server in a variety of ways: you can either telnet to
@@ -432,7 +477,7 @@ sends that user a &lt;code class=&quot;highlighter-rouge&quot;&gt;chatfrom&lt;/c
     &lt;ul&gt;
       &lt;li&gt;This is a command that the &lt;em&gt;server&lt;/em&gt; sends to a &lt;em&gt;client&lt;/em&gt;.&lt;/li&gt;
       &lt;li&gt;The way to interpret this is that &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; sent a message to
-channel &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_priv&amp;gt;&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; begins with
+channel &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; if &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; begins with
 &lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;. Otherwise, this is a private message, and the username is in
 the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_user&amp;gt;&lt;/code&gt; field.&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;from_user&amp;gt;&lt;/code&gt; is a logged in user.&lt;/li&gt;
@@ -1452,53 +1497,6 @@ sections, you should have done so before class last week.&lt;/li&gt;
         
         
         <category>lectures</category>
-        
-      </item>
-    
-      <item>
-        <title>Lecture 2: Stack Smashing Demos</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-2-mem-safety.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-2-mem-safety.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 25 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/2</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/2</guid>
-        
-        
-        <category>lectures</category>
-        
-      </item>
-    
-      <item>
-        <title>Lab 1: VM setup and Assembly refresher</title>
-        <description>&lt;p&gt;In this lab, you’re going to set up the VM and read through some
-assembly documentation.&lt;/p&gt;
-
-&lt;h2 id=&quot;reading-on-assembly&quot;&gt;Reading on Assembly&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.cs.cmu.edu/~fp/courses/15213-s07/misc/asm64-handout.pdf&lt;/li&gt;
-  &lt;li&gt;The calling convention https://aaronbloomfield.github.io/pdr/book/x86-64bit-ccc-chapter.pdf&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;tutorials-on-gdb&quot;&gt;Tutorials on GDB&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://beej.us/guide/bggdb/&lt;/li&gt;
-  &lt;li&gt;http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 24 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/labs/1</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/labs/1</guid>
-        
-        
-        <category>lab</category>
         
       </item>
     
