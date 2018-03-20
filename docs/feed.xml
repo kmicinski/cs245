@@ -5,9 +5,27 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 20 Mar 2018 14:54:56 -0400</pubDate>
-    <lastBuildDate>Tue, 20 Mar 2018 14:54:56 -0400</lastBuildDate>
+    <pubDate>Tue, 20 Mar 2018 14:57:46 -0400</pubDate>
+    <lastBuildDate>Tue, 20 Mar 2018 14:57:46 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Asymmetric (Public-Key) Cryptography</title>
+        <description>&lt;h4 id=&quot;slides-on-asymmetric-crypto&quot;&gt;Slides on Asymmetric Crypto&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 20 Mar 2018 00:00:00 -0400</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/9</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/9</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
     
       <item>
         <title>Exam 1</title>
@@ -284,24 +302,6 @@ gain access to process A’s data?&lt;/p&gt;
         <category>project</category>
         
         <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Asymmetric (Public-Key) Cryptography</title>
-        <description>&lt;h4 id=&quot;slides-on-asymmetric-crypto&quot;&gt;Slides on Asymmetric Crypto&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/asymmetric.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 06 Mar 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/9</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/9</guid>
-        
-        
-        <category>lectures</category>
         
       </item>
     
