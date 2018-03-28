@@ -5,9 +5,27 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Mar 2018 23:35:26 -0400</pubDate>
-    <lastBuildDate>Tue, 27 Mar 2018 23:35:26 -0400</lastBuildDate>
+    <pubDate>Wed, 28 Mar 2018 16:27:10 -0400</pubDate>
+    <lastBuildDate>Wed, 28 Mar 2018 16:27:10 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Networking Intro</title>
+        <description>&lt;h4 id=&quot;networking-intro-slides&quot;&gt;Networking Intro Slides&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/networking-intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/networking-intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 27 Mar 2018 00:00:00 -0400</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/lectures/10</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/10</guid>
+        
+        
+        <category>lectures</category>
+        
+      </item>
     
       <item>
         <title>Project 2G: Secure SquirrelChat</title>
@@ -2058,35 +2076,6 @@ Easy&lt;/a&gt;&lt;/li&gt;
         <pubDate>Thu, 08 Feb 2018 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cybersecurity-course/lectures/5</link>
         <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/5</guid>
-        
-        
-        <category>lectures</category>
-        
-      </item>
-    
-      <item>
-        <title>Lecture 4: Memory Defenses and Return-Oriented Programming</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-4-rop-intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-4-rop-intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://benpfaff.org/papers/asrandom.pdf&quot;&gt;On the Effectiveness of Address-Space Layout Randomization&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading for &lt;strong&gt;Thursday’s&lt;/strong&gt; class:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://cseweb.ucsd.edu/~hovav/dist/geometry.pdf&quot;&gt;The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Tue, 06 Feb 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/4</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/4</guid>
         
         
         <category>lectures</category>
