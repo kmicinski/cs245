@@ -5,9 +5,630 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 20 Mar 2018 14:57:46 -0400</pubDate>
-    <lastBuildDate>Tue, 20 Mar 2018 14:57:46 -0400</lastBuildDate>
+    <pubDate>Tue, 27 Mar 2018 22:33:46 -0400</pubDate>
+    <lastBuildDate>Tue, 27 Mar 2018 22:33:46 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Project 2G: Secure SquirrelChat</title>
+        <description>&lt;p&gt;In the previous project, you implemented a server for SquirrelChat–a
+fake protocol we built for the course. The problem with SquirrelChat
+was that it ran over raw sockets: anyone in the middle of the
+connection could “snoop in” and see what was happening. In this
+project, we’ll fix that, using encryption.&lt;/p&gt;
+
+&lt;p&gt;This portion of the project is group work. During the course of this
+project you are allowed access to all online resources, but you are
+required to cite any resource that gave you any significant insight
+into the project, including conversations you had with those outside
+of your group. You will put these sources in &lt;code class=&quot;highlighter-rouge&quot;&gt;SOURCES.md&lt;/code&gt; within this
+folder.&lt;/p&gt;
+
+&lt;p&gt;Please respect the department’s collaboration policy. Specifically,
+you are not allowed to look at any other group’s &lt;em&gt;code&lt;/em&gt; (or do
+anything equivalent, such as talking through your code on a
+line-by-line basis). You may discuss pseudo-code on the board, but
+afterwards you must erase it (so as to not let anyone else see it) and
+then cite your conversation with the other person in a comment in your
+code (and in the sources file). &lt;strong&gt;Within&lt;/strong&gt; your group you may
+collaborate in whatever way you want.&lt;/p&gt;
+
+&lt;h2 id=&quot;project-overview&quot;&gt;Project Overview&lt;/h2&gt;
+
+&lt;p&gt;This project will consist of the following parts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Building / extending a client to the chat server&lt;/li&gt;
+  &lt;li&gt;Running the protocol over TLS&lt;/li&gt;
+  &lt;li&gt;Properly encrypting passwords in a password database&lt;/li&gt;
+  &lt;li&gt;Extending the protocol to handle file uploads&lt;/li&gt;
+  &lt;li&gt;Storing encrypted logs for chat conversations&lt;/li&gt;
+  &lt;li&gt;Encrypted private messages with negotiated key exchange or public keys&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For starter code for this project, you will use the server
+implementation from any groupmember you choose. Feel free to mix and
+match parts of your project 2I implementations to fuse them together
+into a successful implementation for 2G.&lt;/p&gt;
+
+&lt;p&gt;Please get the starter code from Github Classroom, so I can then grade
+your repo. For people not registered in the course, I have put up my
+starter code here&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/kmicinski/chat-server-group
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This contains a &lt;code class=&quot;highlighter-rouge&quot;&gt;client&lt;/code&gt; directory, which contains the starter
+client. This client &lt;em&gt;should&lt;/em&gt; work with your 2I submission, but please
+let me know of any discrepancies you notice. I’ve tested it with a few
+different students’ submissions.&lt;/p&gt;
+
+&lt;h2 id=&quot;collaboration-policy&quot;&gt;Collaboration Policy&lt;/h2&gt;
+
+&lt;p&gt;Specific examples that extend the collaboration policy for this lab:
+Same as on Project 1I, except replace ever occurrence of “other
+students” with “other groups.” This is to say, you may say whatever
+you want to your groupmembers, but shouldn’t talk about low-level
+details and addresses with other groups. I was quite satisfied with
+the level of collaboration that happened on the last project, so keep
+it up.&lt;/p&gt;
+
+&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;For this project, you will secure the server using cryptography. You
+will also propose and design several changes to the protocol. Changes
+you make to the server must also be reflected in the client, so that
+you can communicate. Note that because you will implement TLS, you
+will no longer be able to simply use &lt;code class=&quot;highlighter-rouge&quot;&gt;telnet&lt;/code&gt; to communicate with the
+server (since telnet does not properly perform TLS handshakes and
+perform the proper encryption).&lt;/p&gt;
+
+&lt;p&gt;For this part, I recommend using Python’s
+&lt;a href=&quot;https://cryptography.io/en/latest/&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;cryptography&lt;/code&gt;&lt;/a&gt; library. You
+can–however–use any cryptographic library of your choice, at your
+own risk.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-1-running-the-connection-via-tls-20-points&quot;&gt;Part 1: Running the connection via TLS (20 points)&lt;/h3&gt;
+
+&lt;p&gt;The easiest way to gain security for the server is to use
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Transport_Layer_Security&quot;&gt;TLS&lt;/a&gt;
+(formerly SSL). TLS is a simple way to get security “for free,”
+allowing you to run a normal socket on top of an encrypted channel.&lt;/p&gt;
+
+&lt;p&gt;Before attempting this part, I also recommend going through the
+following posts:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://chaobin.github.io/2015/07/22/a-working-understanding-on-SSL-and-HTTPS-using-python/&lt;/li&gt;
+  &lt;li&gt;http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html&lt;/li&gt;
+  &lt;li&gt;https://stackoverflow.com/questions/12310029/certificates-for-client-side-in-tls&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(&lt;strong&gt;BIG NOTE&lt;/strong&gt;: The accepted answer in the last link has a &lt;strong&gt;major
+flaw&lt;/strong&gt;, because it stores the key and cert in the same file, which
+gives the client access to the secret key. This is terrible security.)&lt;/p&gt;
+
+&lt;p&gt;For this part of the project, you will implement TLS in both the
+client and the server. I recommend you read through &lt;a href=&quot;https://markusholtermann.eu/2016/09/ssl-all-the-things-in-python/&quot;&gt;this
+tutorial&lt;/a&gt;
+along with the &lt;a href=&quot;https://docs.python.org/2/library/ssl.html&quot;&gt;manual for the &lt;code class=&quot;highlighter-rouge&quot;&gt;ssl&lt;/code&gt; library in
+Python&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For the server to use the protocol properly, you need to make it so
+that the connection is protected using a certificate. To do this,
+you’ll have to enable the proper options in both the server and client
+when setting up the connection, and generate a certificate for the
+server. You can generate a certificate for the server &lt;a href=&quot;https://stackoverflow.com/questions/10175812/how-to-create-a-self-signed-certificate-with-openssl&quot;&gt;like
+this&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl req -new -x509 -days 365 -nodes -out cert.pem -keyout key.pem
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For the client to run the protocol, they will also need to know (and
+more importantly, &lt;em&gt;trust&lt;/em&gt;) the certificate used by the server. You can
+do this in whatever way you want. For example, you can extend the
+server to take a command-line argument specifying the filename of the
+server’s certificate, or you can require that the certificate be
+stored at some specific file in the client’s directory.&lt;/p&gt;
+
+&lt;p&gt;Whatever you do, make sure it’s configurable.&lt;/p&gt;
+
+&lt;h4 id=&quot;deliverables-for-this-part&quot;&gt;Deliverables for This Part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The modified server code, which correctly accepts TLS-protected
+connections using a self-signed certificate.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The modified client code, which correctly communicates with the
+server and checks its certificate against the one you generate.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-2-securing-passwords-15-points&quot;&gt;Part 2: Securing Passwords (15 points)&lt;/h3&gt;
+
+&lt;p&gt;Next, you should come up with some sensible way to encrypt
+passwords. You can do this however you want, but I encourage you to
+put some thought into how you’re doing it. This part should be easy,
+since you shouldn’t be rolling your own password management. Instead,
+I recommend something like &lt;code class=&quot;highlighter-rouge&quot;&gt;PassLib&lt;/code&gt; for Python, which automatically
+generates and salts passwords.&lt;/p&gt;
+
+&lt;h4 id=&quot;deliverables-for-this-part-1&quot;&gt;Deliverables for This Part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Part of your design document specifies how passwords are hashed, and
+how they are salted.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Include the precise mechanism (e.g., the name of the hash algorithm)
+used by your password management scheme.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Discussion with another group, your reflections on their experience,
+and how the conversation helped your design (if it did).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-3-encrypted-logs-20-points&quot;&gt;Part 3: Encrypted Logs (20 points)&lt;/h3&gt;
+
+&lt;p&gt;For this part of the project, you will store encrypted logs of the
+chat rooms and private messages. These logs should be encrypted with
+either a symmetric key that gets loaded into the server via a
+specified input file, or a password specified as an input to the
+server. I would recommend using &lt;code class=&quot;highlighter-rouge&quot;&gt;cryptography&lt;/code&gt;’s
+&lt;a href=&quot;https://cryptography.io/en/latest/fernet/&quot;&gt;Fernet&lt;/a&gt; recipe, which
+should be able to take care of most of this for you.&lt;/p&gt;
+
+&lt;p&gt;Each channel is logged in some format like the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;alice&amp;gt; This is the first chat
+bob&amp;gt; This is the second chat
+eve&amp;gt; Yet another chat is here
+...
+bob&amp;gt; All the way down to the twentieth chat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I don’t care about the precise format as long as you document it. Once
+twenty messages have passed on the channel, you should write out an
+encrypted file named &lt;code class=&quot;highlighter-rouge&quot;&gt;log-&amp;lt;channelname&amp;gt;-&amp;lt;timestamp&amp;gt;.log&lt;/code&gt;, where
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channelname&amp;gt;&lt;/code&gt; is the channel’s name (unencrypted), and &lt;code class=&quot;highlighter-rouge&quot;&gt;timestamp&lt;/code&gt;
+is the time at which the log was written (in &lt;em&gt;milliseconds&lt;/em&gt; since the
+epoch, as returned by &lt;code class=&quot;highlighter-rouge&quot;&gt;int(round(time.time() * 1000))&lt;/code&gt;). This log must
+be encrypted with the server’s symmetric key (again, it is &lt;em&gt;up to you&lt;/em&gt;
+to determine how to implement this). After that set of twenty messages
+has elapsed you will reset the log and again count to twenty new
+messages, writing yet another log.&lt;/p&gt;
+
+&lt;p&gt;You will write all of these logs in the &lt;code class=&quot;highlighter-rouge&quot;&gt;logs/&lt;/code&gt; subdirectory of your
+server’s folder. In other words, you’ll see:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;logs/
+ - log-general_discussions-1233525.log
+ - log-general_discussions-1238234.log
+ - log-general_discussions-1241483.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Of course, all of the logs will be garbled and unreadable to a
+human. So you must &lt;em&gt;also&lt;/em&gt; implement a way to decipher the logs in
+sequential order. To do this, you will implement a program named
+&lt;code class=&quot;highlighter-rouge&quot;&gt;decipher_logs.{py,...}&lt;/code&gt; (in whatever language you want) that will
+take two parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The name of the channel to decipher&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The symmetric key (or password, if you use a key derivation
+function) used to decipher the logs. If you want to keep this as a
+local file instead of having it to be an explicit command-line
+argument, that’s also fine. Basically, this script will need some
+way in which it has access to the symmetric key used to encrypt the
+logs so that it can also decrypt them.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The output of the program should be the sequence of logs for the
+channel in the order in which they appeared temporally. In other
+words, the decrypted logs for &lt;code class=&quot;highlighter-rouge&quot;&gt;log-general_discussions-1233525.log&lt;/code&gt;
+should appear &lt;em&gt;before&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;log-general_discussions-1238234.log&lt;/code&gt;,
+etc… You should use the timestamps here to check this. Note also
+that your program must check &lt;em&gt;authenticity&lt;/em&gt; of the logs.&lt;/p&gt;
+
+&lt;p&gt;Note that private messages should &lt;em&gt;not&lt;/em&gt; be logged.&lt;/p&gt;
+
+&lt;h4 id=&quot;caution-for-this-part&quot;&gt;Caution for This Part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Be cautious to avoid known plaintext attacks. Always use randomized
+encryption and authenticty checks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;deliverables-for-this-part-2&quot;&gt;Deliverables for this part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Your design document contains a thoughtful explanation of how you
+plan to implement this part, and relevant discussion of all of the
+potential security implications. Answer the following questions:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;How will you stop an attacker from reading the file (simple)&lt;/li&gt;
+      &lt;li&gt;How will you store and manage the symmetric key&lt;/li&gt;
+      &lt;li&gt;What kind of encryption are you using? Be specific, what cipher,
+key length, etc…&lt;/li&gt;
+      &lt;li&gt;What cryptographic mode are you using? Is it believed to be safe?&lt;/li&gt;
+      &lt;li&gt;How do you prevent things like known plaintext attacks?&lt;/li&gt;
+      &lt;li&gt;How are you performing authentication?&lt;/li&gt;
+      &lt;li&gt;Does your crypto protect against known plaintext attacks? Chosen
+plaintext attacks? Chosen ciphertext attacks?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Your changes to the server, implementing the described changes to
+log channels.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The program &lt;code class=&quot;highlighter-rouge&quot;&gt;decipher_logs.{py,...}&lt;/code&gt;, which deciphers the logs in
+sequential order.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-4-extending-the-protocol-with-file-sharing-25-points&quot;&gt;Part 4: Extending the Protocol with File Sharing (25 points)&lt;/h3&gt;
+
+&lt;p&gt;For this part of the project, you will extend the protocol with the
+ability to perform file sharing. In our case, each channel (or private
+message) will maintain a set of files. We will not allow any folders,
+just plain files for this part. The use case for this is something
+like this: a friend sees a funny gif online, so they upload it to the
+channel an then share it with their friends. The friends can then
+check for files with the &lt;code class=&quot;highlighter-rouge&quot;&gt;getfiles&lt;/code&gt; command, which will list the files
+associated with the channel. Just as you can upload files to channels,
+you should also be able to upload them to private messages.&lt;/p&gt;
+
+&lt;p&gt;You will &lt;em&gt;store&lt;/em&gt; files by making requests to the web server that you
+wrote in Part 1G. In that part, we implemented the server with 4
+verbs, &lt;code class=&quot;highlighter-rouge&quot;&gt;GET&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;PUT&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;DELETE&lt;/code&gt;. But–because that
+communication happens just via plain HTTP–you had better encrypt the
+transmission before performing it.&lt;/p&gt;
+
+&lt;p&gt;You should extend the protocol with the following messages:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getfiles &amp;lt;channel_or_username&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Lists the names of files associated with each&lt;/li&gt;
+      &lt;li&gt;The user sending this command must already be logged into the
+channel (specifically, they cannot have been banned from the
+channel). If not, send an error to the client.  In the case that
+this is a &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;, the user must not have blocked the sender
+(if not, send an error).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;upload &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt; &amp;lt;length&amp;gt;--&amp;lt;binary_data_here&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Assume for simplicity that filename has no spaces. If so, send an
+error.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;This is how the user will upload the data to the server. You can
+use whatever format you want (as long as it’s consistent between
+the client and the server), but you will probably need to do
+something where you specify the channel to which it’s going, the
+name of the file, and the length.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;length&amp;gt;&lt;/code&gt; field is useful because it tells you how much more
+data you have to &lt;code class=&quot;highlighter-rouge&quot;&gt;recv&lt;/code&gt; before continuing to parse other messages.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;update &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt; &amp;lt;length&amp;gt;--&amp;lt;binary_data_here&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;The same thing as &lt;code class=&quot;highlighter-rouge&quot;&gt;upload&lt;/code&gt;, excepts this updates the contents of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;filename&amp;gt;&lt;/code&gt; rather than simply upload the file.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Only the person who initially uploaded the file or a
+channel administrator, can update the file.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;remove &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt;&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Deletes a file from a channel.&lt;/li&gt;
+      &lt;li&gt;Only the person who initially uploaded the file or a channel
+administrator can remove the file.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can take liberty in how you format these commands. If you think
+it’s easier to change their syntax, that’s fine. But you must
+implement these both in the server and the client. For the client, you
+should provide a command &lt;code class=&quot;highlighter-rouge&quot;&gt;/upload&lt;/code&gt;, that allows uploading a file
+currently on disc to the server. For example, it might look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#channel&amp;gt; /upload #channel
+Type the name of a file you would like to upload:
+/path/to/file.txt
+Now uploading /path/to/file as file.txt within #channel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The trickiest piece of this part (in my mind) is making sure you
+manage the buffer and parsing correctly. For example, you’ll probably
+end up in this situation where you need to modify your parser to check
+to see if you’re trying to parse an &lt;code class=&quot;highlighter-rouge&quot;&gt;upload&lt;/code&gt; message and–if
+so–handle that correctly so that parsing works out correctly.&lt;/p&gt;
+
+&lt;h4 id=&quot;storing-encrypted-files&quot;&gt;Storing Encrypted Files&lt;/h4&gt;
+
+&lt;p&gt;This part is where the first two projects “sync up.” To satisfy the
+spec for this project, you should manage files for this part by
+running your server from Part 1G and then sending it commands using
+Python’s &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt; library, similarly to what I did in the tests I
+distributed.&lt;/p&gt;
+
+&lt;p&gt;Each of the commands in the protocol mirrors a specific HTTP verb that
+you implemented in your server during Project 1G. For example,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;upload&lt;/code&gt; mirrors &lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;update&lt;/code&gt; mirrors &lt;code class=&quot;highlighter-rouge&quot;&gt;PUT&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The problem in Project 1G was that we implemented our server over raw
+HTTP, without any encryption. To rectify that, you should encrypt the
+files that you send over the connection, and decrypt them when they
+come back (before sending them to the client).&lt;/p&gt;
+
+&lt;p&gt;To be explicit, this means that you will need to run the server you
+wrote in Project 1G on your machine, on a specific port, A. Then, you
+will need to run your SquirrelChat server on that same machine (or a
+different machine, if you want) on a different port B. SquirrelChat
+will receive messages from the SquirrelChat client on B, some of which
+will be messages to receive data. Then, the SquirrelChat server will
+send messages the the 1G server on port A, after encrypting them (to
+prevent someone snooping in on the connection).&lt;/p&gt;
+
+&lt;h4 id=&quot;deliverables-for-this-part-3&quot;&gt;Deliverables for this part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;A file named &lt;code class=&quot;highlighter-rouge&quot;&gt;part4.txt&lt;/code&gt; that describes the documents the syntax of
+the protocol you propose that will allow you to perform file
+exchange.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Updates to the server that accepts files in the specified protocol
+and stores them using your server from Project 1G.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you cannot get the server from Project 1G to work, you are
+allowed to implement all file storage in Python alone. This will
+result in a 6-point penalty for this part, though.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Updates to the client that allow it to send files to the server
+(otherwise, why should I believe that your code actually works
+correctly!?).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-5-encrypted-private-messaging-15-points&quot;&gt;Part 5: Encrypted Private Messaging (15 points)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: For this part of the project, assume that the server is
+trusted, but that individual users may not be. For solutions to
+receive any credit, the server may not be able to decrypt the messages
+sent between users.&lt;/p&gt;
+
+&lt;p&gt;For the last part of the project, we want to support encrypted private
+messaging. The goal of this is to allow &lt;code class=&quot;highlighter-rouge&quot;&gt;alice&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;bob&lt;/code&gt; to
+communicate over the server in a way so that the server cannot see
+what they’re saying to each other.&lt;/p&gt;
+
+&lt;p&gt;There are two broad ways you can do this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Extend the protocol to facilitate a key exchange between two users&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Extend the protocol and clients so that they can exchange public
+keys with each other and sign each other messages.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is your choice to decide which of these you will want to use. For
+the first, you should read up on a few different kinds of secure key
+exchange and choose whichever implementation you might want to use. I
+would recommend looking over &lt;a href=&quot;https://cryptography.io/en/latest/hazmat/primitives/asymmetric/&quot;&gt;this
+page&lt;/a&gt;
+before doing so.&lt;/p&gt;
+
+&lt;p&gt;If you instead choose to use public-key encryption, you should extend
+the client so that users can exchange public keys with each other in
+an automatic way. Then, you should encrypt and sign messages to users
+with their public key. For example, if Alice and Bob want to
+communicate, they will first exchange public keys. Then, when Alice
+wants to send a message to Bob, she will first encrypt the message to
+Bob’s public key, and then sign the result with her public key,
+sending the message and the signature. Then, she will send the
+resulting blob to the server, which will send it to Bob. Bob will then
+authenticate the message using Alice’s public key, and decrypt it
+using his private key.&lt;/p&gt;
+
+&lt;p&gt;Note that you will need to extend the protocol to accommodate
+this. For example, if you want to support key exchange, you will need
+to add commands to the protocol to allow exchanging the components of
+the secret key between Alice and Bob. I would do this by adding a
+command &lt;code class=&quot;highlighter-rouge&quot;&gt;proposekeycomponent &amp;lt;from&amp;gt; &amp;lt;to&amp;gt; &amp;lt;component&amp;gt;&lt;/code&gt; that the client
+sends to the server, and which the server subsequently forwards to the
+client. Similarly, if you choose to go the public key route, you need
+to extend the protocol in a way that allows exchanging public keys.&lt;/p&gt;
+
+&lt;p&gt;You might ask “well what stops the server from just sending random
+junk to someone!?” The answer is, &lt;em&gt;nothing&lt;/em&gt;! That’s why you have to
+trust the server. Part 1 of this project is all about ensuring that
+you’re only connecting to a server that you can trust.&lt;/p&gt;
+
+&lt;h4 id=&quot;questions-for-this-part&quot;&gt;Questions for This Part&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Did you choose to use key exchange or public key cryptography?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What kind of cipher or key exchange are you performing? What are the
+core cryptographic components being used?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Think carefully about your algorithm. Are there any potential
+problems you’ve identified? Specifically…&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;What would happen in the presence of a person-in-the-middle
+attack?&lt;/li&gt;
+      &lt;li&gt;Are replay attacks possible, given your scheme?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;With respect to authenticity, would this part be challenging to
+implement in the real world? Specifically, if you &lt;em&gt;couldn’t&lt;/em&gt; trust
+the server, what would you need to do?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;part-6-retrospective-document-5-points&quot;&gt;Part 6: Retrospective Document (5 points)&lt;/h3&gt;
+
+&lt;p&gt;At the end of your project, think carefully about each of the parts
+you used. For each part, write a paragraph describing a thoughtful
+analysis and reflection of the different cryptographic operations you
+chose. Answer questions like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;How must be trusted for the cryptography to work correctly?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How will keys be generated and distributed?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What is the role of certificates?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What would be the problems with scaling my implementation?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What parts used asymmetric crypto? What parts used symmetric crypto?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Did you use any hybrid schemes?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How did you ensure randomized crypto was used?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Does your solution prevent known plaintext attacks? Chosen plaintext
+attacks?&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Last, conclude by writing up a few things you learned about
+cryptography–as well as programming with cryptography–during this
+project. Let me know which parts you liked, and which parts you
+disliked, as well as how this project’s difficulty compared with the
+previous project’s.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-6-encrypted-channels-5-points&quot;&gt;Part 6: Encrypted Channels (+5 points)&lt;/h3&gt;
+
+&lt;p&gt;This part is extra credit.&lt;/p&gt;
+
+&lt;p&gt;For this part, I would like you to build encrypted &lt;em&gt;channels&lt;/em&gt;. This
+part is fairly challenging, and so I’d like to leave the design up to
+you. If you can sketch a well-thought-out design of how this would
+work, giving explicit technical details (what libraries you’d use /
+code you’d write), I will award 2 points. If you can implement that
+design, I will be very impressed and will award the full 5 points. To
+receive any credit, the server had better not be able to learn the
+contents of any message sent in the channel.&lt;/p&gt;
+
+&lt;p&gt;As a hint for this part, think about the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;How will channels be formed? For example, you could make it so that
+when an administrator creates the channel, they also generate a
+secret key.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Think about combining symmetric and asymmetric crypto.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You may need to add something to the protocol to inform others in
+the channel that a new user has joined, e.g., so that current
+members can exchange public keys with them and so that you can send
+them a key / agree upon a new key.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you wanted to enforce banning correctly, it will require &lt;a href=&quot;https://en.wikipedia.org/wiki/Forward_secrecy&quot;&gt;forward
+secrecy&lt;/a&gt;. I.e., once
+a user is blocked, the rest of the users in the channel should
+switch to using a new key, so that if the banned user receives
+encrypted messages from the point after they have been banned, they
+should not be able to read them.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;strategy-for-this-project&quot;&gt;Strategy for This Project&lt;/h2&gt;
+
+&lt;p&gt;I’d start by reading over all of the manual pages for Python’s
+&lt;code class=&quot;highlighter-rouge&quot;&gt;cryptography&lt;/code&gt; library and refreshing yourself on the material from
+class, starting with small examples before you incorporate your
+changes into your server.&lt;/p&gt;
+
+&lt;p&gt;I anticipate that the first three parts will be relatively simple once
+you do a bit of reading. The last two parts are more tricky and
+open-ended, because they involve an aspect of protocol design and
+implementation within both the server and the client. They will also
+involve translating the cryptography you learned in class to its
+implementation in code, which will be more challenging than you might
+think! If in doubt, try to stick to things that aren’t considered
+“dangerous” (this might be hard to avoid, for example, in parts 5/6).&lt;/p&gt;
+
+&lt;h4 id=&quot;a-final-note-on-realness-and-danger&quot;&gt;A Final Note on Realness and “Danger”&lt;/h4&gt;
+
+&lt;p&gt;The purpose of this project is to expose you to crypto basics, using
+trusted implementations of cryptographic primitives. Reasoning about
+cryptography is extremely tricky, an very easy to get wrong. I’m a bit
+torn on having you write Part 5, because it trudges a bit into the
+“scary” territory for me. You wouldn’t want to roll your own protocols
+using crypto in the “real world” without more training on this stuff
+(and code review from security experts), and the vast majority of the
+time you’ll be using basic HTTPS/TLS/etc..&lt;/p&gt;
+
+&lt;p&gt;Note that I’m actually doing something a bit bad: I should have you
+run a real file server that uses HTTPS to encrypt the connection. It’s
+a bit hoaky to have you run a hacky server and send messages to it
+encrypted with a symmetric key. For one, this is bad because you
+should generally stick to using session keys, and it’s also just
+generally bad to roll your own implementation of things involving
+security. All that being said, I wanted you to write each component
+and have something to test in the last “break-it” round at the end of
+the course. I also think it will be cool to see the end-to-end system
+working together.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 24 Mar 2018 00:00:00 -0400</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/project/4</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/4</guid>
+        
+        
+        <category>project</category>
+        
+        <category>assignment</category>
+        
+      </item>
     
       <item>
         <title>Asymmetric (Public-Key) Cryptography</title>
@@ -1466,34 +2087,6 @@ Easy&lt;/a&gt;&lt;/li&gt;
         <pubDate>Tue, 06 Feb 2018 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cybersecurity-course/lectures/4</link>
         <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/4</guid>
-        
-        
-        <category>lectures</category>
-        
-      </item>
-    
-      <item>
-        <title>Lecture 3: Shellcoding and Memory Defenses</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-3-mem-defenses.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-3-mem-defenses.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://people.eecs.berkeley.edu/~dawnsong/papers/Oakland13-SoK-CR.pdf&quot;&gt;Reading for before class today&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Sections &lt;strong&gt;3, 4, and 5&lt;/strong&gt;. If you have not read the previous
-sections, you should have done so before class last week.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 30 Jan 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/3</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/3</guid>
         
         
         <category>lectures</category>
