@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 28 Mar 2018 18:26:24 -0400</pubDate>
-    <lastBuildDate>Wed, 28 Mar 2018 18:26:24 -0400</lastBuildDate>
+    <pubDate>Sat, 31 Mar 2018 14:19:56 -0400</pubDate>
+    <lastBuildDate>Sat, 31 Mar 2018 14:19:56 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -318,7 +318,7 @@ transmission before performing it.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;getfiles &amp;lt;channel_or_username&amp;gt;&lt;/code&gt;
     &lt;ul&gt;
-      &lt;li&gt;Lists the names of files associated with each&lt;/li&gt;
+      &lt;li&gt;Lists the names of files associated with the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;channel_or_username&amp;gt;&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;The user sending this command must already be logged into the
 channel (specifically, they cannot have been banned from the
 channel). If not, send an error to the client.  In the case that
