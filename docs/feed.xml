@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 31 Mar 2018 14:19:56 -0400</pubDate>
-    <lastBuildDate>Sat, 31 Mar 2018 14:19:56 -0400</lastBuildDate>
+    <pubDate>Sat, 31 Mar 2018 14:50:35 -0400</pubDate>
+    <lastBuildDate>Sat, 31 Mar 2018 14:50:35 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -359,9 +359,11 @@ channel administrator, can update the file.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;remove &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt;&lt;/code&gt;
     &lt;ul&gt;
-      &lt;li&gt;Deletes a file from a channel.&lt;/li&gt;
+      &lt;li&gt;Deletes a file from a channel / private message.&lt;/li&gt;
       &lt;li&gt;Only the person who initially uploaded the file or a channel
-administrator can remove the file.&lt;/li&gt;
+administrator can remove the file. (In the case of a private
+message, there is no administrator, so just the person who
+uploaded it, although that’s a bit of an arbitrary choice.)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
