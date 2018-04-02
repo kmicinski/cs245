@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 01 Apr 2018 14:37:05 -0400</pubDate>
-    <lastBuildDate>Sun, 01 Apr 2018 14:37:05 -0400</lastBuildDate>
+    <pubDate>Sun, 01 Apr 2018 20:48:45 -0400</pubDate>
+    <lastBuildDate>Sun, 01 Apr 2018 20:48:45 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -473,7 +473,7 @@ an automatic way. Then, you should encrypt and sign messages to users
 with their public key. For example, if Alice and Bob want to
 communicate, they will first exchange public keys. Then, when Alice
 wants to send a message to Bob, she will first encrypt the message to
-Bob’s public key, and then sign the result with her public key,
+Bob’s public key, and then sign the result with her private key,
 sending the message and the signature. Then, she will send the
 resulting blob to the server, which will send it to Bob. Bob will then
 authenticate the message using Alice’s public key, and decrypt it
