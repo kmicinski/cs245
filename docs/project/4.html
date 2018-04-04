@@ -373,6 +373,26 @@ this is a <code class="highlighter-rouge">username</code>, the user must not hav
 (if not, send an error).</li>
     </ul>
   </li>
+  <li>
+    <p><code class="highlighter-rouge">download &lt;channel_or_username&gt; &lt;filename&gt;</code></p>
+
+    <ul>
+      <li>Allows the user to download a file stored on the channel.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">file &lt;channel_or_username&gt; &lt;filename&gt; &lt;length&gt;--&lt;binary_data_here&gt;</code></p>
+
+    <ul>
+      <li>This is not a command that can be sent by the client. It is a
+response from the server, sent to the client, in response to a
+<code class="highlighter-rouge">download</code> command. Its purpose is to convey the actual bytes of
+the file requested by the user in the <code class="highlighter-rouge">download</code> command. Your
+server–upon receiving this command–will put the file somewhere
+on disc (either using <code class="highlighter-rouge">filename</code> or, for example, by asking the
+user where they would like the file to be stored).</li>
+    </ul>
+  </li>
   <li><code class="highlighter-rouge">upload &lt;channel_or_username&gt; &lt;filename&gt; &lt;length&gt;--&lt;binary_data_here&gt;</code>
     <ul>
       <li>
@@ -523,7 +543,8 @@ wants to send a message to Bob, she will first encrypt the message to
 Bob’s public key, and then sign the result with her private key,
 sending the message and the signature. Then, she will send the
 resulting blob to the server, which will send it to Bob. Bob will then
-authenticate the message using Alice’s public key, and decrypt it
+authenticate the message using Alice’s public key, and decrypt 
+it
 using his private key.</p>
 
 <p>Note that you will need to extend the protocol to accommodate

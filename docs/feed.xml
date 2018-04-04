@@ -5,8 +5,8 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 01 Apr 2018 20:48:45 -0400</pubDate>
-    <lastBuildDate>Sun, 01 Apr 2018 20:48:45 -0400</lastBuildDate>
+    <pubDate>Wed, 04 Apr 2018 12:21:52 -0400</pubDate>
+    <lastBuildDate>Wed, 04 Apr 2018 12:21:52 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -326,6 +326,26 @@ this is a &lt;code class=&quot;highlighter-rouge&quot;&gt;username&lt;/code&gt;,
 (if not, send an error).&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;download &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Allows the user to download a file stored on the channel.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;file &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt; &amp;lt;length&amp;gt;--&amp;lt;binary_data_here&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;This is not a command that can be sent by the client. It is a
+response from the server, sent to the client, in response to a
+&lt;code class=&quot;highlighter-rouge&quot;&gt;download&lt;/code&gt; command. Its purpose is to convey the actual bytes of
+the file requested by the user in the &lt;code class=&quot;highlighter-rouge&quot;&gt;download&lt;/code&gt; command. Your
+server–upon receiving this command–will put the file somewhere
+on disc (either using &lt;code class=&quot;highlighter-rouge&quot;&gt;filename&lt;/code&gt; or, for example, by asking the
+user where they would like the file to be stored).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;upload &amp;lt;channel_or_username&amp;gt; &amp;lt;filename&amp;gt; &amp;lt;length&amp;gt;--&amp;lt;binary_data_here&amp;gt;&lt;/code&gt;
     &lt;ul&gt;
       &lt;li&gt;
@@ -476,7 +496,8 @@ wants to send a message to Bob, she will first encrypt the message to
 Bob’s public key, and then sign the result with her private key,
 sending the message and the signature. Then, she will send the
 resulting blob to the server, which will send it to Bob. Bob will then
-authenticate the message using Alice’s public key, and decrypt it
+authenticate the message using Alice’s public key, and decrypt 
+it
 using his private key.&lt;/p&gt;
 
 &lt;p&gt;Note that you will need to extend the protocol to accommodate
