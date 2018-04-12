@@ -5,9 +5,352 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Apr 2018 12:21:52 -0400</pubDate>
-    <lastBuildDate>Wed, 04 Apr 2018 12:21:52 -0400</lastBuildDate>
+    <pubDate>Thu, 12 Apr 2018 00:46:38 -0400</pubDate>
+    <lastBuildDate>Thu, 12 Apr 2018 00:46:38 -0400</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title>Projects 3I and G: Web Frameworks and Security</title>
+        <description>&lt;p&gt;This project will have you launch some exploits against an insecure
+web app and implement a (hopefully secure) web frontend for your chat
+server. This project will be the end of our semester, after which
+we’ll start breaking each others’ assignments! So make it a good one
+:-)&lt;/p&gt;
+
+&lt;p&gt;This portion of the project is individual and group work. Each portion
+is clearly marked. During the course of this project you are allowed
+access to all online resources, but you are required to cite any
+resource that gave you any significant insight into the project,
+including conversations you had with your classmates. You will put
+these sources in &lt;code class=&quot;highlighter-rouge&quot;&gt;SOURCES.md&lt;/code&gt; within this folder. The project is
+clearly separated into attacks (individual) and implementation. The
+individual and group assignments will have separate github repos.&lt;/p&gt;
+
+&lt;p&gt;Please respect the department’s collaboration policy. Specifically,
+you are not allowed to look at any other student’s &lt;em&gt;code&lt;/em&gt; (or do
+anything equivalent, such as talking through your code on a
+line-by-line basis). You may discuss pseudo-code on the board, but
+afterwards you must erase it (so as to not let anyone else see it) and
+then cite your conversation with the other person in a comment in your
+code (and in the sources file).&lt;/p&gt;
+
+&lt;h1 id=&quot;individual-portion-attacks--defenses&quot;&gt;Individual Portion: Attacks / Defenses&lt;/h1&gt;
+
+&lt;p&gt;For the individual portion of this assignment, you’ll write a set of
+exploits using either
+&lt;a href=&quot;http://selenium-python.readthedocs.io/&quot;&gt;Selenium&lt;/a&gt; or
+&lt;a href=&quot;https://docs.python.org/3/howto/urllib2.html&quot;&gt;urllib&lt;/a&gt;. Both of these
+libraries allow you to programmatically interact with webpages, and I
+highly recommend you learn a little bit about them before attempting
+too much of this project.&lt;/p&gt;
+
+&lt;h2 id=&quot;about-the-app&quot;&gt;About the App&lt;/h2&gt;
+
+&lt;p&gt;The vulnerable webapp I’ve given you is available through Github
+Classroom. Please clone it through that interface. For everyone else
+following along, it’s at:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://github.com/kmicinski/project-3-starter
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can run it by first setting up the database:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python app.py init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And then booting up the app:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python app.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which will then launch the app on your local machine.  Note that you
+may need to &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install&lt;/code&gt; a few things before running the app,
+including (at least) flask.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-1-sql-injection-attacks-20-points&quot;&gt;Part 1: SQL Injection Attacks [20 points]&lt;/h3&gt;
+
+&lt;p&gt;For this part of the project, I want to show how you can log in as any
+desired user. You should write a script &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_sqli.py&lt;/code&gt; that takes
+one command-line parameter: the user for which you want to log
+in. Your script must then find a way to log into the server by
+exploiting an SQL injection in the vulnerable app, and then post a
+chat from that user which says “I wish I were a squirrel.”&lt;/p&gt;
+
+&lt;p&gt;Deliverable: &lt;code class=&quot;highlighter-rouge&quot;&gt;execute_sqli.py&lt;/code&gt;, which launches the vulnerability
+described above.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-2-cross-site-request-forgery-10-points&quot;&gt;Part 2: Cross-Site Request Forgery [10 points]&lt;/h3&gt;
+
+&lt;p&gt;The answer to this part of the project is a link. In the web
+application, there is an instance of Cross-Site request forgery that
+allows me to change the password of whatever user I’m logged in
+as. Show me where it is, and give me an example link showing how I’d
+exploit it to change the user’s password.&lt;/p&gt;
+
+&lt;p&gt;By the way, you should read up on why &lt;a href=&quot;https://security.stackexchange.com/questions/147188/is-it-bad-practice-to-use-get-method-as-login-username-password-for-administrato&quot;&gt;GET requests should not be used
+for this kind of
+thing&lt;/a&gt;. Basically,
+the user’s browser will cache these kinds of requests in history,
+which is relatively insecure, and GET requests are straightforward to
+turn into clickable links. By contrast, you can’t POST data via a
+link.&lt;/p&gt;
+
+&lt;p&gt;Deliverable: a link that the user can click such that–when
+clicked–it will launch an XSRF attack and change the user’s password.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-3-xss-30-points&quot;&gt;Part 3: XSS [30 points]&lt;/h3&gt;
+
+&lt;p&gt;This part requires writing your own small webapp to request and store
+passwords.&lt;/p&gt;
+
+&lt;p&gt;Your goal in this part is to exploit a cross-site scripting
+vulnerability in the webapp. Notice that none of the data passed in
+for the chat messages is validated or scrubbed in any way. Therefore,
+it is trivial to pass in a script that will execute on anyone’s
+browser when they pull up the chat window. For example, if you type in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&lt;/code&gt;, instead of showing you a chat message,
+your browser will display an alert to you.&lt;/p&gt;
+
+&lt;p&gt;Exploit this vulnerability to launch an XSS vulnerability that sends
+the user’s password to your webapp and stores a list of passwords
+collected. To do this, you should write a small web service yourself
+that hosts a static script containing the code you want to inject into
+the user’s browser. Your attack script should then insert some code
+like &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;script src=localhost:8700/myscript.js&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;, which will
+then load your script from &lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8700&lt;/code&gt; and perform the right
+commands to launch the attack. Finally, you must show me that your web
+app can store the passwords in some way.&lt;/p&gt;
+
+&lt;p&gt;Deliverable: A directory &lt;code class=&quot;highlighter-rouge&quot;&gt;xss_attack_server&lt;/code&gt; that hosts your web app,
+which will act to host the static script itself. (Here’s &lt;a href=&quot;https://stackoverflow.com/questions/20646822/how-to-serve-static-files-in-flask&quot;&gt;some starter
+code&lt;/a&gt;
+to host static files from Flask!). This web app should have some way
+to store the passwords, e.g., a file on disc, an SQLite database,
+etc.. It should also have some easy way for me to view retrieved
+passwords. You must &lt;em&gt;also&lt;/em&gt; include a file &lt;code class=&quot;highlighter-rouge&quot;&gt;inject_xss.js&lt;/code&gt; that logs in
+as some specified username / password to the server and actually
+launches the attack.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-4-defenses-against-sqli-and-xss-10-points&quot;&gt;Part 4: Defenses against SQLi and XSS [10 points]&lt;/h3&gt;
+
+&lt;p&gt;In this part, you’ll eliminate a few of the attacks you just
+performed.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Completely eliminate the SQLi attacks performed here
+using, e.g., prepared statements (some of the server is using them
+already).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Properly escape data incoming from the client to
+eliminate the XSS attack described in Part 3:
+http://flask.pocoo.org/docs/0.12/security/#cross-site-scripting-xss&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Deliverable: &lt;code class=&quot;highlighter-rouge&quot;&gt;app_fixed.py&lt;/code&gt; that includes these two fixes.&lt;/p&gt;
+
+&lt;h1 id=&quot;group-portion-implementation&quot;&gt;Group Portion: Implementation&lt;/h1&gt;
+
+&lt;p&gt;For this portion of the assignment, you will complete our chat server
+by building a web frontend for the server. The web frontend will offer
+the following functionality:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Creating new accounts&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allowing users to change passwords on existing accounts&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Allowing the user to view logs of channels that haven’t been
+encrypted (and from which they haven’t been banned):
+    &lt;ul&gt;
+      &lt;li&gt;Users should be able to log in and see the list of available
+channels hosted on the server&lt;/li&gt;
+      &lt;li&gt;Users should be able to see the channel topic&lt;/li&gt;
+      &lt;li&gt;They should also see the list of files available on the channel,
+including the file name and file size. If they have the correct
+privileges (either the person who uploaded it or the channel
+admin) they should be able to delete it.&lt;/li&gt;
+      &lt;li&gt;Users should be able to &lt;em&gt;download&lt;/em&gt; the files from the server.&lt;/li&gt;
+      &lt;li&gt;Users should be able to &lt;em&gt;upload&lt;/em&gt; files to the server.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allowing users to manage their block lists, blocking and unblocking
+other users.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Allowing channel administrators to perform various operations on
+channels:
+    &lt;ul&gt;
+      &lt;li&gt;Give other users administration privileges&lt;/li&gt;
+      &lt;li&gt;Change the channel topic&lt;/li&gt;
+      &lt;li&gt;Ban users from channels&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;design-details&quot;&gt;Design Details&lt;/h2&gt;
+
+&lt;p&gt;You should implement your web frontend using some web framework,
+though I do not care which. If you have implemented the previous parts
+of projects 1G and 2G correctly, you should leverage your
+implementation in those parts to complete 3G. Specifically, you should
+have your server set up so that you run the web server using flask,
+and run the chat server alongside that web server, but on a
+&lt;em&gt;different&lt;/em&gt; port. I would specifically recommend either using Flask or
+Django for this project.&lt;/p&gt;
+
+&lt;p&gt;Note that you will need some way for the web frontend and the chat
+server to agree on some amount of the data. For example, they both
+need to be able to read logs of channels for various users. You have a
+few options for how to go about this: you could set up the web
+frontend so that it talked to the chat server by sending packets
+according to the protocol, for instance. But that’s not a very robust
+design. A better design–and the one I recommend–is to have your chat
+server and web server both share some database implemented using an
+SQL server (SQLite is fine for this project).&lt;/p&gt;
+
+&lt;p&gt;For example, you may want to restructure your chat server so that it
+keeps the password database as an SQL table. In the web interface, you
+should have a form that allows the user to create a new account
+and–if its not in the table–salts and hashes it using the &lt;em&gt;same
+exact&lt;/em&gt; mechanism you use from project 2G. I recommend having a shared
+set of library code (i.e., helper functions you use in both codebases)
+between the client and server to make this easier. Then, in the chat
+server, when a connection is received and an authenticate command is
+executed, check for the password in that SQLite table.&lt;/p&gt;
+
+&lt;p&gt;Similar modifications will need to be made with other commands.&lt;/p&gt;
+
+&lt;p&gt;If you do choose to base your implementation off the horribly-insecure
+example app I’ve written, you should absolutely read the documentation
+for Flask for a while before just brazenly charging along and copying
+the bad coding style there. Specifically, reconnecting to the DB every
+time is silly and terrible form done for illustrative purposes of
+writing a crummy exploitable app. Instead, for example, read &lt;a href=&quot;http://flask.pocoo.org/docs/0.12/patterns/sqlite3/&quot;&gt;this
+page&lt;/a&gt; on using
+SQLite with Flask. Similar tutorials exist for PostgreSQL and MySQL.&lt;/p&gt;
+
+&lt;h2 id=&quot;scoring-breakdown&quot;&gt;Scoring Breakdown&lt;/h2&gt;
+
+&lt;p&gt;Your server should include at least the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;[10 points] You have &lt;em&gt;some&lt;/em&gt; webservice that runs alongside your chat
+server. This is the bare minimum you can do, and I recommend
+tackling this part first. The way to start with this is to take the
+example code I’ve given out for the Flask attacks and then run your
+chat server alongside it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[10 points] The web app must run via HTTPS with some
+certificate. It’s okay if this certificate is self-signed, though
+(you won’t be able to get a “real” certificate, because you’ll just
+be running the app on your own browser and won’t be able to anchor
+it to a specific domain).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[15 points] The ability to log in and create an account on the
+server. This infrastructure works alongside the infrastructure used
+in your chat server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[10 points] The ability for users to change their passwords once
+logged in.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[15 points] After users are logged in, they should see a page that
+allows them see all of the channels on the server from which they
+are not banned. Channels of which they are the administrator should
+be designated in some special way (e.g., with an “A” letter before
+the name, or colored green, or something like that). In particular,
+they should &lt;em&gt;not&lt;/em&gt; see channels from which they have been banned.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Users should be able to create new channels from the main
+screen.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[10 points] Each channel should have a screen in the app which is
+viewable by anyone who has not been banned from the channel. This
+screen should show the log of chats on the channel, up to the 500
+most recent messages. This screen should also list the files
+associated with the channel.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Users should be able to download files associated with a
+channel from this screen.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Users should be able to &lt;em&gt;upload&lt;/em&gt; files associated with
+the channel from this screen.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Administrators on this channel should have the option to
+change the channel topic, as well as give administration privileges
+to other users. These privileges should be reflected in the client.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[5 points] Administrators should be able to ban users on channels of
+which they are administrators.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;[10 points] Write a design document of at least four thoughtful
+paragraphs describing various security issues you thought over while
+designing your server. The kinds of questions you’ve been asking on
+Piazza, and the kinds of questions you’ve asked to each other in
+person, are the kinds of things you want to discuss here. For
+example, how did you make sure to avoid SQL injection and cross-site
+scripting attacks? This can be as broad or narrow as you want, as
+long as it’s thoughtful and covers the security-relevant problems
+you tackled while working on the project.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that you must be especially careful to make sure that changes
+made on the server are &lt;em&gt;reflected&lt;/em&gt; in the client. For example, if
+someone is banned from a channel in the webapp, they should similarly
+be kicked from the channel if they are logged in on the web
+server. This is probably the trickiest part of the assignment, and
+you’ll have to be careful about how you implement it.&lt;/p&gt;
+
+&lt;p&gt;Note that various parts of 2G make things encrypted in various
+ways. You’ll have to use your head here: it doesn’t make any sense to
+show logs for encrypted channels, for example, because the server
+won’t have the keys to decrypt them. If you did this, you should also
+have some “public channels” that allow their logs to be viewable
+without crypto, too.&lt;/p&gt;
+
+&lt;p&gt;There is no need to show private messages on the web interface. In an
+ideal world, you would write a web app that allowed the client to
+decrypt the conversation: i.e., JavaScript code that hands the
+conversation to your client, uses the client’s secret key (stored in
+the browser, but never escaping it) to decrypt messages, etc.. But in
+practice this is quite complicated: browsers don’t make it easy to
+manage keys and access local files, for example. Therefore, for this
+project, you can feel free to ignore anything that would require you
+to load a secret key from the client’s browser. However, all of that
+should still work on your &lt;em&gt;client&lt;/em&gt; that you implemented for 2G.&lt;/p&gt;
+
+&lt;p&gt;This part of the project is meant to be challenging, so make sure you
+start early and think through a good design for the server, paying
+particular caution to how you’ll ensure your client from 2G still
+works with the chat server you’re implementing.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 11 Apr 2018 00:00:00 -0400</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/project/5</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/project/5</guid>
+        
+        
+        <category>project</category>
+        
+        <category>assignment</category>
+        
+      </item>
     
       <item>
         <title>Networking Intro</title>
@@ -2078,30 +2421,6 @@ Easy&lt;/a&gt;&lt;/li&gt;
         <category>project</category>
         
         <category>assignment</category>
-        
-      </item>
-    
-      <item>
-        <title>Lecture 5: ROP Practice and Control-Flow Integrity</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-5-rop-cfi.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/lec-5-rop-cfi.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading for &lt;strong&gt;today’s&lt;/strong&gt; class:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://cseweb.ucsd.edu/~hovav/dist/geometry.pdf&quot;&gt;The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Thu, 08 Feb 2018 00:00:00 -0500</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/5</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/5</guid>
-        
-        
-        <category>lectures</category>
         
       </item>
     
