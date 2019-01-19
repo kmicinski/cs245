@@ -1,3 +1,3 @@
-# Kristopher Micinski's personal website
+# CS245 -- Spring 2019 at Haverford College
 
-Kristopher Micinski's personal (research oriented) website.
+Website and slides for CS245 and Haverford College
