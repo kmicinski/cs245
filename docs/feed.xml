@@ -5,9 +5,107 @@
     <description>(Spring '19) Principles of Programming Languages (CMSC245 at Haverford College)</description>
     <link>http://kmicinski.com/cs245/</link>
     <atom:link href="http://kmicinski.com/cs245/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jan 2019 13:24:15 -0600</pubDate>
-    <lastBuildDate>Sun, 20 Jan 2019 13:24:15 -0600</lastBuildDate>
+    <pubDate>Sun, 20 Jan 2019 14:27:01 -0600</pubDate>
+    <lastBuildDate>Sun, 20 Jan 2019 14:27:01 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Project 0: C++ Intro and Association Lists</title>
+        <description>&lt;p&gt;In this project you will be implementing association lists in
+C++. This project will give you some basic experience with building
+data structures in C++ (one of its most common uses). This will likely
+require that you do some reading on your own to understand how C++
+classes work.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-the-project&quot;&gt;Getting the project&lt;/h2&gt;
+
+&lt;p&gt;Follow the steps at the &lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&amp;amp;t=1018s&quot;&gt;end of the previous
+video&lt;/a&gt;. Get the
+autograder by cloning the submission repo
+&lt;a href=&quot;https://github.com/kmicinski/submit&quot;&gt;here&lt;/a&gt;. Be sure to read the
+instructions in that repository (in particular, read about how to make
+sure it’s working).&lt;/p&gt;
+
+&lt;p&gt;Let’s say that you have the autograder submit script stored in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/submit/submit.py&lt;/code&gt;. Then you will create a new directory,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;p0&lt;/code&gt;, for this project somewhere. Here’s what I did to set up the
+projects (note that I put them in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/cs245-playground&lt;/code&gt;, I
+recommend you just use a folder like ~/projects/cs245/p0`):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Kristophers-Air:projects kmicinski$ mkdir cs245-playground
+Kristophers-Air:projects kmicinski$ cd cs245-playground/
+Kristophers-Air:cs245-playground kmicinski$ mkdir p0
+Kristophers-Air:cs245-playground kmicinski$ cd p0/
+Kristophers-Air:p0 kmicinski$ cp ~/projects/submit/submit.py .
+Kristophers-Air:p0 kmicinski$ python3 submit.py
+
+   _____       __              __ __
+  / ___/__  __/ /_  ____ ___  /_/ /_
+  \__ \/ / / / __ \/ __ `__ \/ / __/
+ ___/ / /_/ / /_/ / / / / / / / /_
+/____/\____/_____/_/ /_/ /_/_/\__/   (by Kris+Tom)
+
+? This directory is empty, would you like to initialize a new project?
+  Yes
+&amp;gt;&amp;gt;&amp;gt; Initializing `credentials` and `.gitignore` files &amp;lt;&amp;lt;&amp;lt;
+
+    Note: it is very important that you do not do not
+    distribute the `credentials` file. It stores your username and
+    password. Please avoid sending it to anyone (doing so will be
+    considered a violation of the honor code) or checking it into
+    git.
+? What is your username?  ktest
+? What is your password?  **********
+Verifying password...
+&amp;gt;&amp;gt;&amp;gt; Login successful! &amp;lt;&amp;lt;&amp;lt;
+Downloading available projects...
+&amp;gt;&amp;gt;&amp;gt; Here are the available projects for your course &amp;lt;&amp;lt;&amp;lt;
+
+    You must select the project whose shortname is the same as the
+    name of this directory. If you want to work on a project not
+    listed here (e.g., `proj0`), you must crate an empty directory
+    with that name and run `submit.py` from that directory.
+? Here are the available assignments, confirm you will select the curr
+&amp;gt;&amp;gt;&amp;gt; Downloading starter files... &amp;lt;&amp;lt;&amp;lt;
+&amp;gt;&amp;gt;&amp;gt; Unpacking starter files... &amp;lt;&amp;lt;&amp;lt;
+Executing tar xvvf starter.tar.gz; rm starter.tar.gz
+🎉🎉🎉 Starter files now ready! 🎉🎉🎉
+
+     You are now all set up. We also recommend creating a (private) git
+     ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;completing-the-lab&quot;&gt;Completing the lab&lt;/h2&gt;
+
+&lt;p&gt;Lab instructions are given in the top of file &lt;code class=&quot;highlighter-rouge&quot;&gt;AssocList.h&lt;/code&gt;. Please
+read the instructions there and complete the methods marked &lt;code class=&quot;highlighter-rouge&quot;&gt;TODO&lt;/code&gt; in
+the file. The purpose of the lab is to have you implement association
+lists: key/value maps based on lists of (key,value) pairs.&lt;/p&gt;
+
+&lt;h2 id=&quot;running-the-lab-yourself&quot;&gt;Running the lab yourself&lt;/h2&gt;
+
+&lt;p&gt;If you want to test your program as you go, you first need to compile
+a test. Each test file is written as one of the file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;tests&lt;/code&gt;
+folder. You are encouraged to write your own, and the project includes
+secret tests (that you won’t be given)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Compile the test and create file output
+clang++ -std=c++14 -Wall -o ./output ./tests/&amp;lt;testname&amp;gt;.cpp
+# Run the test
+./output
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sun, 20 Jan 2019 00:00:00 -0600</pubDate>
+        <link>http://kmicinski.com/cs245/projects/0</link>
+        <guid isPermaLink="true">http://kmicinski.com/cs245/projects/0</guid>
+        
+        
+        <category>assignment</category>
+        
+        <category>project</category>
+        
+      </item>
     
       <item>
         <title>Lab 0: Autograder Setup and Intro to C++</title>
