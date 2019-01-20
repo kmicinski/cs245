@@ -5,8 +5,8 @@
     <description>(Spring '19) Principles of Programming Languages (CMSC245 at Haverford College)</description>
     <link>http://kmicinski.com/cs245/</link>
     <atom:link href="http://kmicinski.com/cs245/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jan 2019 14:27:01 -0600</pubDate>
-    <lastBuildDate>Sun, 20 Jan 2019 14:27:01 -0600</lastBuildDate>
+    <pubDate>Sun, 20 Jan 2019 14:28:20 -0600</pubDate>
+    <lastBuildDate>Sun, 20 Jan 2019 14:28:20 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -75,12 +75,13 @@ Executing tar xvvf starter.tar.gz; rm starter.tar.gz
      ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;completing-the-lab&quot;&gt;Completing the lab&lt;/h2&gt;
+&lt;h2 id=&quot;completing-the-project&quot;&gt;Completing the project&lt;/h2&gt;
 
-&lt;p&gt;Lab instructions are given in the top of file &lt;code class=&quot;highlighter-rouge&quot;&gt;AssocList.h&lt;/code&gt;. Please
-read the instructions there and complete the methods marked &lt;code class=&quot;highlighter-rouge&quot;&gt;TODO&lt;/code&gt; in
-the file. The purpose of the lab is to have you implement association
-lists: key/value maps based on lists of (key,value) pairs.&lt;/p&gt;
+&lt;p&gt;Project instructions are given in the top of file
+&lt;code class=&quot;highlighter-rouge&quot;&gt;AssocList.h&lt;/code&gt;. Please read the instructions there and complete the
+methods marked &lt;code class=&quot;highlighter-rouge&quot;&gt;TODO&lt;/code&gt; in the file. The purpose of the lab is to have
+you implement association lists: key/value maps based on lists of
+(key,value) pairs.&lt;/p&gt;
 
 &lt;h2 id=&quot;running-the-lab-yourself&quot;&gt;Running the lab yourself&lt;/h2&gt;
 
