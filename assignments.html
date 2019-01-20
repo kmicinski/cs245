@@ -9,7 +9,7 @@ layout: page
 
   <ul class="post-list">
     {% for post in site.posts %}
-    {% if post.categories contains 'project' %}
+    {% if post.categories contains 'assignment' %}
       <li>
         <span class="post-meta">Posted {{ post.date | date: "%b %-d, %Y" }} {% if page.duedate %} • <b>(Due <span itemprop="date">{{ page.duedate | date: "%b %-d, %Y" }}</span></span>{% endif %}</span>
         <h3>
