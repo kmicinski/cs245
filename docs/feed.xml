@@ -5,36 +5,154 @@
     <description>Computer Security: Attacks and Defenses (CMSC311 at Haverford College).</description>
     <link>http://kmicinski.com/cybersecurity-course/</link>
     <atom:link href="http://kmicinski.com/cybersecurity-course/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 19 Jan 2019 17:45:13 -0600</pubDate>
-    <lastBuildDate>Sat, 19 Jan 2019 17:45:13 -0600</lastBuildDate>
+    <pubDate>Sun, 20 Jan 2019 02:39:05 -0600</pubDate>
+    <lastBuildDate>Sun, 20 Jan 2019 02:39:05 -0600</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
-        <title>Lecture 1: Intro and Stack Smashing</title>
-        <description>&lt;p&gt;Slides for today:&lt;/p&gt;
+        <title>Lab 0: Autograder Setup and Intro to C++</title>
+        <description>&lt;p&gt;This lab will be graded via the autograder. You must email me to get
+your autograder credentials.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-a-vm&quot;&gt;Setting up a VM&lt;/h2&gt;
+
+&lt;p&gt;If you are on Windows or want to set up a virtual machine, &lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&amp;amp;t=1018s&quot;&gt;watch the
+video here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are using Mac OSX consider setting up
+&lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;–I use it and it is often very simple.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-the-autograder&quot;&gt;Getting the autograder&lt;/h2&gt;
+
+&lt;p&gt;Follow the steps at the &lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&amp;amp;t=1018s&quot;&gt;end of the previous
+video&lt;/a&gt;. Get the
+autograder by cloning the submission repo
+&lt;a href=&quot;https://github.com/kmicinski/submit&quot;&gt;here&lt;/a&gt;. Be sure to read the
+instructions in that repository (in particular, read about how to make
+sure it’s working).&lt;/p&gt;
+
+&lt;h2 id=&quot;get-lab0&quot;&gt;Get lab0&lt;/h2&gt;
+
+&lt;p&gt;Create a &lt;em&gt;new&lt;/em&gt; directory named &lt;code class=&quot;highlighter-rouge&quot;&gt;lab0&lt;/code&gt; somewhere on your system (e.g.,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;~/projects/lab0&lt;/code&gt;) and copy submit.py into that directory. Then run
+submit.py and follow the steps it shows. You will need your
+credentials (again, you get those by emailing me).&lt;/p&gt;
+
+&lt;p&gt;The autograder uses the directory name to decide which project to
+download, so if you want to be working on lab 0, make sure your
+directory is named &lt;code class=&quot;highlighter-rouge&quot;&gt;lab0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;completing-the-lab&quot;&gt;Completing the lab&lt;/h2&gt;
+
+&lt;p&gt;The task in the lab asks you to reverse an array. This should not be
+too hard to figure out, and I show hints of it if you watch the intro
+to C++ video. Basically, you want to loop over half the array and
+exchange things at the right positions. As a hint, division in C++
+truncates down (so &lt;code class=&quot;highlighter-rouge&quot;&gt;3/2 == 1&lt;/code&gt; for integers).&lt;/p&gt;
+
+&lt;p&gt;If you need more help completing your lab, please be sure to read Part
+1 of the &lt;a href=&quot;https://isocpp.org/tour&quot;&gt;C++ Tour&lt;/a&gt; (book available as free
+PDF).&lt;/p&gt;
+
+&lt;h2 id=&quot;running-the-lab-yourself&quot;&gt;Running the lab yourself&lt;/h2&gt;
+
+&lt;p&gt;If you want to test your program as you go, you first need to compile
+it:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Compile to a binary file named reverse
+clang++ reverse.cpp -o reverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And then run via…&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Actually run reverse
+./reverse
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you can type in a list of numbers. To end your typing type in
+control-D (i.e., hit D while holding down control). Your program will
+then calculate and run its output.&lt;/p&gt;
+
+&lt;p&gt;You can also add extra tests of your own. Feel free to look at
+&lt;code class=&quot;highlighter-rouge&quot;&gt;test.py&lt;/code&gt; to see how the tests are being run.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Jan 2019 00:00:00 -0600</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/labs/0</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/labs/0</guid>
+        
+        
+        <category>assignment</category>
+        
+      </item>
+    
+      <item>
+        <title>Video: Setting up a VM for CS245</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&quot;&gt;Watch the video here&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/videos/vm</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/videos/vm</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Introduction to CS245</title>
+        <description>&lt;p&gt;Welcome to CS245! I’m excited to have you in the course. There are a
+few logistical notes:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro.key&quot;&gt;Keynote&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kmicinski.com//cybersecurity-course/assets/slides/intro.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://people.eecs.berkeley.edu/~dawnsong/papers/Oakland13-SoK-CR.pdf&quot;&gt;Reading for before class today&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Assigned reading for &lt;strong&gt;Thursday’s&lt;/strong&gt; class:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.usenix.net/legacy/publications/library/proceedings/sec98/full_papers/cowan/cowan.pdf&quot;&gt;Read &lt;strong&gt;up to&lt;/strong&gt; Sec 3.3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have a Microsoft Windows machine, please watch the following
+video on &lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&quot;&gt;how to set up a VirtualBox environment and the
+autograder&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Email me &lt;strong&gt;immediately&lt;/strong&gt; to get your account credentials for the
+autograder. In your email please let me know when you plan to start
+lab 0.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Please watch the &lt;a href=&quot;https://www.youtube.com/watch?v=doUVMwJhC1M&amp;amp;t=28s&quot;&gt;first video lecture on
+C++&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The first lab is due &lt;strong&gt;soon&lt;/strong&gt;: the first day of class. The answer to
+the first lab should not take more than 3-10 lines of code, and you
+should be able to do it after watching the first video lecture.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 </description>
-        <pubDate>Tue, 23 Jan 2018 00:00:00 -0600</pubDate>
-        <link>http://kmicinski.com/cybersecurity-course/lectures/1</link>
-        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/lectures/1</guid>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/intro</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/intro</guid>
         
         
-        <category>lectures</category>
+      </item>
+    
+      <item>
+        <title>Video Lecture: Introduction to C++</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=doUVMwJhC1M&amp;amp;t=28s&quot;&gt;Watch the video here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/kmicinski/cs245-examples&quot;&gt;Link to the examples repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;You should be able to clone the example code by doing:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/kmicinski/cs245-examples.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When changes to this repository are pushed, you can then sync then
+with:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git pull
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <link>http://kmicinski.com/cybersecurity-course/videolectures/1</link>
+        <guid isPermaLink="true">http://kmicinski.com/cybersecurity-course/videolectures/1</guid>
+        
         
       </item>
     

@@ -73,9 +73,9 @@
           <div class="container">
             <div class="wrapper">
               <div class="introtext">
-                <h1 name="compsecurity">Computer Security</h1>
-                <h2 id="practice""><span class="blackhat">Practice</span> and Theory</h2>
-                <h2 id="attacks"><span class="blackhat">Attacks</span> and Defenses</h2>
+                <h1 name="compsecurity">Principles of</h1>
+                <h1 name="compsecurity">Programming Languages</h1>
+                <!--<h2 id="practice""><span class="blackhat">Principles</span> and Implementation</h2>-->
             </div>
           </div>
         </div>
@@ -91,6 +91,21 @@
     
     
     
+    <li>
+       <span><span class="post-meta"><b>(Due <span itemprop="date">Jan 24, 2019</span>)</b></span><a class="mainpage-asn-link" href="http://kmicinski.com//cybersecurity-course/labs/0">Lab 0: Autograder Setup and Intro to C++</a></span></li>
+   
+
+    
+    
+    
+
+    
+    
+    
+
+    
+    
+    
 
 </ul>
 
@@ -99,18 +114,29 @@
 <div class="infomatter">
 <table class="infotablestyle">
 <tr><td>Course Number</td>
-    <td>CMSC 311 (Spring 2018) at <a href="https://www.haverford.edu/computer-science/">Haverford College</a></td>
+    <td>CMSC 245 (Spring 2019) at <a href="https://www.haverford.edu/computer-science/">Haverford College</a></td>
 </tr>
 <tr><td>Instructor</td>
     <td><a href="http://kmicinski.com">Kristopher Micinski</a></td>
 </tr>
+<tr><td>Teaching Assistants</td>
+    <td>Jocelyn Dunkley</td>
+</tr>
+<tr>
+    <td></td>
+    <td>Myriam Benkoussa</td>
+</tr>
 <tr>
     <td>Times</td>
-    <td>Tu/Thur 11:30-13:00 <i>Lecture</i>  W 11:30 / 12:30 <i>Labs</i></td>
+    <td>Mon/Wed 12:45-2:15 <i>Lecture</i>  Tu 10:30 / 12:30 <i>Labs</i></td>
 </tr>
 <tr>
     <td>Office Hours</td>
-    <td>Tu/Thur after class and by appointment</td>
+    <td>Mo/Wed after class and by appointment</td>
+</tr>
+<tr>
+    <td>TA Office Hours</td>
+    <td>TBA</td>
 </tr>
 </table>
 <img class="krispic" src="/assets/img/krisbw.jpg" />
@@ -118,28 +144,51 @@
 
 <h2 id="introduction">Introduction</h2>
 
-<p>This course will serve as a broad introduction to the field of
-computer security from two concurrent perspectives: attacks on
-systems, and defenses against those attacks. The goal of this course
-will be to help build intuition so that–when designing systems–you
-can consider the potential security risks and pick tools that help
-minimize those risks. To understand how attackers think, we will learn
-about the attacks they employ, such as:</p>
+<p>Have you ever asked yourself what principles underly programming
+languges? How to make an informed decision about which language to
+use? Why are some languages apparently faster than others?</p>
+
+<p>These are the kinds of questions we’re going to answer in this
+class. Together, we’ll drill into how the computer executes programs,
+gradually pulling apart the complexities involved in turning your
+programs from a string of characters to operations performed by your
+processor.</p>
+
+<p>To do this, we’ll learn languages at three different levels:</p>
 
 <ul>
-  <li>Memory-based attacks (buffer overrun, access space derandomization, return oriented programming)</li>
-  <li>Web attacks (code injection, cross-site request forgery, etc..) and security</li>
-  <li>Systems security (passwords and authentication, process isolation)</li>
-  <li>Reverse engineering</li>
-  <li>Attacks on cryptographic systems and implementations, and basics of SSL/TLS</li>
+  <li>
+    <p>The low level (assembly): how the processor pushes around bits to
+perform the most basic of tasks (arithmetic, moving data, etc..)</p>
+  </li>
+  <li>
+    <p>The middle level (C++): how we can leverge low-level niceties (such
+as performance), but retain a structured language so we can scale
+our ideas to large software engineering tasks.</p>
+  </li>
+  <li>
+    <p>The high level (Scheme / Racket / Datalog): how we can strategically
+ignore the lower level facilties and focus on the high-level essence
+of the problems we want to solve.</p>
+  </li>
 </ul>
 
-<p>However, a collection of attacks alone is not sufficient to understand
-how to build secure systems. So concurrent with attacks, we will also
-learn the theory behind building defenses into our systems.  In labs,
-we will dissect a number of real-world attacks (such as Heartbleed or
-WannaCry) and reflect upon what could have been done to prevent them,
-and how those experiences help inform our choices about system design.</p>
+<p>The lower-level the language, the more complexity we’ll deal with (in
+terms of having to understand what the computer is doing).  So an
+auxiliary benefit of this class is that you’ll have to learn more
+about how computers work. Once we understand what the computer’s doing
+at a low level, we’ll be able to exploit that understanding by writing
+highly efficient code. Dually, understanding concepts from
+higher-level languages will teach us how to build better
+abstractions. We’ll even get to the point where we’re extending the
+languages we use on a day-to-day basis and building new ones.</p>
+
+<p>The goal of this course is to teach you both the nuts and bolts of
+languages and to help built intuition about programming paradigms in a
+broadly construed manner. When you’re done, you still won’t know every
+language out there. But we hope that you’ll be able to thoughtfully
+articulate why you choose the language you did, and have enough
+intuition to pick up new languages very quickly.</p>
 
 <h2 id="course-structure">Course Structure</h2>
 
