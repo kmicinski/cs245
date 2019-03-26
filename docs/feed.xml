@@ -5,8 +5,8 @@
     <description>(Spring '19) Principles of Programming Languages (CMSC245 at Haverford College)</description>
     <link>http://kmicinski.com/cs245/</link>
     <atom:link href="http://kmicinski.com/cs245/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 14 Mar 2019 15:21:16 -0500</pubDate>
-    <lastBuildDate>Thu, 14 Mar 2019 15:21:16 -0500</lastBuildDate>
+    <pubDate>Tue, 26 Mar 2019 12:36:14 -0400</pubDate>
+    <lastBuildDate>Tue, 26 Mar 2019 12:36:14 -0400</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -62,7 +62,7 @@ arrays that will give O(n) time for &lt;code class=&quot;highlighter-rouge&quot;
   &lt;li&gt;Virtual methods&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Fri, 01 Feb 2019 00:00:00 -0600</pubDate>
+        <pubDate>Fri, 01 Feb 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/projects/1</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/projects/1</guid>
         
@@ -161,7 +161,7 @@ clang++ -std=c++14 -Wall -o ./output ./tests/&amp;lt;testname&amp;gt;.cpp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Sun, 20 Jan 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sun, 20 Jan 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/projects/0</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/projects/0</guid>
         
@@ -239,7 +239,7 @@ then calculate the output and print it.&lt;/p&gt;
 &lt;p&gt;You can also add extra tests of your own. Feel free to look at
 &lt;code class=&quot;highlighter-rouge&quot;&gt;test.py&lt;/code&gt; to see how the tests are being run.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 20 Jan 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sun, 20 Jan 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/labs/0</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/labs/0</guid>
         
@@ -252,7 +252,7 @@ then calculate the output and print it.&lt;/p&gt;
         <title>Video: Setting up a VM for CS245</title>
         <description>&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=w7wLvLb2qCw&quot;&gt;Watch the video here&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/videos/vm</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/videos/vm</guid>
         
@@ -287,7 +287,7 @@ should be able to do it after watching the first video lecture.&lt;/p&gt;
 &lt;/ul&gt;
 
 </description>
-        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/intro</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/intro</guid>
         
@@ -312,7 +312,7 @@ with:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Sat, 19 Jan 2019 00:00:00 -0600</pubDate>
+        <pubDate>Sat, 19 Jan 2019 00:00:00 -0500</pubDate>
         <link>http://kmicinski.com/cs245/videolectures/1</link>
         <guid isPermaLink="true">http://kmicinski.com/cs245/videolectures/1</guid>
         
